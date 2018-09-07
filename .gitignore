@@ -2,3 +2,4 @@ vendor
 nbproject
 runtime
 web/assets
+migrations

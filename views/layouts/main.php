@@ -75,9 +75,9 @@
 								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
 								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
 							</div>
-							<li><a href="<?= Yii::$app->homeUrl ?>category">Личные вещи<span> (86)</span></a></li>
-							<li><a href="<?= Yii::$app->homeUrl ?>category">Хобби, отдых, спорт<span> (46)</span></a></li>
-							<li><a href="<?= Yii::$app->homeUrl ?>category">Красота и здоровье<span> (38)</span></a></li>
+							<li><a href="<?= Yii::$app->homeUrl ?>category/personal_things">Личные вещи<span> (86)</span></a></li>
+							<li><a href="<?= Yii::$app->homeUrl ?>category/2">Хобби, отдых, спорт<span> (46)</span></a></li>
+							<li><a href="<?= Yii::$app->homeUrl ?>category/3">Красота и здоровье<span> (38)</span></a></li>
 							<li><a href="#">Детский мир<span> (96)</span></a></li>
 							<li><a href="#">Электроника<span> (71)</span></a></li>								
 							<li><a href="#">Продукты<span> (46)</span></a></li>

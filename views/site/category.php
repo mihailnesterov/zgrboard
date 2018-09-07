@@ -3,6 +3,11 @@
         <div class="row">			
 
                 <article id="content" class="col-md-9">
+                        <!--<ol class="breadcrumb hidden-xs">
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="#">Недвижимость</a></li>
+                            <li class="active">Продажа</li>
+                        </ol>-->
                         <header id="content-header">
                                 <h1>Все объявления</h1>
                                 <hr>
