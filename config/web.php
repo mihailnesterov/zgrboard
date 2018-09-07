@@ -10,7 +10,11 @@ return [
     'components' => [
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false
+            'showScriptName' => false,
+            'rules' => [ // правила формирования ссылок
+                   '' => 'site/index',
+                   'category' => 'site/category'
+            ],
         ],
         'request' => [
             'cookieValidationKey' => 'h6E95Dlc9Lqs78Dmxs6',

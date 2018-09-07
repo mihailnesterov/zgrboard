@@ -4,11 +4,10 @@
 
                 <article id="content" class="col-md-9">
                         <header id="content-header">
-                                <h1>Доска объявлений Зеленогорска</h1>
+                                <h1>Все объявления</h1>
                                 <hr>
                         </header>
                         <div class="ads-container">
-                                <h2>Новые объявления</h2>
                                 <ul class="row">
                                         <li class="col-sm-6 col-lg-4">
                                                 <div class="ads-block">
@@ -58,13 +57,31 @@
                                                         <p class="ads-date">12.08.2018 08:45</p>
                                                 </div>
                                         </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads2.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам телефон Samsung Galaxy 5</a></h3>						
+                                                        <p class="ads-price">23500 р.</p>
+                                                        <p class="ads-date">12.08.2018 15:05</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads4.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам Hyundai Solaris, 2012 г/в</a></h3>
+                                                        <p class="ads-price">499000 р.</p>
+                                                        <p class="ads-date">12.08.2018 08:45</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads4.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам Hyundai Solaris, 2012 г/в</a></h3>
+                                                        <p class="ads-price">499000 р.</p>
+                                                        <p class="ads-date">12.08.2018 08:45</p>
+                                                </div>
+                                        </li>
                                 </ul>
-                                <br>
-                                <div class="row">
-                                        <div class="col-sm-7 col-lg-5">
-                                                <a href="#" class="btn-green">Все новые объявления (18)</a>
-                                        </div>
-                                </div>
 
                         </div>	<!-- end ads-container -->
 

@@ -53,7 +53,7 @@
             <div class="row">
 		<aside id="aside-left" class="col-sm-3 col-lg-2">
 			<div id="logoTop">
-				<a href="index.html"><img src="images/logo.png" alt="logo" class="img-responsive">
+				<a href="<?= Yii::$app->homeUrl ?>"><img src="images/logo.png" alt="logo" class="img-responsive">
 					<span id="slogan"><?= Yii::$app->name ?><br> Доска объявлений</span>
 				</a>
 			</div>
@@ -75,9 +75,9 @@
 								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
 								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
 							</div>
-							<li><a href="#">Личные вещи<span> (86)</span></a></li>
-							<li><a href="#">Хобби, отдых, спорт<span> (46)</span></a></li>
-							<li><a href="#">Красота и здоровье<span> (38)</span></a></li>
+							<li><a href="<?= Yii::$app->homeUrl ?>category">Личные вещи<span> (86)</span></a></li>
+							<li><a href="<?= Yii::$app->homeUrl ?>category">Хобби, отдых, спорт<span> (46)</span></a></li>
+							<li><a href="<?= Yii::$app->homeUrl ?>category">Красота и здоровье<span> (38)</span></a></li>
 							<li><a href="#">Детский мир<span> (96)</span></a></li>
 							<li><a href="#">Электроника<span> (71)</span></a></li>								
 							<li><a href="#">Продукты<span> (46)</span></a></li>
