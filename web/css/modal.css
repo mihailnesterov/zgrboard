@@ -1,0 +1,115 @@
+.boxes .window {
+	position:fixed;
+	display:none;
+	z-index:9999;
+	
+	color: #696969;
+    font-family: 'Roboto Condensed', Trebuchet MS, sans-serif;
+	font-weight: 300;
+	font-size: 11pt;
+	line-height: 1.75em;
+	
+	}
+
+.boxes #dialog {
+background-color: #F5F5F5;/*#f3f3f3*/
+border: 1px solid #dedede;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+	text-align: center;
+	font-size: 110%;
+	width:400px;
+	height:320px;
+	}
+
+.boxes #order {
+background-color: #F5F5F5;/*#f3f3f3*/
+border: 1px solid #dedede;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+	text-align: center;
+	font-size: 110%;
+	width:400px;
+	height:730px;
+	}
+	
+/*#boxes #dialog h4 
+{
+    text-align:center;
+    font-size: 100%;
+    margin-bottom:10px;
+}*/
+.close 
+{
+    margin:0 0 0 373px;
+}
+.close-map
+{
+    margin:0 0 0 870px;
+}
+#map .map-window {
+	position:fixed;
+	display:none;
+	z-index:9998;
+	}
+#map #map-dialog {
+background-color: #F5F5F5;
+border: 1px solid #dedede;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+	text-align: center;
+	font-size: 110%;
+	width:900px;
+	height:580px;
+	}
+.map #map-dialog #map-image
+{
+	width:880px;
+}
+.boxes .window input
+{
+   font-size: 120%;
+   width:80%;
+	margin-top:20px;
+}
+
+.boxes .window textarea
+{
+   font-size: 120%;
+   width:80%;
+	margin-top:20px;
+}
+.boxes button
+{
+
+    position: relative;
+	display: inline-block;
+	border:0;
+	width:80%;
+	margin-top: 0.5em;
+	padding: 0.50em 1.5em;
+	background: #FA5014; /*e95d3c*/
+	border-radius: 6px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 1.1em;
+	color: #FFF;
+	-moz-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	-webkit-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	-o-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	-ms-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	cursor: pointer;   
+}
+
+.boxes button:hover
+{
+    background: #FFCB08;
+	color: #4B4D4B !important;   
+}
