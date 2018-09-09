@@ -1,30 +1,59 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use Yii;
 
-class User extends \yii\db\ActiveRecord
+/**
+ * This is the model class for table "zb_users".
+ *
+ * @property int $id id пользователя
+ * @property string $login логин пользователя
+ * @property string $password пароль пользователя
+ * @property string $email email пользователя
+ * @property string $phone телефон пользователя
+ * @property string $avatar аватар пользователя
+ * @property string $role роль пользователя
+ * @property string $created дата создания профиля
+ */
+class Users extends \yii\db\ActiveRecord
 {
-    public static function tableName() {
-        parent::tableName();
-        return 'User';
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'zb_users';
     }
-    
-    public function rules() {
-        parent::rules();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
         return [
-            ['id', 'number'],
-            ['login', 'required'],
-            ['login', 'string', 'max' => 256],
-            ['role', 'required'],
-            ['created', 'date', 'format' => 'Y-m-d'],
+            [['login', 'password', 'email', 'phone', 'avatar', 'created'], 'required'],
+            [['created'], 'safe'],
+            [['login', 'password', 'role'], 'string', 'max' => 50],
+            [['email', 'avatar'], 'string', 'max' => 100],
+            [['phone'], 'string', 'max' => 20],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'login' => 'Login',
+            'password' => 'Password',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'avatar' => 'Avatar',
+            'role' => 'Role',
+            'created' => 'Created',
         ];
     }
 }
