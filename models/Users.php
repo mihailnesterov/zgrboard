@@ -32,7 +32,8 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['login', 'password', 'email', 'phone', 'avatar', 'created'], 'required'],
+            //[['login', 'password', 'email', 'phone', 'avatar', 'created'], 'required'],
+            [['login', 'password'], 'required'],
             [['created'], 'safe'],
             [['login', 'password', 'role'], 'string', 'max' => 50],
             [['email', 'avatar'], 'string', 'max' => 100],
@@ -47,13 +48,13 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'login' => 'Login',
-            'password' => 'Password',
+            'login' => 'Логин',
+            'password' => 'Пароль',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'avatar' => 'Avatar',
-            'role' => 'Role',
-            'created' => 'Created',
+            'phone' => 'Телефон',
+            'avatar' => 'Аватар',
+            'role' => 'Роль',
+            'created' => 'Дата создания',
         ];
     }
 }

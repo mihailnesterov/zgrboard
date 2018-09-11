@@ -75,24 +75,14 @@
 								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
 								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
 							</div>
-							<li><a href="<?= Yii::$app->homeUrl ?>category/personal_things">Личные вещи<span> (86)</span></a></li>
-							<li><a href="<?= Yii::$app->homeUrl ?>category/2">Хобби, отдых, спорт<span> (46)</span></a></li>
-							<li><a href="<?= Yii::$app->homeUrl ?>category/3">Красота и здоровье<span> (38)</span></a></li>
-							<li><a href="#">Детский мир<span> (96)</span></a></li>
-							<li><a href="#">Электроника<span> (71)</span></a></li>								
-							<li><a href="#">Продукты<span> (46)</span></a></li>
-							<li><a href="#">Мобильные телефоны, связь<span> (22)</span></a></li>
-							<li><a href="#">Работа<span> (49)</span></a></li>
-							<li><a href="#">Недвижимость<span> (59)</span></a></li>
-							<li><a href="#">Транспорт<span> (256)</span></a></li>
-							<li><a href="#">Бизнес<span> (57)</span></a></li>								
-							<li><a href="#">Строительные товары<span> (78)</span></a></li>
-							<li><a href="#">Сад и огород<span> (59)</span></a></li>
-							<li><a href="#">Животные<span> (128)</span></a></li>
-							<li><a href="#">Мебель, бытовое<span> (99)</span></a></li>
-							<li><a href="#">Услуги и предложения<span> (36)</span></a></li>								
-							<li><a href="#">Знакомства<span> (8)</span></a></li>
-							<li><a href="#">Обучение, курсы<span> (10)</span></a></li>
+                                                        <?php
+                                                            // вывод меню из БД
+                                                            $category = \app\models\Category::find()->all();
+                                                            foreach ($category as $cat):
+                                                                echo '<li><a href="'.Yii::$app->urlManager->createUrl(['category/'.$cat->id]).'">'.$cat->name.'<span> ('.\app\models\Category::find()->count().')</span></a></li>';
+                                                            endforeach;
+                                                        ?>
+							
 						</ul>
 					</div>
 				</nav>

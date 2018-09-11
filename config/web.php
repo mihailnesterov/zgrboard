@@ -14,12 +14,13 @@ return [
             'showScriptName' => false,
             'rules' => [ // правила формирования ссылок
                     '' => 'site/index',
-                    'category' => 'site/category',
-                    'category/personal_things' => 'site/category',
+                    'site/category' => 'category',
+                    'category/<id:\d+>' => 'category/view',
                     'users' => 'users/index',
-                    'users/view' => 'users/view',
-                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                    '<action>' => 'site/<action>',
+                    //'users/view' => 'users/view',
+                    'users/<id:\d+>' => 'users/view',
+                    //'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    //'<action>' => 'site/<action>',
             ],
         ],
         'request' => [
