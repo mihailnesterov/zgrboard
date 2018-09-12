@@ -124,4 +124,43 @@ class UsersController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
+    /**
+     * Login user.
+     * @return mixed
+     */
+    public function actionLogin()
+    {
+        $model = new Users();
+        $this->layout = 'login';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+    
+    /**
+     * Signup user.
+     * @return mixed
+     */
+    public function actionSignup()
+    {
+        $model = new Users();
+        $this->layout = 'login';
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+    
+    /**
+     * Restore user password.
+     * @return mixed
+     */
+    public function actionRestore()
+    {
+        $model = new Users();
+        $this->layout = 'login';
+        return $this->render('restore', [
+            'model' => $model,
+        ]);
+    }
 }

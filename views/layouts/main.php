@@ -17,9 +17,9 @@
         <meta property="og:image" content="<?= Yii::$app->homeUrl ?>web/images/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="<?= $this->title ?> | <?= Yii::$app->name ?>" />
-        <meta name="twitter:image:src" content="<?= Yii::$app->homeUrl ?>web/images/damaster.png" />
+        <meta name="twitter:image:src" content="<?= Yii::$app->homeUrl ?>web/images/logo.png" />
         <meta name="twitter:description" content="Подать бесплатное объявление, продажа, покупка, обмен, аренда в Зеленогорске Краснояркого края" />
-        <link rel="image_src" href="<?= Yii::$app->homeUrl ?>web/images/damaster.png" />
+        <link rel="image_src" href="<?= Yii::$app->homeUrl ?>web/images/logo.png" />
 
         <base href="<?= Yii::$app->homeUrl ?>">
 
@@ -110,10 +110,10 @@
                                     </div>
 
                                     <div id="addTop" class="col-xs-7 col-sm-5 col-sm-offset-0 col-md-offset-0 col-md-4 col-lg-3">
-                                            <a href="#" class="btn-orange"><span>Подать объявление</span></a>
+                                            <a href="<?= Yii::$app->homeUrl ?>cabinet/add" class="btn-orange"><span>Подать объявление</span></a>
                                     </div>
                                     <div id="authTop" class="col-xs-5 col-sm-2 col-md-1">
-                                            <a href="#"><i class="fa fa-sign-in" aria-hidden="true" title="Войти в личный кабинет"></i></a>
+                                            <a href="<?= Yii::$app->homeUrl ?>login"><i class="fa fa-sign-in" aria-hidden="true" title="Войти в личный кабинет"></i></a>
                                     </div>
 
                                     <div id="searchTopMobile" class="visible-xs col-xs-12">

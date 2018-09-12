@@ -70,11 +70,11 @@
 
                         <div class="ads-container">
                                 <h2>Премиум объявления</h2>
-                                <ul>
+                                <ul class="row">
                                         <li class="col-sm-6 col-lg-4">
                                                 <div class="ads-block">
-                                                        <a href="#"><img src="images/ads1.jpg" alt="" class="img-responsive"></a>
-                                                        <h3 class="ads-header"><a href="#">Продам двухкомнатную квартиру в поселке Октябрьском</a></h3>
+                                                        <a href="page.html"><img src="images/ads1.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="page.html">Продам двухкомнатную квартиру в поселке Октябрьском</a></h3>
                                                         <p class="ads-price">1200000 р.</p>
                                                         <p class="ads-date">12.08.2018 21:15</p>
                                                 </div>
@@ -120,7 +120,6 @@
                                                 </div>
                                         </li>
                                 </ul>
-
                         </div>	<!-- end ads-container -->
 
                 </article>

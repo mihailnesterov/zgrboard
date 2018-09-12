@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CategorySearchModel */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Все объявления';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!--
@@ -106,14 +106,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
 
                         </div>	<!-- end ads-container -->
-
-                        <div class="ads-container">
+                        
+                        <div class="ads-container row">
                                 <h2>Премиум объявления</h2>
                                 <ul>
                                         <li class="col-sm-6 col-lg-4">
                                                 <div class="ads-block">
-                                                        <a href="#"><img src="images/ads1.jpg" alt="" class="img-responsive"></a>
-                                                        <h3 class="ads-header"><a href="#">Продам двухкомнатную квартиру в поселке Октябрьском</a></h3>
+                                                        <a href="page.html"><img src="images/ads1.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="page.html">Продам двухкомнатную квартиру в поселке Октябрьском</a></h3>
                                                         <p class="ads-price">1200000 р.</p>
                                                         <p class="ads-date">12.08.2018 21:15</p>
                                                 </div>
@@ -159,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                         </li>
                                 </ul>
-
+                                <br>
                         </div>	<!-- end ads-container -->
 
                 </article>
