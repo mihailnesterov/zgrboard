@@ -12,7 +12,7 @@ $this->title = 'Регистрация';
 <div class="site-login">
 
     <?php $form = ActiveForm::begin(); ?>
-        
+        <!--$hash_pass=Yii::$app->getSecurity()->generatePasswordHash('123',10);-->
         <?= $form->field($model, 'login', [
             'template' => '{input}{error}',
             'inputOptions' => [
@@ -22,7 +22,7 @@ $this->title = 'Регистрация';
                 'class'=>'form-control input-lg',
                 //'pattern'=>'\D+([a-zA-Z0-9._@])$'
             ]
-        ])->label(false) ?>
+        ])->textInput(['maxlength' => true])->label(false) ?>
     
     
         <?= $form->field($model, 'email', [
@@ -32,7 +32,7 @@ $this->title = 'Регистрация';
                 'placeholder' => 'Email',
                 'class'=>'form-control input-lg',
             ]
-        ])->label(false) ?>
+        ])->textInput(['maxlength' => true])->label(false) ?>
 
         
         <?= $form->field($model, 'password', [
@@ -42,7 +42,7 @@ $this->title = 'Регистрация';
                 'placeholder' => 'Пароль',
                 'class'=>'form-control input-lg'
             ]
-        ])->passwordInput()->label(false) ?>
+        ])->passwordInput(['maxlength' => true])->label(false) ?>
     
         <div class="form-group">
             <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary btn-lg btn-orange', 'style' => 'display: block; min-width: 50%; margin: 1.5em auto;']) ?>

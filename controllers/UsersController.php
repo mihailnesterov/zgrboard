@@ -145,6 +145,21 @@ class UsersController extends Controller
     public function actionSignup()
     {
         $model = new Users();
+        
+        if (!Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->setPassword($model->password);
+            //$model->password = \Yii::$app->security->generatePasswordHash($model->password);
+            if ($model->save())
+            {
+                return $this->redirect(['cabinet', 'id' => $model->id]);
+            } 
+        }
+        
         $this->layout = 'login';
         return $this->render('signup', [
             'model' => $model,
@@ -163,4 +178,5 @@ class UsersController extends Controller
             'model' => $model,
         ]);
     }
+
 }

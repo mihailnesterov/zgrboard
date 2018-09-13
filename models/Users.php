@@ -33,9 +33,11 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             //[['login', 'password', 'email', 'phone', 'avatar', 'created'], 'required'],
-            [['login', 'password'], 'required'],
+            [['login', 'password', 'email'], 'required', 'message' => 'Поле не может быть пустым'],
+            [['login'], 'unique', 'targetClass' => Users::className(), 'message' => 'Пользователь с таким логином уже существует'],
+            [['email'], 'unique', 'message' => 'Пользователь с таким email уже существует'],
             [['created'], 'safe'],
-            [['login', 'password', 'role'], 'string', 'max' => 50],
+            [['login', 'role'], 'string', 'max' => 50],
             [['email', 'avatar'], 'string', 'max' => 100],
             [['phone'], 'string', 'max' => 20],
         ];
@@ -56,5 +58,13 @@ class Users extends \yii\db\ActiveRecord
             'role' => 'Роль',
             'created' => 'Дата создания',
         ];
+    }
+    
+    /*
+     * Generate Hash Password
+     */
+    public function setPassword($password)
+    {
+        $this->password = Yii::$app->security->generatePasswordHash($password);
     }
 }
