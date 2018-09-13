@@ -37,6 +37,9 @@ return [
         'gii' => [  // настройки Gii
             'class' => 'yii\gii\Module',
             'allowedIPs' => ['*']
+        ],
+        'cabinet' => [
+            'class' => 'app\modules\cabinet\Module',
         ]
     ],
     // подключить extensions.php для: Gii
