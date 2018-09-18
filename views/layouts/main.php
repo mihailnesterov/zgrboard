@@ -110,10 +110,18 @@
                                     </div>
 
                                     <div id="addTop" class="col-xs-7 col-sm-5 col-sm-offset-0 col-md-offset-0 col-md-4 col-lg-3">
-                                            <a href="<?= Yii::$app->homeUrl ?>cabinet/add" class="btn-orange"><span>Подать объявление</span></a>
+                                            <?php if (Yii::$app->user->isGuest): ?>
+                                                <?= Html::a('<span>Подать объявление</span>', Yii::$app->homeUrl.'login', ['class' => 'btn-orange']) ?>
+                                            <?php else: ?>
+                                                <?= Html::a('<span>Подать объявление</span>', Yii::$app->homeUrl.'cabinet/add', ['class' => 'btn-orange']) ?>
+                                            <?php endif; ?>
                                     </div>
                                     <div id="authTop" class="col-xs-5 col-sm-2 col-md-1">
-                                            <a href="<?= Yii::$app->homeUrl ?>login"><i class="fa fa-sign-in" aria-hidden="true" title="Войти в личный кабинет"></i></a>
+                                            <?php if (Yii::$app->user->isGuest): ?>
+                                                <?= Html::a('<i class="fa fa-sign-out" aria-hidden="true"></i>', Yii::$app->homeUrl.'login', ['title' => 'Войти в личный кабинет']) ?>
+                                            <?php else: ?>
+                                                <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i>', Yii::$app->homeUrl.'cabinet', ['title' => 'Вы авторизованы как '.Yii::$app->user->identity->login, 'style' => 'background-color: #EFA842']) ?>
+                                            <?php endif; ?>
                                     </div>
 
                                     <div id="searchTopMobile" class="visible-xs col-xs-12">

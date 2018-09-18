@@ -1,7 +1,7 @@
 <?php
     use yii\helpers\Html;
     use app\assets\AppAsset;
-    
+     
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('zgrboard/web');
     $this->beginPage();
 ?>
@@ -13,7 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?> | <?= Html::encode(Yii::$app->name) ?></title>
+        <title><?= Html::encode($this->title) ?> | Личный кабинет</title>
         
         <?php $this->head(); ?>
         
@@ -33,14 +33,14 @@
         ?>
         
     </head>
-    <body>
+    <body style="background-color: #1F4C7C;">
         <?php $this->beginBody(); ?>
         
         <div id="wrapper" class="container-fluid">
             <div class="row">
 		<aside id="aside-left" class="col-sm-3 col-lg-2">
 			<div id="logoTop">
-				<a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>"><img src="images/logo.png" alt="logo" class="img-responsive">
+				<a href="<?= Yii::$app->homeUrl ?>"><img src="<?= Yii::$app->homeUrl ?>images/logo.png" alt="logo" class="img-responsive">
 					<span id="slogan"><?= Yii::$app->name ?><br> Доска объявлений</span>
 				</a>
 			</div>
@@ -59,9 +59,10 @@
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav dropdown">
                                                         <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (0)</span></a></li>
-							<li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/add']) ?>">Подать объявление</a></li>
-                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Сообщения<span> (0)</span></a></li>
+                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
                                                         <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/prifile']) ?>">Мой профиль</a></li>
+                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['/']) ?>">Перейти на сайт</a></li>
+                                                        <li style="border-top: 1px #DCEDCC solid; padding-top: 1em; margin-top: 1em;"><a href="<?= Yii::$app->urlManager->createUrl(['/logout']) ?>">Выйти из профиля</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -72,14 +73,19 @@
 		<div id="right-container" class="col-sm-9 col-lg-10"> <!-- begin right-container -->
                     <header id="header" class="row">
                                     <div id="searchTop" class="hidden-xs col-sm-5 col-md-6 col-lg-8">
-                                        <h2 style="color: #fff; margin-top: 0.5em;">Личный кабинет</h2>
+                                        <h2 style="color: #fff; margin-top: 0.5em;">Личный кабинет ( <?= Yii::$app->user->identity->login ?> )</h2>
                                     </div>
 
                                     <div id="addTop" class="col-xs-7 col-sm-5 col-sm-offset-0 col-md-offset-0 col-md-4 col-lg-3">
                                             <a href="<?= Yii::$app->homeUrl ?>cabinet/add" class="btn-orange"><span>Подать объявление</span></a>
                                     </div>
                                     <div id="authTop" class="col-xs-5 col-sm-2 col-md-1">
-                                            <a href="<?= Yii::$app->homeUrl ?>login"><i class="fa fa-sign-in" aria-hidden="true" title="Войти в личный кабинет"></i></a>
+                                            <!-- <a href="<?= Yii::$app->homeUrl ?>login"><i class="fa fa-sign-in" aria-hidden="true" title="Войти в личный кабинет"></i></a>-->
+                                            <?php if (Yii::$app->user->isGuest): ?>
+                                                <?= Html::a('<i class="fa fa-sign-out" aria-hidden="true"></i>', Yii::$app->homeUrl.'login', ['title' => 'Войти в личный кабинет']) ?>
+                                            <?php else: ?>
+                                                <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i>', Yii::$app->homeUrl.'logout', ['title' => 'Вы авторизованы как '.Yii::$app->user->identity->login, 'style' => 'background-color: #EFA842']) ?>
+                                            <?php endif; ?>
                                     </div>
 
                                     <div id="searchTopMobile" class="visible-xs col-xs-12">
@@ -102,7 +108,7 @@
             </div> <!-- end row -->
         <footer>		
 		<div class="row">
-                    <p id="copyright">&copy <?= date('Y') ?> <?= Html::a(Yii::$app->name, ['/']) ?> Все права защищены</p>
+                    <p id="copyright">&copy <?= date('Y') ?> <?= Html::a(Yii::$app->name.' | Доска объявлений', ['/']) ?></p>
 		</div>
 	</footer>
         </div> 	<!-- end wrapper-->

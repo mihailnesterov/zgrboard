@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Users;
 use app\models\UsersSearchModel;
+use app\models\LoginForm;
+use app\models\SignupForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -131,8 +133,21 @@ class UsersController extends Controller
      */
     public function actionLogin()
     {
-        $model = new Users();
+        if (!Yii::$app->user->isGuest) 
+        {
+            //return $this->goHome();
+            return $this->redirect('cabinet');
+        }
+        $model = new LoginForm();
         $this->layout = 'login';
+        
+        if ($model->load(Yii::$app->request->post()) 
+            && $model->login()) 
+        {
+            //return $this->goBack();
+            return $this->redirect('cabinet');
+        }
+        
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -144,23 +159,30 @@ class UsersController extends Controller
      */
     public function actionSignup()
     {
-        $model = new Users();
-        
+   
         if (!Yii::$app->user->isGuest)
         {
             return $this->goHome();
         }
-
+        
+        $model = new SignupForm();
+        
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->setPassword($model->password);
-            //$model->password = \Yii::$app->security->generatePasswordHash($model->password);
-            if ($model->save())
-            {
-                return $this->redirect(['cabinet', 'id' => $model->id]);
+            $user = new Users();
+            $user->login = $model->login;
+            $user->email = $model->email;
+            $user->setPassword($model->password);
+            //$user->auth_key = \Yii::$app->security->generateRandomKey($lenght = 255);
+            $user->auth_key = \Yii::$app->security->generateRandomString($lenght = 255);
+            //echo '<pre>'; print_r($user); die;
+            if ($user->save()) {
+                //return $this->redirect(['cabinet', 'id' => $model->id]);
+                return $this->redirect('login'); 
             } 
         }
         
         $this->layout = 'login';
+        
         return $this->render('signup', [
             'model' => $model,
         ]);
@@ -174,9 +196,21 @@ class UsersController extends Controller
     {
         $model = new Users();
         $this->layout = 'login';
+        
         return $this->render('restore', [
             'model' => $model,
         ]);
+    }
+    
+    
+    /*
+     * Logout user method
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
     }
 
 }

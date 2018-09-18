@@ -34,8 +34,16 @@ $this->title = 'Войти в личный кабинет';
             ]
         ])->passwordInput()->label(false) ?>
     
+        <?= $form->field($model, 'rememberMe', [
+            'template' => '{input}{error}',
+            'inputOptions' => [
+                'tabindex' => '3',
+                'class'=>'form-control input-lg'
+            ]
+        ])->checkbox(['value' => 0, 'checked' => false]) ?>
+    
         <div class="form-group">
-            <?= Html::submitButton('Войти', ['class' => 'btn btn-primary btn-lg btn-orange', 'style' => 'display: block; min-width: 50%; margin: 1.5em auto;']) ?>
+            <?= Html::submitButton('Войти', ['class' => 'btn btn-primary btn-lg btn-orange btn-login']) ?>
         </div>
     <?php ActiveForm::end(); ?>
     

@@ -16,11 +16,19 @@ use Yii;
  * @property string $role роль пользователя
  * @property string $created дата создания профиля
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
      */
+    
+    const STATUS_NOT_ACTIVE = 0;
+    const STATUS_ACTIVE = 10;
+    
+    private $_user; 
+    
+    public $rememberMe = true;
+    
     public static function tableName()
     {
         return 'zb_users';
@@ -32,14 +40,16 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            //[['login', 'password', 'email', 'phone', 'avatar', 'created'], 'required'],
-            [['login', 'password', 'email'], 'required', 'message' => 'Поле не может быть пустым'],
-            [['login'], 'unique', 'targetClass' => Users::className(), 'message' => 'Пользователь с таким логином уже существует'],
-            [['email'], 'unique', 'message' => 'Пользователь с таким email уже существует'],
-            [['created'], 'safe'],
-            [['login', 'role'], 'string', 'max' => 50],
-            [['email', 'avatar'], 'string', 'max' => 100],
-            [['phone'], 'string', 'max' => 20],
+            ['login', 'string', 'min' => 2, 'max' => 255],
+            // password is validated by validatePassword()
+            /*['password', 'validatePassword'],*/
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['auth_key', 'string', 'max' => 255],
+            [[ 'avatar', 'created'], 'safe'],
+            ['role', 'string', 'max' => 50],
+            ['avatar', 'string', 'max' => 255],
+            ['phone', 'string', 'max' => 20],
         ];
     }
 
@@ -52,6 +62,9 @@ class Users extends \yii\db\ActiveRecord
             'id' => 'ID',
             'login' => 'Логин',
             'password' => 'Пароль',
+            'auth_key' => 'Authentication Key',
+            'status' => 'Статус (активен/неактивен)',
+            'rememberMe' => 'Запомнить меня',
             'email' => 'Email',
             'phone' => 'Телефон',
             'avatar' => 'Аватар',
@@ -66,5 +79,135 @@ class Users extends \yii\db\ActiveRecord
     public function setPassword($password)
     {
         $this->password = Yii::$app->security->generatePasswordHash($password);
+    }
+    
+    /*
+     * IdentityInterface 5 abstract metods
+     */
+    public static function findIdentity($id)
+    {
+        // возвращает объект activerecord содержащий текущего пользователя.
+        return static::findOne($id);
+        //return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+    }
+    
+    public function getId()
+    {
+        // возвращает id текущего пользователя
+        return $this->id;
+    }
+    
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+      // используется при авторизации через через OAuth2 или OpenID
+        //return static::findOne(['access_token' => $token]);
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+    
+    public function getAuthKey()
+    {
+       // используется при авторизации через cookie
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+      // используется при авторизации через cookie
+        return $this->getAuthKey() === $authKey;
+    }
+    
+        /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+    
+    /*
+     * validate user and call $app->user->login($this->getUser())
+     * where take user object from getUser()
+     */
+    public function login()
+    {
+        if ($this->validate()) {
+            //$_user = $this->getUser();
+            //return Yii::$app->user->login($this->getUser());
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+        }
+        else {
+            return false;
+        }
+    }
+    
+    /**
+     * Finds user by [[login]]
+     *
+     * @return User|null
+     */
+    protected function getUser()
+    {
+        if ($this->_user === null) {
+            $this->_user = Users::findByUsername($this->login);
+        }
+
+        return $this->_user;
+    }
+    
+    /**
+     * Finds user by username
+     */
+    public static function findByUsername($username)
+    {
+        //return static::findOne(['login' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['login' => $username]);
+    }
+    /*
+    public function validatePassword($attribute)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'Неверный логин или пароль');
+            }
+        }
+    }*/
+    
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+     */
+    /*public function validatePassword($password, $attribute)
+    {
+        if (!$this->hasErrors()) 
+            return;
+
+            $_user = $this->getUser($this->login);
+
+            if (!$_user || Yii::$app->security->validatePassword($password, $this->password)) {
+                $this->addError($attribute, 'Неверный логин или пароль');
+            }
+        
+    }*/
+   
+   /*
+    * Password Validation. getUser() returns null (false) if password false
+    */
+   /*public function validatePassword($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            if(!$this->getUser())
+            {
+                $this->addError($attribute, 'Неверный пароль');
+            } 
+        }
+    }*/
+    
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password);
     }
 }

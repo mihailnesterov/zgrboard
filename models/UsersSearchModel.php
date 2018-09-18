@@ -19,7 +19,7 @@ class UsersSearchModel extends Users
     {
         return [
             [['id'], 'integer'],
-            [['login', 'password', 'email', 'phone', 'avatar', 'role', 'created'], 'safe'],
+            [['login', 'email', 'phone', 'avatar', 'role', 'created'], 'safe'],
         ];
     }
 
@@ -64,7 +64,6 @@ class UsersSearchModel extends Users
         ]);
 
         $query->andFilterWhere(['like', 'login', $this->login])
-            ->andFilterWhere(['like', 'password', $this->password])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'avatar', $this->avatar])

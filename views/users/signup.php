@@ -12,7 +12,6 @@ $this->title = 'Регистрация';
 <div class="site-login">
 
     <?php $form = ActiveForm::begin(); ?>
-        <!--$hash_pass=Yii::$app->getSecurity()->generatePasswordHash('123',10);-->
         <?= $form->field($model, 'login', [
             'template' => '{input}{error}',
             'inputOptions' => [

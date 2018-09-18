@@ -20,11 +20,16 @@ return [
                     'users/<id:\d+>' => 'users/view',
                     'login' => 'users/login',
                     'signup' => 'users/signup',
-                    'password-restore' => 'users/restore',
-                    //'cabinet' => 'cabinet/index',
+                    'password-restore' => 'users/restore',                    
                     'cabinet/<id:\d+>' => 'users/cabinet',
-                    //'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                    //'<action>' => 'site/<action>',
+                    //'cabinet' => 'users/cabinet',
+                    'logout' => 'users/logout',
+                    /*'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    '<action>' => 'site/<action>',*/
+                
+                    /*'<module:cabinet>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
+                    '<module:cabinet>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
+                    '<module:cabinet>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',*/
             ],
         ],
         'request' => [
@@ -33,7 +38,7 @@ return [
         ],
         'db' => require(__DIR__.'/db.php'),
         'user' => [ // подключаем текущую логику аутентификации
-                'identityClass' => 'app\models\User',
+                'identityClass' => 'app\models\SignupForm',
                 'enableAutoLogin' => true,
             ],
     ],

@@ -25,9 +25,8 @@ class Module extends \yii\base\Module
     /*
      * Access Control Filter (ACF) - доступ к админке только авторизованным
      * пользователям - @
-     * ошибка - User::identityClass must be set.
      */
-    /*public function behaviors(){
+    public function behaviors(){
         return [
             'access' => [
             'class' => \yii\filters\AccessControl::className(),
@@ -39,5 +38,5 @@ class Module extends \yii\base\Module
                 ],
             ],
         ];
-   }*/
+   }
 }
