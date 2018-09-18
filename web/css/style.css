@@ -233,6 +233,7 @@ a:hover {
 	background-color:#267F00;
 	border-radius: 6px;
 	padding: 0.5em 1em;
+        float: right;
 }
 #authTop a i {
 	font-size: 1.8em;
@@ -610,6 +611,35 @@ footer
     margin: 1.5em auto;
 }
 
+/* cabinet */
+
+#btn-cabinet-login {
+    /**/
+}
+
+#btn-cabinet-login span {
+    display: inline-block; 
+    vertical-align: top; 
+    padding: 0.45em;
+}
+
+/*#btn-cabinet-login-mobile {
+    float: left !important;
+    margin-top: 0.45em;  
+    background-color: #4EA300 !important;
+}
+
+#btn-cabinet-login-mobile span {
+    display: inline-block; 
+    vertical-align: top; 
+    padding: 0.45em 0.5em;
+}*/
+
+#btn-cabinet-logout {
+    background-color: #FF5630 !important; 
+    margin-left: 0.8em;
+}
+
 
 /* media */
 
@@ -642,6 +672,10 @@ footer
 
 /* планшеты 991px и меньше */
 @media (max-width: 991px) { 
+        body	
+	{
+	   font-size: 95%;
+	}
 	#logoTop img {
 		width: 35px;
 		margin-top: 0.3em;		
@@ -659,7 +693,7 @@ footer
 	}
 	#header {
 		min-height: auto;
-		display: none;
+		/*display: none;*/
 	}
 	#logoTop {
 		padding: 0.9em 0.5em 0.9em 1em;
@@ -703,5 +737,11 @@ footer
 	{
 	   font-size: small;
 	}
-	
+}
+
+/* телефоны, менее 320px */
+@media (max-width: 320px) { 
+	/*#btn-cabinet-login-mobile {
+	   display: none !important;
+	}	*/
 }

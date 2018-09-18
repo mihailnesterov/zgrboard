@@ -60,7 +60,7 @@
 		
 			<div id="catalog-menu-container">
 				<nav id="catalog-menu" class="navbar navbar-default">
-					<a href="#" id="btn-open-pannel" class="visible-xs" style="display: inline-block; vertica-align: top; float: left; padding: 0.5em 1em; border: 1px #fff solid; margin: 0.5em 1em 0 0; color: #fff; font-size: 1.3em;">^</a>
+					<!--<a href="#" id="btn-open-pannel" class="visible-xs" style="display: inline-block; vertica-align: top; float: left; padding: 0.5em 1em; border: 1px #fff solid; margin: 0.5em 1em 0 0; color: #fff; font-size: 1.3em;">^</a>-->
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 							<span class="sr-only">Toggle navigation</span>
@@ -96,7 +96,7 @@
 		
 		<div id="right-container" class="col-sm-9 col-lg-10"> <!-- begin right-container -->
                     <header id="header" class="row">
-                                    <div id="searchTop" class="hidden-xs col-sm-5 col-md-6 col-lg-8">
+                                    <div id="searchTop" class="hidden-xs col-sm-4 col-md-5 col-lg-6">
                                             <form id="searchForm" novalidate>
                                                     <div class="form-group">
                                                             <div class="input-group">
@@ -109,18 +109,19 @@
                                             </form>
                                     </div>
 
-                                    <div id="addTop" class="col-xs-7 col-sm-5 col-sm-offset-0 col-md-offset-0 col-md-4 col-lg-3">
+                                    <div id="addTop" class="col-xs-7 col-sm-4 col-md-4 col-lg-3">
                                             <?php if (Yii::$app->user->isGuest): ?>
                                                 <?= Html::a('<span>Подать объявление</span>', Yii::$app->homeUrl.'login', ['class' => 'btn-orange']) ?>
                                             <?php else: ?>
                                                 <?= Html::a('<span>Подать объявление</span>', Yii::$app->homeUrl.'cabinet/add', ['class' => 'btn-orange']) ?>
                                             <?php endif; ?>
                                     </div>
-                                    <div id="authTop" class="col-xs-5 col-sm-2 col-md-1">
+                                    <div id="authTop" class="col-xs-5 col-sm-4 col-md-3 col-lg-3">
                                             <?php if (Yii::$app->user->isGuest): ?>
-                                                <?= Html::a('<i class="fa fa-sign-out" aria-hidden="true"></i>', Yii::$app->homeUrl.'login', ['title' => 'Войти в личный кабинет']) ?>
+                                                <?= Html::a('<i class="fa fa-sign-in" aria-hidden="true"></i>', Yii::$app->homeUrl.'login', ['title' => 'Войти в личный кабинет']) ?>
                                             <?php else: ?>
-                                                <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i>', Yii::$app->homeUrl.'cabinet', ['title' => 'Вы авторизованы как '.Yii::$app->user->identity->login, 'style' => 'background-color: #EFA842']) ?>
+                                                <!--<?= Html::a('<i class="fa fa-user" aria-hidden="true"></i>', Yii::$app->homeUrl.'cabinet', ['title' => 'Вы авторизованы как '.Yii::$app->user->identity->login]) ?>-->
+                                                <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>', Yii::$app->homeUrl.'cabinet', ['id' => 'btn-cabinet-login', 'title' => 'Войти в личный кабинет']) ?>
                                             <?php endif; ?>
                                     </div>
 
@@ -141,10 +142,11 @@
                 <?= $content ?>
                 
                 </div> <!-- end right-container -->
+                
             </div> <!-- end row -->
         <footer>		
 		<div class="row">
-                    <p id="copyright">&copy <?= date('Y') ?> <?= Html::a(Yii::$app->name, ['/']) ?> Все права защищены</p>
+                    <p id="copyright">&copy <?= date('Y') ?> <?= Html::a(Yii::$app->name.' | Доска объявлений', ['/']) ?></p>
 		</div>
 	</footer>
         </div> 	<!-- end wrapper-->

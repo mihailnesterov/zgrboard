@@ -1,13 +1,16 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+//use yii\widgets\DetailView;
+use yii\widgets\Breadcrumbs;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
 
+$category_url = '..'.Yii::$app->homeUrl.'category';
+
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -18,11 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <header id="content-header">
                                 <h1><?= Html::encode($this->title) ?></h1>
                                 <hr>
-                                <ol class="breadcrumb hidden-xs">
-                                    <li><a href="<?= Yii::$app->homeUrl ?>">Главная</a></li>
-                                    <li><a href="<?= Yii::$app->homeUrl ?>category">Все объявления</a></li>
-                                    <li class="active"><?= $this->title ?></li>
-                                </ol>
+                                <div class="hidden-xs">
+                                    <?php
+                                    echo Breadcrumbs::widget([
+                                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                    ]);
+                                    ?>
+                                </div>
                         </header>                    
                         <div class="ads-container">
                                 <ul class="row">

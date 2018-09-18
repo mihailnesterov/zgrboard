@@ -4,6 +4,7 @@ return [
     'id' => 'zgrboard',
     'basePath' => realpath(__DIR__.'/../'),
     'name'=>'Мой Зеленогорск',
+    'language' => 'ru-RU',
     'bootstrap' => [
         'debug',
         'gii'
