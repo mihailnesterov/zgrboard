@@ -70,7 +70,6 @@ div {
 }
 
 body {
-   background-color: #E7EADE;
    background-color: rgba(78,163,0,0.3);
    font-family: 'Roboto Condensed',sans-serif;
    font-size: medium;
@@ -163,7 +162,6 @@ a:hover {
 	min-height: 80px;
 }
 #logoTop {
-	background-color: #4EA300;
 	background-color:#267F00;
 	margin: 0;
 	padding: 1.1em 0.5em 0.5em 1.5em;
@@ -612,6 +610,12 @@ footer
 }
 
 /* cabinet */
+
+#cabinet-wrapper {
+   max-width: 1290px;
+   margin: 0 auto;
+   background-color:#fff;
+}
 
 #btn-cabinet-login {
     /**/

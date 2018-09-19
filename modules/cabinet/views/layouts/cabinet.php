@@ -36,9 +36,9 @@
     <body style="background-color: #1F4C7C;">
         <?php $this->beginBody(); ?>
         
-        <div id="wrapper" class="container-fluid">
+        <div id="cabinet-wrapper" class="container-fluid">
             <div class="row">
-		<aside id="aside-left" class="col-sm-3 col-lg-2">
+		<aside id="aside-left" class="col-sm-3 col-lg-3">
 			<div id="logoTop">
 				<a href="<?= Yii::$app->homeUrl ?>"><img src="<?= Yii::$app->homeUrl ?>images/logo.png" alt="logo" class="img-responsive">
 					<span id="slogan"><?= Yii::$app->name ?><br> Доска объявлений</span>
@@ -46,7 +46,7 @@
 				</a>
 			</div>
 		
-			<div id="catalog-menu-container">
+			<div id="catalog-menu-container" style="border: none">
 				<nav id="catalog-menu" class="navbar navbar-default">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -58,15 +58,15 @@
 					</div>
                                    
 					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav dropdown">
-                                                        <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
-                                                        <li class="visible-xs"><hr></li>
-                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (0)</span></a></li>
-                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
-                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/prifile']) ?>">Мой профиль</a></li>
-                                                        <li><hr></li>
-                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['/']) ?>">Перейти на сайт</a></li>
-                                                        <li><a href="<?= Yii::$app->urlManager->createUrl(['/logout']) ?>">Выйти</a></li>
+						<ul class="nav navbar-nav dropdown">  
+                                                    <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
+                                                    <li class="visible-xs"><hr></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (0)</span></a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/profile']) ?>">Мой профиль</a></li>
+                                                    <li><hr></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['/']) ?>">Перейти на сайт</a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['/logout']) ?>">Выйти</a></li>
 						</ul>
 					</div>
                                     
@@ -75,20 +75,23 @@
 			</div> <!-- end catalog-menu-container -->
 		</aside> <!-- end aside-left -->
 		
-		<div id="right-container" class="col-sm-9 col-lg-10"> <!-- begin right-container -->
+                <div id="right-container" class="col-sm-9 col-lg-9"> <!-- begin right-container -->
                     <header id="header" class="row hidden-xs">
-                                    <div class="col-sm-7 col-md-8 col-lg-8">
-                                        <h2 style="color: #fff; margin-top: 0.5em;"><?= Html::encode($this->title) ?></h2>
-                                    </div>
-
-                                    <div id="authTop" class="col-xs-5 col-sm-5 col-md-4">                                            
-                                        <?= Html::a('<i class="fa fa-sign-out" aria-hidden="true"></i>', Yii::$app->homeUrl.'logout', ['id' => 'btn-cabinet-logout', 'title' => 'Выйти']) ?>
-                                        <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>', Yii::$app->homeUrl.'cabinet/profile', ['id' => 'btn-cabinet-login', 'title' => 'Вы авторизованы как "'.Yii::$app->user->identity->login.'"']) ?>                                     
-                                    </div>			
+                        <div class="col-sm-5 col-md-4 col-lg-3">
+                            <!--<h2 style="color: #fff; margin-top: 0.5em;"><?= Html::encode($this->title) ?></h2>-->
+                            <?= Html::a('<span>Подать объявление</span>', Yii::$app->homeUrl.'cabinet/add', ['class' => 'btn-orange', 'style' => 'margin-top: 0.24em;']) ?>
+                        </div>
+                        <div id="authTop" class="col-sm-7 col-md-8 col-lg-9">                                            
+                            <?= Html::a('<i class="fa fa-sign-out" aria-hidden="true"></i>', Yii::$app->homeUrl.'logout', ['id' => 'btn-cabinet-logout', 'title' => 'Выйти']) ?>
+                            <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>', Yii::$app->homeUrl.'cabinet/profile', ['id' => 'btn-cabinet-login', 'title' => 'Вы авторизованы как "'.Yii::$app->user->identity->login.'"']) ?>                                     
+                            
+                        </div>			
                     </header>
                 
-                <?= $content ?>
-                
+                    <div style="border-left: 1px #DCEDCC solid !important; margin-left: -1em;">
+                        <?= $content ?>
+                    </div>
+                    
                 </div> <!-- end right-container -->
             </div> <!-- end row -->
         <footer>		

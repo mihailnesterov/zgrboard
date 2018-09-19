@@ -22,8 +22,7 @@ return [
                     'login' => 'users/login',
                     'signup' => 'users/signup',
                     'password-restore' => 'users/restore',                    
-                    'cabinet/<id:\d+>' => 'users/cabinet',
-                    //'cabinet' => 'users/cabinet',
+                    'cabinet/<action>' => 'cabinet/default/<action>',
                     'logout' => 'users/logout',
                     /*'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                     '<action>' => 'site/<action>',*/

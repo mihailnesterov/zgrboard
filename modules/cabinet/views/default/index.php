@@ -5,25 +5,107 @@ use yii\helpers\Html;
 $this->title = 'Мои объявления'; //.Yii::$app->user->id
 ?>
 
-    <div id="right-container" class="col-sm-9 col-lg-10"> <!-- begin right-container -->
+<div id="right-container" class="col-sm-12 col-lg-12"> <!-- begin right-container -->
     <main role="main">
-        <div class="row">
-            <article id="content" style="border: 1px red solid;">
-    <!--<h1><?= $this->context->action->uniqueId ?></h1>-->
-    <h1 class="visible-xs"><?= Html::encode($this->title) ?> <?= $model->id ?></h1>
-    <div class="col-sm-5 col-md-4 col-lg-3">
-            <a href="<?= Yii::$app->homeUrl ?>cabinet/add" class="btn-orange"><span>Подать объявление</span></a>
-    </div>
-    rememberMe - <?= $model->rememberMe ?>
-    <br>
-    login - <?= Yii::$app->user->identity->login ?>
-    <br>
-    password - <?= Yii::$app->user->identity->password ?>
-    <br>
-    email - <?= Yii::$app->user->identity->email ?>
+        <div >
+            <article id="content" class="row">
+                <!--<h1><?= $this->context->action->uniqueId ?></h1>-->
+                <div class="col-xs-12" style="margin-top: 1.5em;">
+                    <h1><?= Html::encode($this->title) ?> <?= $model->id ?></h1>
+                    <hr>
+                </div>
+                <div class="visible-xs col-xs-offset-1 col-xs-10" style="margin-bottom: 1.5em;">
+                    <?= Html::a('Подать объявление', Yii::$app->homeUrl.'cabinet/add', ['class' => 'btn-orange']) ?>
+                </div>
+                
+                <div class="ads-container">
+                <ul class="row">
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="page.html"><img src="images/ads1.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="page.html">Продам двухкомнатную квартиру в поселке Октябрьском</a></h3>
+                                                        <p class="ads-price">1200000 р.</p>
+                                                        <p class="ads-date">12.08.2018 21:15</p>
+                                                </div>
+                                        </li>								
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads2.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам телефон Samsung Galaxy 5</a></h3>						
+                                                        <p class="ads-price">23500 р.</p>
+                                                        <p class="ads-date">12.08.2018 15:05</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads3.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Детский рюкзачок из экокожи</a></h3>
+                                                        <p class="ads-price">2500 р.</p>
+                                                        <p class="ads-date">12.08.2018 10:27</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads2.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам телефон Samsung Galaxy 5</a></h3>						
+                                                        <p class="ads-price">23500 р.</p>
+                                                        <p class="ads-date">12.08.2018 15:05</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads4.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам Hyundai Solaris, 2012 г/в</a></h3>
+                                                        <p class="ads-price">499000 р.</p>
+                                                        <p class="ads-date">12.08.2018 08:45</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads4.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам Hyundai Solaris, 2012 г/в</a></h3>
+                                                        <p class="ads-price">499000 р.</p>
+                                                        <p class="ads-date">12.08.2018 08:45</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="page.html"><img src="images/ads1.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="page.html">Продам двухкомнатную квартиру в поселке Октябрьском</a></h3>
+                                                        <p class="ads-price">1200000 р.</p>
+                                                        <p class="ads-date">12.08.2018 21:15</p>
+                                                </div>
+                                        </li>								
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads2.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам телефон Samsung Galaxy 5</a></h3>						
+                                                        <p class="ads-price">23500 р.</p>
+                                                        <p class="ads-date">12.08.2018 15:05</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads3.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Детский рюкзачок из экокожи</a></h3>
+                                                        <p class="ads-price">2500 р.</p>
+                                                        <p class="ads-date">12.08.2018 10:27</p>
+                                                </div>
+                                        </li>
+                                        <li class="col-sm-6 col-lg-4">
+                                                <div class="ads-block">
+                                                        <a href="#"><img src="images/ads2.jpg" alt="" class="img-responsive"></a>
+                                                        <h3 class="ads-header"><a href="#">Продам телефон Samsung Galaxy 5</a></h3>						
+                                                        <p class="ads-price">23500 р.</p>
+                                                        <p class="ads-date">12.08.2018 15:05</p>
+                                                </div>
+                                        </li>
+                                </ul>
+                    </div>
+                
             </article>
         </div> <!-- end row -->
     </main>
-      </div> 
+</div> 
 
 <?php //echo '<pre>'; print_r($model); die;  ?>
