@@ -2,7 +2,7 @@
     use yii\helpers\Html;
     use app\assets\AppAsset;
     
-    $directoryAsset = Yii::$app->assetManager->getPublishedUrl('zgrboard/web');
+    $directoryAsset = Yii::$app->assetManager->getPublishedUrl(Yii::$app->homeUrl.'web');
     $this->beginPage();
 ?>
 <!DOCTYPE html>

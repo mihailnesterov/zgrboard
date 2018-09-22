@@ -13,7 +13,7 @@ class LoginForm extends Users
 {
     public $login;
     public $password;
-    public $rememberMe = true;
+    public $rememberMe = false;
 
     private $_user;
 

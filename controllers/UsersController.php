@@ -25,7 +25,7 @@ class UsersController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    //'delete' => ['POST'],
                 ],
             ],
         ];
@@ -139,7 +139,7 @@ class UsersController extends Controller
             return $this->redirect('cabinet');
         }
         $model = new LoginForm();
-        $this->layout = 'login';
+        
         
         if ($model->load(Yii::$app->request->post()) 
             && $model->login()) 
@@ -147,6 +147,8 @@ class UsersController extends Controller
             //return $this->goBack();
             return $this->redirect('cabinet');
         }
+        
+        $this->layout = 'login';
         
         return $this->render('login', [
             'model' => $model,
@@ -177,7 +179,7 @@ class UsersController extends Controller
             //echo '<pre>'; print_r($user); die;
             if ($user->save()) {
                 //return $this->redirect(['cabinet', 'id' => $model->id]);
-                return $this->redirect('login'); 
+                return $this->redirect('login');
             } 
         }
         

@@ -2,7 +2,8 @@
     use yii\helpers\Html;
     use app\assets\AppAsset;
      
-    $directoryAsset = Yii::$app->assetManager->getPublishedUrl('zgrboard/web');
+    $directoryAsset = Yii::$app->assetManager->getPublishedUrl(Yii::$app->homeUrl.'web');
+    
     $this->beginPage();
 ?>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
         
     </head>
     <body style="background-color: #1F4C7C;">
-        <?php $this->beginBody(); ?>
+        <?php $this->beginBody();?>
         
         <div id="cabinet-wrapper" class="container-fluid">
             <div class="row">
@@ -46,7 +47,7 @@
 				</a>
 			</div>
 		
-			<div id="catalog-menu-container" style="border: none">
+			<div id="catalog-menu-container" style="border: none;">
 				<nav id="catalog-menu" class="navbar navbar-default">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -74,7 +75,6 @@
 
 			</div> <!-- end catalog-menu-container -->
 		</aside> <!-- end aside-left -->
-		
                 <div id="right-container" class="col-sm-9 col-lg-9"> <!-- begin right-container -->
                     <header id="header" class="row hidden-xs">
                         <div class="col-sm-5 col-md-4 col-lg-3">
@@ -88,9 +88,7 @@
                         </div>			
                     </header>
                 
-                    <div style="border-left: 1px #DCEDCC solid !important; margin-left: -1em;">
-                        <?= $content ?>
-                    </div>
+                    <?= $content ?>
                     
                 </div> <!-- end right-container -->
             </div> <!-- end row -->
@@ -104,7 +102,7 @@
 
     <!-- JS scripts -->	
         <div id="toTop"><span class="glyphicon glyphicon-chevron-up"></span></div>
-        <script type="text/javascript">ActiveLinks('catalog-menu');</script>
+        <script>ActiveLinks('catalog-menu');</script>
         
         <?php $this->endBody(); ?>
         
