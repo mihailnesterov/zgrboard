@@ -5,8 +5,7 @@ namespace app\modules\cabinet\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\Users;
-//use app\models\SignupForm;
-//use app\models\LoginForm;
+use app\models\SignupForm;
 use app\modules\cabinet\models\CabinetUsers;
 use yii\web\NotFoundHttpException;
 
@@ -85,12 +84,25 @@ class DefaultController extends Controller
         {
             return $this->goHome();
         }
-
-        //$model = $this->findModel($this->id);
-        $model = new CabinetUsers();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return true;
+        
+        $model = $this->findModel(Yii::$app->user->identity->id);
+        
+        if ($model->load(Yii::$app->request->post())) {
+            
+            if ($model->save()) {
+                header("Refresh: 0");
+                Yii::$app->view->registerJs(
+                "
+                    $.gritter.add({
+                        title: 'Обновление данных.',
+                        text: 'Изменения сохранены',
+                        image: '".Yii::$app->homeUrl."images/logo.png',
+                        sticky: 'false',
+                        time: '50000'
+                    });
+                "
+                );
+            }
         }
         
         $this->layout = 'cabinet';
@@ -111,7 +123,28 @@ class DefaultController extends Controller
             return $this->goHome();
         }
         
-        $model = new CabinetUsers();
+        $model = $this->findModel(Yii::$app->user->identity->id);
+        
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->password) {
+                $model->setPassword($model->password);
+            }
+       
+            if ($model->save()) {    
+                header("Refresh: 0");
+                Yii::$app->view->registerJs(
+                "
+                    $.gritter.add({
+                            title: 'Обновление данных.',
+                            text: 'Новый пароль сохранен',
+                            image: '".Yii::$app->homeUrl."images/logo.png',
+                            sticky: 'true',
+                            time: '50000'
+                        });
+                    "
+                );
+            }
+        }
         
         $this->layout = 'cabinet';
         
@@ -129,7 +162,7 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = CabinetUsers::findOne($id)) !== null) {
+        if (($model = Users::findOne($id)) !== null) {
             return $model;
         }
 

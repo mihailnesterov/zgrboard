@@ -23,17 +23,10 @@ class CabinetUsers extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
-            /*[['login', 'password', 'auth_key', 'email', 'phone', 'avatar'], 'required'],
-            [['status'], 'integer'],
-            [['created'], 'safe'],
-            [['login', 'password', 'auth_key', 'email', 'avatar'], 'string', 'max' => 255],
-            [['phone'], 'string', 'max' => 20],
-            [['role'], 'string', 'max' => 50],*/
-            
+        return [            
             ['login', 'string', 'min' => 2, 'max' => 255],
             // password is validated by validatePassword()
-            /*['password', 'validatePassword'],*/
+            ['password', 'validatePassword'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['auth_key', 'string', 'max' => 255],
@@ -41,26 +34,30 @@ class CabinetUsers extends \yii\db\ActiveRecord
             ['role', 'string', 'max' => 50],
             ['avatar', 'string', 'max' => 255],
             ['phone', 'string', 'max' => 20],
+            ['password', 'required', 'message' => 'Пароль не может быть пустым'],
+            ['email', 'required', 'message' => 'Email не может быть пустым'],
+            ['password', 'string', 'min' => 8, 'max' => 255, 'tooShort' => 'Длина пароля не минее 8 символов'],
+            //['login', 'unique', 'targetClass' => \app\models\Users::className(), 'message' => 'Пользователь с таким логином уже существует'],            
+            //['email', 'unique', 'targetClass' => \app\models\Users::className(), 'message' => 'Пользователь с таким email уже существует'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
+    
+    /*
+     * Generate Hash Password
      */
-    public function attributeLabels()
+    public function setPassword($password)
     {
-        return [
-            'id' => 'ID',
-            'login' => 'Логин',
-            'password' => 'Пароль',
-            'auth_key' => 'Authentication Key',
-            'status' => 'Статус (активен/неактивен)',
-            'rememberMe' => 'Запомнить меня',
-            'email' => 'Email',
-            'phone' => 'Телефон',
-            'avatar' => 'Аватар',
-            'role' => 'Роль',
-            'created' => 'Дата создания',
-        ];
+        $this->password = Yii::$app->security->generatePasswordHash($password);
     }
+    
+    /*
+     * Validates password
+     */
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password);
+    }
+    
+    
 }

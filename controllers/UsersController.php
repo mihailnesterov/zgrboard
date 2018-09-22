@@ -140,16 +140,25 @@ class UsersController extends Controller
         }
         $model = new LoginForm();
         
-        
         if ($model->load(Yii::$app->request->post()) 
             && $model->login()) 
         {
-            //return $this->goBack();
+            Yii::$app->view->registerJs(
+            "
+                $.gritter.add({
+                    title: '".$model->login.",',
+                    text: 'Добро пожаловать в личный кабинет!',
+                    image: '".Yii::$app->homeUrl."images/logo.png',
+                    sticky: 'false',
+                    time: '5000'
+                });
+            "
+            );
             return $this->redirect('cabinet');
         }
         
         $this->layout = 'login';
-        
+
         return $this->render('login', [
             'model' => $model,
         ]);

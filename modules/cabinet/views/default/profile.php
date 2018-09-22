@@ -25,7 +25,7 @@ $created = new DateTime(Yii::$app->user->identity->created);
 
                 <div class="row1">
 
-                        <p class="bg-warning text-info col-xs-12">Вы можете изменить логин, email и телефон</p>
+                        <p class="bg-warning text-info col-xs-12">Вы можете изменить email и телефон</p>
                         <?php $form = ActiveForm::begin([
                             //'id' => 'userUpdateForm',
                             'options' => ['class' => 'form-horizontal'],
@@ -35,7 +35,7 @@ $created = new DateTime(Yii::$app->user->identity->created);
                         ]); ?>
 
                         <?= $form->field($model, 'login')
-                                ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Логин *', 'value' => Yii::$app->user->identity->login])
+                                ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'disabled' => 'disabled', 'placeholder' => 'Логин *', 'value' => Yii::$app->user->identity->login])
                                 ->label('<i class="fa fa-user fa-2x" aria-hidden="true"></i>')?>
 
                         <?= $form->field($model, 'email')

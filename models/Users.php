@@ -41,8 +41,6 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             ['login', 'string', 'min' => 2, 'max' => 255],
-            // password is validated by validatePassword()
-            /*['password', 'validatePassword'],*/
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['auth_key', 'string', 'max' => 255],
@@ -50,6 +48,11 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             ['role', 'string', 'max' => 50],
             ['avatar', 'string', 'max' => 255],
             ['phone', 'string', 'max' => 20],
+            
+            ['login', 'required', 'message' => 'Логин не может быть пустым'],
+            ['password', 'required', 'message' => 'Пароль не может быть пустым'],
+            ['email', 'required', 'message' => 'Email не может быть пустым'],
+            ['password', 'string', 'min' => 8, 'max' => 255, 'tooShort' => 'Длина пароля не минее 8 символов'],
         ];
     }
 

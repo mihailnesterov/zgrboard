@@ -18,7 +18,7 @@ $this->title = 'Изменить пароль';
                 <hr>
             </div>
             <div class="col-sm-8 col-md-10 col-lg-9">
-                <p class="bg-warning text-info col-xs-12">Введите новый пароль и подтвердите его:</p>
+                <p class="bg-warning text-info col-xs-12">Введите новый пароль:</p>
 
                 <?php $form = ActiveForm::begin([
                     //'id' => 'userUpdateForm',
@@ -29,13 +29,13 @@ $this->title = 'Изменить пароль';
                 ]); ?>
 
                 <?= $form->field($model, 'password')
-                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Новый пароль *'])
+                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => 'Новый пароль *', 'value' => ''])
                         ->label('Новый пароль:')?>
 
-                <?= $form->field($model, 'password')
-                        ->PasswordInput(['maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Подтвердите пароль *'])
-                        ->label('Подтвердите пароль:')?>
-                <p class="bg-warning text-info col-xs-12">*  Обязательные поля. Длина пароля должна быть не менее 8 символов. Используйте буквы английского алфавита и цифры</p>
+                <!--<?= $form->field($model, 'password')
+                        ->PasswordInput(['maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Подтвердите пароль *', 'value' => ''])
+                        ->label('Подтвердите пароль:')?>-->
+                <p class="bg-warning text-info col-xs-12">*  Длина пароля не менее 8 символов. Используйте буквы английского алфавита и цифры</p>
                 
                 <div class="form-group">
                     <div class="col-xs-12">
