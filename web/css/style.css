@@ -661,6 +661,39 @@ footer
     margin-left: 0.8em;
 }
 
+#cabinet-ads-photos-block {
+    border: 1px #ddd solid; 
+    margin: 1em 0; 
+    padding: 1em 0;
+    border-radius: 6px;
+    /*background-color: #f8f8f8;*/
+}
+
+#cabinet-ads-photos-block .text-info {
+    margin: 0 1em 1em 1em;
+}
+
+#cabinet-ads-photos-block img {
+    cursor: pointer;
+    margin-bottom: 0.2em;
+    object-fit: cover;
+    width: 100%;
+    height: 90px;
+}
+#cabinet-ads-photos-block img:hover {
+    opacity: 0.7;
+}
+
+#cabinet-ads-vip-premium-block {
+    border: 1px #ddd solid; 
+    margin: 1.5em;
+    padding: 2em; 
+    background-color: #f8f8f8;
+}
+
+#cabinet-select-ads-period {
+    margin-bottom: 1em;
+}
 
 /* media */
 

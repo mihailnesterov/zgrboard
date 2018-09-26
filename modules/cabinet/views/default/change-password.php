@@ -12,7 +12,6 @@ $this->title = 'Изменить пароль';
 
 <main role="main">
     <article id="content" class="row">
-        <?= Html::a('<< Мой профиль', Yii::$app->homeUrl.'cabinet/profile', ['class' => 'btn btn-link']) ?>
         <div class="col-xs-12" style="margin-top: 1.5em;">
             <h1><?= Html::encode($this->title) ?></h1>
             <hr>
@@ -32,9 +31,6 @@ $this->title = 'Изменить пароль';
                     ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => 'Новый пароль *', 'value' => ''])
                     ->label('Новый пароль:')?>
 
-            <!--<?= $form->field($model, 'password')
-                    ->PasswordInput(['maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Подтвердите пароль *', 'value' => ''])
-                    ->label('Подтвердите пароль:')?>-->
             <p class="bg-warning text-info col-xs-12">*  Длина пароля не менее 8 символов. Используйте буквы английского алфавита и цифры</p>
 
             <div class="form-group">

@@ -44,7 +44,7 @@ class CabinetAds extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'category_id', 'title', 'text', 'price', 'type', 'date_begin', 'date_end'], 'required'],
+            [['user_id', 'category_id', 'title', 'text', 'type', 'date_begin', 'date_end'], 'required'],
             [['user_id', 'category_id', 'vip', 'premium', 'visits'], 'integer'],
             [['text'], 'string'],
             [['date_begin', 'date_end', 'created'], 'safe'],
@@ -62,7 +62,7 @@ class CabinetAds extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'category_id' => 'Category ID',
+            'category_id' => 'Выбор категории',
             'title' => 'Заголовок объявления',
             'text' => 'Текст объявления',
             'price' => 'Цена',

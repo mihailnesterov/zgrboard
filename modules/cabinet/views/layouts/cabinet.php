@@ -104,6 +104,63 @@
         <div id="toTop"><span class="glyphicon glyphicon-chevron-up"></span></div>
         <script>ActiveLinks('catalog-menu');</script>
         
+        <script>
+            
+            /*
+             * ads add scripts
+             */
+            
+            // download to input
+            function imgAdsLoad(id){
+                document.getElementById(id).click();
+            }
+
+            // preview image
+            function previewAdsFile(img_id, file_id, form_field_id) {
+                var preview = document.getElementById(img_id);
+                var file    = document.getElementById(file_id).files[0];
+                var reader  = new FileReader();
+
+               reader.onloadend = function () {
+                 preview.src = reader.result;
+                 document.getElementById(form_field_id).value = document.getElementById(file_id).files[0].name;
+               }
+
+               if (file) {
+                 reader.readAsDataURL(file);
+
+               } else {
+                 preview.src = "<?= Yii::$app->homeUrl ?>images/ads_default.png";
+               }
+            }
+
+            // clear preview image
+            function imgAdsDelete(id) {
+                document.getElementById(id).src = "<?= Yii::$app->homeUrl ?>images/ads_default.png";
+            }
+
+            // select ads period
+            function selectPeriod(id, index) {
+                var period_field = document.getElementById(id);
+                switch(index){
+                    case 0:
+                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +3 days')) ?>";
+                            break;
+                    case 1:
+                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +7 days')) ?>";
+                            break;
+                    case 2:
+                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +14 days')) ?>";
+                            break;
+                    case 3:
+                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +30 days')) ?>";
+                            break;
+                    default:
+                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +14 days')) ?>";
+                }
+            }
+        </script>
+        
         <?php $this->endBody(); ?>
         
     </body>
