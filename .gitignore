@@ -2,4 +2,5 @@ vendor
 nbproject
 runtime
 web/assets
+web/images/users
 migrations

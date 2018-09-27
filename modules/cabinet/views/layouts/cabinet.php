@@ -64,6 +64,7 @@
                                                     <li class="visible-xs"><hr></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (0)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account">189,00</span> руб.)</a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/profile']) ?>">Мой профиль</a></li>
                                                     <li><hr></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['/']) ?>">Перейти на сайт</a></li>
@@ -135,8 +136,9 @@
             }
 
             // clear preview image
-            function imgAdsDelete(id) {
-                document.getElementById(id).src = "<?= Yii::$app->homeUrl ?>images/ads_default.png";
+            function imgAdsDelete(img_id, field_id) {
+                document.getElementById(img_id).src = "<?= Yii::$app->homeUrl ?>images/ads_default.png";
+                document.getElementById(field_id).value = "";
             }
 
             // select ads period

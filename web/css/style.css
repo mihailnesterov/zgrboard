@@ -666,6 +666,7 @@ footer
     margin: 1em 0; 
     padding: 1em 0;
     border-radius: 6px;
+    text-align: center;
     /*background-color: #f8f8f8;*/
 }
 
@@ -687,8 +688,16 @@ footer
 #cabinet-ads-vip-premium-block {
     border: 1px #ddd solid; 
     margin: 1.5em;
-    padding: 2em; 
-    background-color: #f8f8f8;
+    padding: 1.2em; 
+    background-color: #fdfdfd;
+}
+#cabinet-ads-vip-premium-block h4 {
+    text-align: center;
+    line-height: 1.2;
+}
+#cabinet-ads-vip-premium-block .checkbox {
+    border: 1px #ddd solid; 
+    padding: 0.6em 2em;
 }
 
 #cabinet-select-ads-period {

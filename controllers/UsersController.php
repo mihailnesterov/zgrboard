@@ -10,6 +10,7 @@ use app\models\SignupForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\FileHelper;
 
 /**
  * UsersController implements the CRUD actions for Users model.
@@ -185,9 +186,15 @@ class UsersController extends Controller
             $user->setPassword($model->password);
             //$user->auth_key = \Yii::$app->security->generateRandomKey($lenght = 255);
             $user->auth_key = \Yii::$app->security->generateRandomString($lenght = 255);
+
             //echo '<pre>'; print_r($user); die;
             if ($user->save()) {
                 //return $this->redirect(['cabinet', 'id' => $model->id]);
+                
+                // create user images directory in web/images/users/
+                $user_img_dir_path = \Yii::$app->basePath.'/web/images/users/'.$user->login;
+                FileHelper::createDirectory($user_img_dir_path, $mode = 0775, $recursive = false);
+                
                 return $this->redirect('login');
             } 
         }

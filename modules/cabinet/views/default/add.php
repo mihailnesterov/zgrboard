@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Подать объявление';
+$this->title = 'Новое объявление...';
 ?>
 
 <main role="main">
@@ -75,13 +75,21 @@ $this->title = 'Подать объявление';
                         ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => 'Цена'])
                         ->label(false) ?>
                 
+                <label for='cabinet-select-ads-period' style='margin: 0.5em 0;'>Выберите срок действия объявления:</label>
+                <select id="cabinet-select-ads-period" name="cabinet-select-ads-period" class="form-control input-lg" onchange="selectPeriod('ads-date-end-field', this.selectedIndex)">
+                    <option>3 дня</option>
+                    <option>7 дней</option>
+                    <option selected>14 дней</option>
+                    <option>30 дней</option>
+                </select>
+                
                 <div id="cabinet-ads-photos-block" class="row">
                     <!-- загрузка файлов в Yii - https://yiiframework.com.ua/ru/doc/guide/2/input-file-upload/ -->
-                    <p class="bg-warning text-info">Добавьте в объявление фотографии (до 4-х шт.)</p>
+                    <p class="bg-warning text-info">Добавьте в объявление фотографии (до 4-х штук)</p>
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Фото не выбрано" id="img_ads_preview_1" class="img-responsive" onclick="imgAdsLoad('ads_img_field_1')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_1" class="img-responsive" onclick="imgAdsLoad('ads_img_field_1')">
                         
                         <?= $form->field($model, 'photo1')->fileInput([
                                 'id' => 'ads_img_field_1', 
@@ -94,7 +102,7 @@ $this->title = 'Подать объявление';
                                 <?= Html::button('Загрузить', ['class' => 'btn btn-success', 'onclick' => 'imgAdsLoad("ads_img_field_1")']) ?>
                             </div>
                             <div class=" col-xs-2">
-                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_1")']) ?>
+                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_1", "form-field-1")']) ?>
                             </div>
                         </div>
 
@@ -105,7 +113,7 @@ $this->title = 'Подать объявление';
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Фото не выбрано" id="img_ads_preview_2" class="img-responsive" onclick="imgAdsLoad('ads_img_field_2')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_2" class="img-responsive" onclick="imgAdsLoad('ads_img_field_2')">
                         
                         <?= $form->field($model, 'photo2')->fileInput([
                                 'id' => 'ads_img_field_2', 
@@ -118,7 +126,7 @@ $this->title = 'Подать объявление';
                                 <?= Html::button('Загрузить', ['class' => 'btn btn-success', 'onclick' => 'imgAdsLoad("ads_img_field_2")']) ?>
                             </div>
                             <div class=" col-xs-2">
-                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_2")']) ?>
+                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_2", "form-field-2")']) ?>
                             </div>
                         </div>
 
@@ -129,7 +137,7 @@ $this->title = 'Подать объявление';
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Фото не выбрано" id="img_ads_preview_3" class="img-responsive" onclick="imgAdsLoad('ads_img_field_3')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_3" class="img-responsive" onclick="imgAdsLoad('ads_img_field_3')">
                         
                         <?= $form->field($model, 'photo3')->fileInput([
                                 'id' => 'ads_img_field_3', 
@@ -142,7 +150,7 @@ $this->title = 'Подать объявление';
                                 <?= Html::button('Загрузить', ['class' => 'btn btn-success', 'onclick' => 'imgAdsLoad("ads_img_field_3")']) ?>
                             </div>
                             <div class=" col-xs-2">
-                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_3")']) ?>
+                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_3", "form-field-3")']) ?>
                             </div>
                         </div>
 
@@ -153,7 +161,7 @@ $this->title = 'Подать объявление';
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Фото не выбрано" id="img_ads_preview_4" class="img-responsive" onclick="imgAdsLoad('ads_img_field_4')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_4" class="img-responsive" onclick="imgAdsLoad('ads_img_field_4')">
                         
                         <?= $form->field($model, 'photo4')->fileInput([
                                 'id' => 'ads_img_field_4', 
@@ -166,7 +174,7 @@ $this->title = 'Подать объявление';
                                 <?= Html::button('Загрузить', ['class' => 'btn btn-success', 'onclick' => 'imgAdsLoad("ads_img_field_4")']) ?>
                             </div>
                             <div class=" col-xs-2">
-                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_4")']) ?>
+                                <?= Html::button('Х', ['class' => 'btn btn-danger', 'title' => 'Очистить фото', 'onclick' => 'imgAdsDelete("img_ads_preview_4", "form-field-4")']) ?>
                             </div>
                         </div>
 
@@ -175,15 +183,7 @@ $this->title = 'Подать объявление';
                             ->label(false) ?>
                     </div>
                     
-                </div> <!-- end cainet-ads-photos-block / row -->
-                
-                <select id="cabinet-select-ads-period" class="form-control input-lg" onchange="selectPeriod('ads-date-end-field', this.selectedIndex)">
-                    <option>3 дня</option>
-                    <option>7 дней</option>
-                    <option selected>14 дней</option>
-                    <option>30 дней</option>
-                </select>
-
+                </div> <!-- end cabinet-ads-photos-block / row -->
                 
                 <div class="hidden1">
                     <?= $form->field($model, 'date_begin')
@@ -191,15 +191,15 @@ $this->title = 'Подать объявление';
                         ->label('Дата начала срока:') ?>
 
                     <?= $form->field($model, 'date_end')
-                            ->textInput(['id' => 'ads-date-end-field', 'class' => 'form-control input-lg', 'placeholder' => 'Дата окончания', 'value' => date('d.m.Y H:i:s', strtotime("+5 hours +3 days"))])
+                            ->textInput(['id' => 'ads-date-end-field', 'class' => 'form-control input-lg', 'placeholder' => 'Дата окончания', 'value' => date('d.m.Y H:i:s', strtotime("+5 hours +14 days"))])
                             ->label('Дата окончания срока:') ?>
 
                     <?= $form->field($model, 'vip')
-                            ->textInput(['class' => 'form-control input-lg', 'placeholder' => 'VIP объявление'])
+                            ->textInput(['id' => 'ads-vip-field', 'class' => 'form-control input-lg', 'placeholder' => 'VIP объявление', 'value' => '0'])
                             ->label(false) ?>
 
                     <?= $form->field($model, 'premium')
-                            ->textInput(['class' => 'form-control input-lg', 'placeholder' => 'premium объявление'])
+                            ->textInput(['id' => 'ads-premium-field', 'class' => 'form-control input-lg', 'placeholder' => 'Premium объявление', 'value' => '0'])
                             ->label(false) ?>
 
                     <?= $form->field($model, 'created')
@@ -211,42 +211,52 @@ $this->title = 'Подать объявление';
                             ->label() ?>
                 </div>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Сохранить', ['class' => 'btn-green']) ?>
-                </div>
-
-                <?php ActiveForm::end(); ?>
-
             </div>
             
             <div id="cabinet-ads-vip-premium-block" class="col-sm-5 col-md-4 col-lg-3">
-                <p>Увеличить просмотры:</p>
+                <h4>Увеличить просмотры:</h4>
                 <hr>
-                <?= Html::a('Поднять в поиске', Yii::$app->homeUrl.'cabinet/add', ['id' => 'btn-ads-up', 'class' => 'btn btn-green']) ?>
-                <hr>
-
+                <!--<?= Html::a('Поднять в поиске', Yii::$app->homeUrl.'cabinet/add', ['id' => 'btn-ads-up', 'class' => 'btn btn-green']) ?>
+                <hr>-->
+                
                 <?= $form->field($model, 'vip')
                         ->checkbox([
-                            'label' => 'Сделать VIP',
+                            'id' => 'ads-vip-checkbox',
+                            'label' => 'VIP',
                             'labelOptions' => [
                                 'class' => 'checkbox input-lg'
                             ],
-                            'disabled' => false
+                            'disabled' => false,
+                            'onchange' => 'ifChecked("ads-vip-field")'
                         ]);?>
+                
+                <p class="bg-warning text-info">VIP - объявление будет показано в специальном блоке на всех страницах сайта</p>
+                
+                <hr>
+                
                 <?= $form->field($model, 'premium')
                         ->checkbox([
-                            'label' => 'Сделать Premium',
+                            'id' => 'ads-premium-checkbox',
+                            'label' => 'Premium',
                             'labelOptions' => [
                                 'class' => 'checkbox input-lg'
                             ],
-                            'disabled' => false
+                            'disabled' => false,
+                            'onchange' => 'ifChecked("ads-premium-field")'
                         ]);?>
-
-                <?= Html::a('Сделать VIP', Yii::$app->homeUrl.'cabinet/add', ['id' => 'btn-ads-vip', 'class' => 'btn btn-orange']) ?>
+                <p class="bg-warning text-info">Premium - объявление будет показано в специальном блоке  на главной странице, а также в категории, в которой размещено объявление</p>
                 <hr>
-                <?= Html::a('Сделать Premium', Yii::$app->homeUrl.'cabinet/add', ['id' => 'btn-ads-premium', 'class' => 'btn btn-orange']) ?>
+                <p class="bg-warning text-info">На вашем счету: 189,00 руб.</p>
+                <?= Html::a('Пополнить счет', Yii::$app->homeUrl.'cabinet/pay', ['id' => 'link-ads-pay', 'class' => 'btn-orange']) ?>
+
+                
             </div>
+            
+            <div class="form-group col-xs-12">
+                <?= Html::submitButton('Опубликовать', ['class' => 'btn-green']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
 
         </article>
 </main>
-

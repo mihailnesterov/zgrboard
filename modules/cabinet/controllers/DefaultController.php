@@ -192,6 +192,35 @@ class DefaultController extends Controller
         ]);
     }
     
+    /**
+     * Renders the account page
+     * @return string
+     */
+    public function actionAccount()
+    {
+        if (Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
+
+        $this->layout = 'cabinet';
+        return $this->render('account');
+    }
+    
+    /**
+     * Renders the payment page
+     * @return string
+     */
+    public function actionPay()
+    {
+        if (Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
+
+        $this->layout = 'cabinet';
+        return $this->render('pay');
+    }
     
     
     /**

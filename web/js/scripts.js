@@ -94,7 +94,7 @@
 		})
 	});
 	
-	$('#btn-open-pannel').on('click', function(){
+	/*$('#btn-open-pannel').on('click', function(){
                         var chk = document.getElementById('header').style.display;
                         if( chk != 'none') {			
                                 $('#header').hide();
@@ -104,7 +104,7 @@
                                 $('#header').show();
                                 //document.getElementById('header').style.display = 'block';
                         }
-                });
+                });*/
                 /*function openPannel(){
                         var chk = document.getElementById('header').style.display;
 
@@ -118,3 +118,13 @@
                                 //document.getElementById('header').style.display = 'block';
                         }
                 };*/
+
+    // vip / premium checkbox change
+        function ifChecked (id) {
+            var field = document.getElementById(id);
+            if (field.value == 1) {
+                field.value = 0;
+            } else {
+                field.value = 1;
+            }
+        }
