@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+date_default_timezone_set('Asia/Krasnoyarsk');
 $this->title = 'Новое объявление...';
 ?>
 
@@ -26,7 +26,7 @@ $this->title = 'Новое объявление...';
             ]); ?>
 
                 <?= $form->field($model, 'user_id')
-                        ->textInput(['maxlength' => true, 'class' => 'hidden', 'placeholder' => 'id', 'value' => Yii::$app->user->identity->id])
+                        ->textInput(['type' => 'hidden', 'maxlength' => true, 'placeholder' => 'id', 'value' => Yii::$app->user->identity->id])
                         ->label(false)?>
 
                 <?= $form->field($model, 'category_id')
@@ -45,13 +45,15 @@ $this->title = 'Новое объявление...';
                 <?= $form->field($model, 'type')
                            ->dropDownList(
                                [
-                                   '1' => 'Продажа',
-                                   '2' => 'Покупка',
-                                   '3' => 'Обмен',
-                                   '4' => 'Аренда',
-                                   '5' => 'Услуга',
-                                   '6' => 'Отдам',
-                                   '7' => 'Разное',
+                                   'Продажа' => 'Продажа',
+                                   'Покупка' => 'Покупка',
+                                   'Обмен' => 'Обмен',
+                                   'Аренда' => 'Аренда',
+                                   'Услуга' => 'Услуга',
+                                   'Требуется' => 'Требуется',
+                                   'Ищу' => 'Ищу',
+                                   'Отдам' => 'Отдам',
+                                   'Разное' => 'Разное',
                                ],
                                [   
                                    'class' => 'form-control input-lg',
@@ -89,7 +91,7 @@ $this->title = 'Новое объявление...';
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_1" class="img-responsive" onclick="imgAdsLoad('ads_img_field_1')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_1" class="img-responsive" onclick="imgAdsLoad('ads_img_field_1')">
                         
                         <?= $form->field($model, 'photo1')->fileInput([
                                 'id' => 'ads_img_field_1', 
@@ -107,13 +109,13 @@ $this->title = 'Новое объявление...';
                         </div>
 
                         <?= $form->field($model, 'photo1')
-                            ->textInput(['maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
+                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
                             ->label(false) ?>
                     </div>
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_2" class="img-responsive" onclick="imgAdsLoad('ads_img_field_2')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_2" class="img-responsive" onclick="imgAdsLoad('ads_img_field_2')">
                         
                         <?= $form->field($model, 'photo2')->fileInput([
                                 'id' => 'ads_img_field_2', 
@@ -131,13 +133,13 @@ $this->title = 'Новое объявление...';
                         </div>
 
                         <?= $form->field($model, 'photo2')
-                            ->textInput(['maxlength' => true, 'id' => 'form-field-2', 'class' => 'form-control', 'placeholder' => 'Фото 2'])
+                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-2', 'class' => 'form-control', 'placeholder' => 'Фото 2'])
                             ->label(false) ?>
                     </div>
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_3" class="img-responsive" onclick="imgAdsLoad('ads_img_field_3')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_3" class="img-responsive" onclick="imgAdsLoad('ads_img_field_3')">
                         
                         <?= $form->field($model, 'photo3')->fileInput([
                                 'id' => 'ads_img_field_3', 
@@ -155,13 +157,13 @@ $this->title = 'Новое объявление...';
                         </div>
 
                         <?= $form->field($model, 'photo3')
-                            ->textInput(['maxlength' => true, 'id' => 'form-field-3', 'class' => 'form-control', 'placeholder' => 'Фото 3'])
+                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-3', 'class' => 'form-control', 'placeholder' => 'Фото 3'])
                             ->label(false) ?>
                     </div>
                     
                     <div class="col-xs-6 col-lg-3">
                         
-                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default1.png" alt="Файл не выбран" id="img_ads_preview_4" class="img-responsive" onclick="imgAdsLoad('ads_img_field_4')">
+                        <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_4" class="img-responsive" onclick="imgAdsLoad('ads_img_field_4')">
                         
                         <?= $form->field($model, 'photo4')->fileInput([
                                 'id' => 'ads_img_field_4', 
@@ -179,50 +181,39 @@ $this->title = 'Новое объявление...';
                         </div>
 
                         <?= $form->field($model, 'photo4')
-                            ->textInput(['maxlength' => true, 'id' => 'form-field-4', 'class' => 'form-control', 'placeholder' => 'Фото 4'])
+                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-4', 'class' => 'form-control', 'placeholder' => 'Фото 4'])
                             ->label(false) ?>
                     </div>
                     
                 </div> <!-- end cabinet-ads-photos-block / row -->
                 
-                <div class="hidden1">
-                    <?= $form->field($model, 'date_begin')
-                        ->textInput(['class' => 'form-control input-lg', 'placeholder' => 'Дата начала', 'value' => date('d.m.Y H:i:s', strtotime("+5 hours"))])
-                        ->label('Дата начала срока:') ?>
+                <div class="hidden">
 
                     <?= $form->field($model, 'date_end')
-                            ->textInput(['id' => 'ads-date-end-field', 'class' => 'form-control input-lg', 'placeholder' => 'Дата окончания', 'value' => date('d.m.Y H:i:s', strtotime("+5 hours +14 days"))])
-                            ->label('Дата окончания срока:') ?>
+                            ->textInput(['type' => 'hidden', 'id' => 'ads-date-end-field', 'class' => 'form-control input-lg', 'placeholder' => 'Дата окончания', 'value' => date('Y.m.d H:i:s', strtotime("+14 days"))])
+                            ->label() ?>
 
                     <?= $form->field($model, 'vip')
-                            ->textInput(['id' => 'ads-vip-field', 'class' => 'form-control input-lg', 'placeholder' => 'VIP объявление', 'value' => '0'])
-                            ->label(false) ?>
+                            ->textInput(['type' => 'hidden', 'id' => 'ads-vip-field', 'class' => 'form-control input-lg', 'placeholder' => 'VIP объявление', 'value' => '0'])
+                            ->label() ?>
 
                     <?= $form->field($model, 'premium')
-                            ->textInput(['id' => 'ads-premium-field', 'class' => 'form-control input-lg', 'placeholder' => 'Premium объявление', 'value' => '0'])
-                            ->label(false) ?>
-
-                    <?= $form->field($model, 'created')
-                            ->textInput(['class' => 'form-control input-lg', 'placeholder' => 'Дата подачи объявления', 'value' => date('Y.m.d H:i:s')])
-                            ->label('Дата подачи объявления:') ?>
-
-                    <?= $form->field($model, 'visits')
-                            ->textInput(['class' => 'form-control input-lg', 'placeholder' => 'Количество просмотров'])
+                            ->textInput(['type' => 'hidden', 'id' => 'ads-premium-field', 'class' => 'form-control input-lg', 'placeholder' => 'Premium объявление', 'value' => '0'])
                             ->label() ?>
                 </div>
 
             </div>
             
             <div id="cabinet-ads-vip-premium-block" class="col-sm-5 col-md-4 col-lg-3">
-                <h4>Увеличить просмотры:</h4>
+                <h4>Как получить больше просмотров:</h4>
                 <hr>
                 <!--<?= Html::a('Поднять в поиске', Yii::$app->homeUrl.'cabinet/add', ['id' => 'btn-ads-up', 'class' => 'btn btn-green']) ?>
                 <hr>-->
-                
+                <p class="bg-warning text-info">Тариф VIP - объявление будет показано в специальном блоке на всех страницах сайта</p>
                 <?= $form->field($model, 'vip')
                         ->checkbox([
                             'id' => 'ads-vip-checkbox',
-                            'label' => 'VIP',
+                            'label' => 'Тариф VIP',
                             'labelOptions' => [
                                 'class' => 'checkbox input-lg'
                             ],
@@ -230,29 +221,33 @@ $this->title = 'Новое объявление...';
                             'onchange' => 'ifChecked("ads-vip-field")'
                         ]);?>
                 
-                <p class="bg-warning text-info">VIP - объявление будет показано в специальном блоке на всех страницах сайта</p>
+                <p class="bg-success text-info">Стоимость: 10 руб/сутки</p>
                 
                 <hr>
                 
+                <p class="bg-warning text-info">Тариф Premium - объявление будет показано в специальном блоке  на главной странице, а также в той категории, в которой оно размещено</p>
                 <?= $form->field($model, 'premium')
                         ->checkbox([
                             'id' => 'ads-premium-checkbox',
-                            'label' => 'Premium',
+                            'label' => 'Тариф Premium',
                             'labelOptions' => [
                                 'class' => 'checkbox input-lg'
                             ],
                             'disabled' => false,
                             'onchange' => 'ifChecked("ads-premium-field")'
                         ]);?>
-                <p class="bg-warning text-info">Premium - объявление будет показано в специальном блоке  на главной странице, а также в категории, в которой размещено объявление</p>
+                <p class="bg-success text-info">Стоимость: 7 руб/сутки</p>
                 <hr>
-                <p class="bg-warning text-info">На вашем счету: 189,00 руб.</p>
+                <!--<p class="bg-warning text-info">Оплата будет ежедневно списываться с вашего личного счета</p>-->
+                <p class="bg-info text-info">На вашем счету: 189 руб.</p>
+                
                 <?= Html::a('Пополнить счет', Yii::$app->homeUrl.'cabinet/pay', ['id' => 'link-ads-pay', 'class' => 'btn-orange']) ?>
 
                 
             </div>
             
-            <div class="form-group col-xs-12">
+            <div class="form-group col-xs-12" style="margin-bottom: 1.5em;">
+                <hr>
                 <?= Html::submitButton('Опубликовать', ['class' => 'btn-green']) ?>
             </div>
 

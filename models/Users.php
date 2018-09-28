@@ -14,6 +14,7 @@ use Yii;
  * @property string $phone телефон пользователя
  * @property string $avatar аватар пользователя
  * @property string $role роль пользователя
+ * @property boolean $status статус (активен/неактивен)
  * @property string $created дата создания профиля
  */
 class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
@@ -48,6 +49,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             ['role', 'string', 'max' => 50],
             ['avatar', 'string', 'max' => 255],
             ['phone', 'string', 'max' => 20],
+            ['status', 'boolean'],
             
             ['login', 'required', 'message' => 'Логин не может быть пустым'],
             ['password', 'required', 'message' => 'Пароль не может быть пустым'],
@@ -134,8 +136,6 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function login()
     {
         if ($this->validate()) {
-            //$_user = $this->getUser();
-            //return Yii::$app->user->login($this->getUser());
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         else {
@@ -165,50 +165,13 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         //return static::findOne(['login' => $username, 'status' => self::STATUS_ACTIVE]);
         return static::findOne(['login' => $username]);
     }
-    /*
-    public function validatePassword($attribute)
-    {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Неверный логин или пароль');
-            }
-        }
-    }*/
-    
+   
     /**
      * Validates password
      *
      * @param string $password password to validate
      * @return bool if password provided is valid for current user
      */
-    /*public function validatePassword($password, $attribute)
-    {
-        if (!$this->hasErrors()) 
-            return;
-
-            $_user = $this->getUser($this->login);
-
-            if (!$_user || Yii::$app->security->validatePassword($password, $this->password)) {
-                $this->addError($attribute, 'Неверный логин или пароль');
-            }
-        
-    }*/
-   
-   /*
-    * Password Validation. getUser() returns null (false) if password false
-    */
-   /*public function validatePassword($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            if(!$this->getUser())
-            {
-                $this->addError($attribute, 'Неверный пароль');
-            } 
-        }
-    }*/
-    
     public function validatePassword($password)
     {
         return Yii::$app->security->validatePassword($password, $this->password);

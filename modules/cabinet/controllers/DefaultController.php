@@ -72,21 +72,13 @@ class DefaultController extends Controller
             return $this->goHome();
         }
         
-        /*$model = new CabinetUsers();
-        
-        $this->layout = 'cabinet';
-        
-        return $this->render('add', [
-            'model' => $model,
-        ]);*/
-        
-        $this->layout = 'cabinet';
-        
         $model = new CabinetAds();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view-ads', 'id' => $model->id]);
         }
+        
+        $this->layout = 'cabinet';
 
         return $this->render('add', [
             'model' => $model,
@@ -231,6 +223,9 @@ class DefaultController extends Controller
      */
     public function actionViewAds($id)
     {
+        
+        $this->layout = 'cabinet';
+        
         return $this->render('view-ads', [
             'model' => $this->findAdsModel($id),
         ]);

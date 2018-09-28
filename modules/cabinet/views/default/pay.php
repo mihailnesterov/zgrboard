@@ -50,7 +50,7 @@ $premium = 'Premium';
                         <input type="hidden1" name="targets" class="form-control input-lg" value="транзакция {order_id}">
                     </div>
                     <div class="form-group col-xs-12 col-sm-8 col-md-5" style="margin-top: 1em;">
-                        <label for="sum" style="margin-bottom: 0.5em;">Сумма перевода:</label>
+                        <label for="sum" style="margin-bottom: 0.5em;">Сумма &#8381;:</label>
                         <input type="hidden1" name="sum" class="form-control input-lg" value="500" data-type="number">
                     </div>
                     <div class="form-group col-xs-12 hidden">

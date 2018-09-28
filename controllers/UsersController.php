@@ -142,7 +142,8 @@ class UsersController extends Controller
         $model = new LoginForm();
         
         if ($model->load(Yii::$app->request->post()) 
-            && $model->login()) 
+            && $model->login()
+            && $model->status == 1) 
         {
             Yii::$app->view->registerJs(
             "

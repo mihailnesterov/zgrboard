@@ -4,6 +4,8 @@
      
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl(Yii::$app->homeUrl.'web');
     
+    $my_ads_count = \app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->count();    
+    
     $this->beginPage();
 ?>
 <!DOCTYPE html>
@@ -62,7 +64,7 @@
 						<ul class="nav navbar-nav dropdown">  
                                                     <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
                                                     <li class="visible-xs"><hr></li>
-                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (0)</span></a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (<?= $my_ads_count ?>)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account">189,00</span> руб.)</a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/profile']) ?>">Мой профиль</a></li>
@@ -124,7 +126,7 @@
 
                reader.onloadend = function () {
                  preview.src = reader.result;
-                 document.getElementById(form_field_id).value = document.getElementById(file_id).files[0].name;
+                 document.getElementById(form_field_id).value = "<?= Yii::$app->homeUrl ?>web/images/users/<?= Yii::$app->user->identity->login?>/" + document.getElementById(file_id).files[0].name;
                }
 
                if (file) {
@@ -146,19 +148,19 @@
                 var period_field = document.getElementById(id);
                 switch(index){
                     case 0:
-                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +3 days')) ?>";
+                            period_field.value = "<?= date('Y.m.d H:i:s', strtotime('+3 days')) ?>";
                             break;
                     case 1:
-                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +7 days')) ?>";
+                            period_field.value = "<?= date('Y.m.d H:i:s', strtotime('+7 days')) ?>";
                             break;
                     case 2:
-                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +14 days')) ?>";
+                            period_field.value = "<?= date('Y.m.d H:i:s', strtotime('+14 days')) ?>";
                             break;
                     case 3:
-                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +30 days')) ?>";
+                            period_field.value = "<?= date('Y.m.d H:i:s', strtotime('+30 days')) ?>";
                             break;
                     default:
-                            period_field.value = "<?= date('d.m.Y H:i:s', strtotime('+5 hours +14 days')) ?>";
+                            period_field.value = "<?= date('Y.m.d H:i:s', strtotime('+5 hours +14 days')) ?>";
                 }
             }
         </script>
