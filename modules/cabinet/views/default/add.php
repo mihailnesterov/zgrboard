@@ -109,7 +109,7 @@ $this->title = 'Новое объявление...';
                         </div>
 
                         <?= $form->field($model, 'photo1')
-                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
+                            ->textInput(['type' => 'hidden1', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
                             ->label(false) ?>
                     </div>
                     
@@ -180,7 +180,7 @@ $this->title = 'Новое объявление...';
                             </div>
                         </div>
 
-                        <?= $form->field($model, 'photo4')
+                       <?= $form->field($model, 'photo4')
                             ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-4', 'class' => 'form-control', 'placeholder' => 'Фото 4'])
                             ->label(false) ?>
                     </div>
@@ -209,7 +209,7 @@ $this->title = 'Новое объявление...';
                 <hr>
                 <!--<?= Html::a('Поднять в поиске', Yii::$app->homeUrl.'cabinet/add', ['id' => 'btn-ads-up', 'class' => 'btn btn-green']) ?>
                 <hr>-->
-                <p class="bg-warning text-info">Тариф VIP - объявление будет показано в специальном блоке на всех страницах сайта</p>
+                <p class="bg-warning text-info">Подключить тариф VIP - объявление будет показано в специальном блоке на всех страницах сайта</p>
                 <?= $form->field($model, 'vip')
                         ->checkbox([
                             'id' => 'ads-vip-checkbox',
@@ -225,7 +225,7 @@ $this->title = 'Новое объявление...';
                 
                 <hr>
                 
-                <p class="bg-warning text-info">Тариф Premium - объявление будет показано в специальном блоке  на главной странице, а также в той категории, в которой оно размещено</p>
+                <p class="bg-warning text-info">Подключить тариф Premium - объявление будет показано в специальном блоке  на главной странице, а также в той категории, в которой оно размещено</p>
                 <?= $form->field($model, 'premium')
                         ->checkbox([
                             'id' => 'ads-premium-checkbox',

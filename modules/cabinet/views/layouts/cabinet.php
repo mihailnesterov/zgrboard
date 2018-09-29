@@ -126,7 +126,8 @@
 
                reader.onloadend = function () {
                  preview.src = reader.result;
-                 document.getElementById(form_field_id).value = "<?= Yii::$app->homeUrl ?>web/images/users/<?= Yii::$app->user->identity->login?>/" + document.getElementById(file_id).files[0].name;
+                 //document.getElementById(form_field_id).value = "<?= Yii::$app->homeUrl ?>web/images/users/<?= Yii::$app->user->identity->login?>/" + document.getElementById(file_id).files[0].name;
+                 document.getElementById(form_field_id).value = document.getElementById(file_id).files[0].name;
                }
 
                if (file) {

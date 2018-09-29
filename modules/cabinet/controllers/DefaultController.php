@@ -11,6 +11,7 @@ use app\modules\cabinet\models\CabinetAds;
 use app\modules\cabinet\models\CabinetAdsSearchModel;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 
 
 /**
@@ -40,9 +41,12 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->isGuest)
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->status == 0 )
         {
-            return $this->goHome();
+            // if user is guest or disabled (status=0) - logout
+            Yii::$app->user->logout();
+            //return $this->goHome();
+            return $this->redirect('login');
         }
         
         $searchModel = new CabinetAdsSearchModel();
@@ -54,10 +58,19 @@ class DefaultController extends Controller
         /*return $this->render('index', [
             'model' => $model,
         ]);*/
-
+        
+        $query = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->orderby(['created'=>SORT_DESC]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
+        $pages->pageSizeParam = false;
+        $models = $query->offset($pages->offset)->limit($pages->limit)->all();
+        
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'models' => $models,
+            'pages' => $pages,
         ]);
     }
     
@@ -245,6 +258,8 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view-ads', 'id' => $model->id]);
         }
+        
+        $this->layout = 'cabinet';
 
         return $this->render('update-ads', [
             'model' => $model,

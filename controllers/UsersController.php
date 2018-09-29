@@ -140,11 +140,11 @@ class UsersController extends Controller
             return $this->redirect('cabinet');
         }
         $model = new LoginForm();
-        
+
         if ($model->load(Yii::$app->request->post()) 
-            && $model->login()
-            && $model->status == 1) 
+            && $model->login()) 
         {
+            
             Yii::$app->view->registerJs(
             "
                 $.gritter.add({
