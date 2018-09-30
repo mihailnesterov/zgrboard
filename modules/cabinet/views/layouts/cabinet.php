@@ -2,9 +2,7 @@
     use yii\helpers\Html;
     use app\assets\AppAsset;
      
-    $directoryAsset = Yii::$app->assetManager->getPublishedUrl(Yii::$app->homeUrl.'web');
-    
-    $my_ads_count = \app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->count();    
+    $directoryAsset = Yii::$app->assetManager->getPublishedUrl(Yii::$app->homeUrl.'web');   
     
     $this->beginPage();
 ?>
@@ -64,7 +62,7 @@
 						<ul class="nav navbar-nav dropdown">  
                                                     <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
                                                     <li class="visible-xs"><hr></li>
-                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (<?= $my_ads_count ?>)</span></a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (<?= \app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->count() ?>)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account">189,00</span> руб.)</a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/profile']) ?>">Мой профиль</a></li>

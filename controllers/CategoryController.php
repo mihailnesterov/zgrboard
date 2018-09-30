@@ -8,6 +8,7 @@ use app\models\CategorySearchModel;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -37,10 +38,29 @@ class CategoryController extends Controller
     {
         $searchModel = new CategorySearchModel();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $this->view->title = 'Все объявления';
+        
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => 'объявления зеленогорск краснояркий край'
+        ]);
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => 'Все объявления в Зеленогорске Краснояркого края'
+        ]);
+        
+        $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 9]);
+        $pages->pageSizeParam = false;
+        $models = $query->offset($pages->offset)->limit($pages->limit)->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'models' => $models,
+            'pages' => $pages,
         ]);
     }
 
@@ -52,8 +72,18 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        $query = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 9]);
+        $pages->pageSizeParam = false;
+        $models = $query->offset($pages->offset)->limit($pages->limit)->all();
+        
+        
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'models' => $models,
+            'pages' => $pages,
         ]);
     }
 

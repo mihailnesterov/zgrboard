@@ -78,8 +78,11 @@
                                                         <?php
                                                             // вывод меню из БД
                                                             $category = \app\models\Category::find()->all();
+                                                            $ads = new app\modules\cabinet\models\CabinetAds();
+                                                            
                                                             foreach ($category as $cat):
-                                                                echo '<li><a href="'.Yii::$app->urlManager->createUrl(['category/'.$cat->id]).'">'.$cat->name.'<span> ('.\app\models\Category::find()->count().')</span></a></li>';
+                                                                $cat_count = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $cat->id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->count();
+                                                                echo '<li><a href="'.Yii::$app->urlManager->createUrl(['category/'.$cat->id]).'">'.$cat->name.'<span> ('.$cat_count.')</span></a></li>';
                                                             endforeach;
                                                         ?>
 							

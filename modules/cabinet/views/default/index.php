@@ -23,6 +23,7 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
                     <?php
                         // вывод объявлений пользователя из БД
                         //$ads_list = app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->orderby(['created'=>SORT_DESC])->all();
+                        // $models выводит из actionIndex
                         
                         foreach ($models as $ads):
                             if (!empty($ads->photo1))
@@ -40,7 +41,7 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
                                     $ads_price = '0,00';
                                 }
                             $created = new DateTime($ads->created);                           
-                            $current_date =  date('d.m.Y H:i:s');
+                            $current_date =  date('Y.m.d H:i:s');
                             $date_end = new DateTime($ads->date_end);
                             
                             if (date('Y.m.d H:i:s') < $date_end->format('Y.m.d H:i:s'))
@@ -50,14 +51,16 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
                                 else {
                                     $ads_active = '<span style="color: red;">Неопубликовано</span>';
                                 }
+                            $category = \app\models\Category::findOne($ads->category_id);
                             
                             echo '<li class="col-sm-6 col-lg-4">'
                             . '<div class="ads-block">'
                             . '<a href="'.Yii::$app->urlManager->createUrl(['cabinet/view-ads?id='.$ads->id]).'"><img src="'.$ads_photo1.'" alt="" class="img-responsive"></a>'
                             . '<h3 class="ads-header"><a href="'.Yii::$app->urlManager->createUrl(['cabinet/view-ads?id='.$ads->id]).'">'.$ads->title.'</a></h3>'
-                            . '<p class="ads-price">'.$ads_price.' р.</p>'
+                            . '<p class="ads-price">Цена: '.$ads_price.' р.</p>'
                             . '<p class="ads-date">Дата публикации: '.$created->format('d.m.Y').'</p>'
-                            . '<p class="ads-date">'.date('Y.m.d H:i:s').' > '.$date_end->format('Y.m.d H:i:s').'</p>'
+                            //. '<p class="ads-date">'.date('Y.m.d H:i:s').' > '.$date_end->format('Y.m.d H:i:s').'</p>'
+                            . '<p class="ads-date">Категория: '.$category->name.'</p>'
                             . '<p class="ads-date">Просмотров: '.$ads->visits.'</p>'
                             . '<p class="ads-date">Статус: '.$ads_active.'</p>'
                             . '<hr>'
@@ -82,12 +85,12 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
             </div>	<!-- end ads-container -->
             
             <div class="col-xs-12">
-        <?php       
-            echo LinkPager::widget([
-                'pagination' => $pages,
-                'registerLinkTags' => true
-            ]);
-        ?>
+                <?php       
+                    echo LinkPager::widget([
+                        'pagination' => $pages,
+                        'registerLinkTags' => true
+                    ]);
+                ?>
             </div>
 
         </article>

@@ -53,11 +53,8 @@ class DefaultController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
         $model = new CabinetUsers();
+
         $this->layout = 'cabinet';
-        //return $this->render('index');
-        /*return $this->render('index', [
-            'model' => $model,
-        ]);*/
         
         $query = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->orderby(['created'=>SORT_DESC]);
         $countQuery = clone $query;

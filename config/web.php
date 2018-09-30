@@ -15,7 +15,7 @@ return [
             'showScriptName' => false,
             'rules' => [ // правила формирования ссылок
                     '' => 'site/index',
-                    'site/category' => 'category',
+                    'category' => 'category/index',
                     'category/<id:\d+>' => 'category/view',
                     'users' => 'users/index',
                     'users/<id:\d+>' => 'users/view',
