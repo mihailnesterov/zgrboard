@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             foreach ($models as $ads):
                                                 if (!empty($ads->photo1))
                                                     {
-                                                        $ads_photo1 = Yii::$app->homeUrl.'images/users/'.Yii::$app->user->identity->login.'/'.$ads->photo1;
+                                                        $user = \app\models\Users::find()->where(['id' => $ads->user_id])->one();
+                                                        $ads_photo1 = Yii::$app->homeUrl.'images/users/'.$user->login.'/'.$ads->photo1;
                                                     }
                                                     else {
                                                         $ads_photo1 = Yii::$app->homeUrl.'images/ads_default.png';
@@ -77,9 +78,27 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]);
                             ?>
                         </div>
+                        
+                        <?php
+                            // premium category (Все объявления)
+                            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'premium', 1])->orderby(['date_begin'=>SORT_DESC]);
+                            $countQuery = clone $query;
+                            $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
+                            $pages->pageSizeParam = false;
+                            $model_premium = $query->offset($pages->offset)->limit($pages->limit)->all();
+                            echo $this->render('_premium', ['model_premium' => $model_premium]); 
+                        ?>
 
                 </article>
 
-                <?= $this->render('_aside') ?>
+                <?php
+                    // vip category (Все объявления) 
+                    $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'vip', 1])->orderby(['date_begin'=>SORT_DESC]);
+                    $countQuery = clone $query;
+                    $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
+                    $pages->pageSizeParam = false;
+                    $model_aside = $query->offset($pages->offset)->limit($pages->limit)->all();
+                    echo $this->render('_aside', ['model_aside' => $model_aside]); 
+                ?>
         </div> <!-- end row -->
 </main>

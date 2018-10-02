@@ -52,7 +52,7 @@ class CategoryController extends Controller
         
         $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 9]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
         $pages->pageSizeParam = false;
         $models = $query->offset($pages->offset)->limit($pages->limit)->all();
 
@@ -74,11 +74,9 @@ class CategoryController extends Controller
     {
         $query = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 9]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
         $pages->pageSizeParam = false;
         $models = $query->offset($pages->offset)->limit($pages->limit)->all();
-        
-        
         
         return $this->render('view', [
             'model' => $this->findModel($id),

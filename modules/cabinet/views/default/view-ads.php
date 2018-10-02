@@ -11,45 +11,6 @@ $this->title = 'Объявление № '.$model->id.': '.$model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url' => ['/cabinet']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<!--<div class="cabinet-ads-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить объявление?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'user_id',
-            'category_id',
-            'title',
-            'text:ntext',
-            'price',
-            'photo1',
-            'photo2',
-            'photo3',
-            'photo4',
-            'type',
-            'date_begin',
-            'date_end',
-            'vip',
-            'premium',
-            'created',
-            'visits',
-        ],
-    ]) ?>
-
-</div>-->
 
 <main role="main">
         <article id="content" class="row">
@@ -172,9 +133,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             
             <div class="col-xs-12" style="margin: 0.5em 0 1.5em 0;">
-                <?= Html::a('Редактировать', ['update-ads', 'id' => $model->id], ['class' => 'btn btn-success btn-lg']) ?>
+                <?= Html::a('Редактировать', ['update-ads', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-                    'class' => 'btn btn-danger btn-lg',
+                    'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => 'Вы уверены, что хотите удалить объявление?',
                         'method' => 'post',

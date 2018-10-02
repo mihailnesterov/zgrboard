@@ -2,26 +2,50 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Category */
+/*
+ * aside site/index
+ */
 ?>
 
 <aside id="aside-right" class="col-md-3">
-        <div class="ads-container row">
+        <div id="vip-block" class="ads-container row">
                 <h3>VIP-объявления</h3>
-                <div class="ads-block col-xs-12">
-                        <a href="#"><img src="images/ads4.jpg" alt="" class="img-responsive"></a>
-                        <h3 class="ads-header"><a href="#">Продам Hyundai Solaris, 2012 г/в</a></h3>
-                        <p class="ads-price">499000 р.</p>
-                        <p class="ads-date">12.08.2018 08:45</p>
-                </div>
-                <div class="ads-block col-xs-12">
-                        <a href="#"><img src="images/ads4.jpg" alt="" class="img-responsive"></a>
-                        <h3 class="ads-header"><a href="#">Продам Hyundai Solaris, 2012 г/в</a></h3>
-                        <p class="ads-price">499000 р.</p>
-                        <p class="ads-date">12.08.2018 08:45</p>
-                </div>
-        </div>
+                <?php
+                    // вывод объявлений из БД
+                    // $model_aside выводит из site/index.php
+
+                    foreach ($model_aside as $ads):
+                        if (!empty($ads->photo1))
+                            {
+                                $user = \app\models\Users::find()->where(['id' => $ads->user_id])->one();
+                                $ads_photo1 = Yii::$app->homeUrl.'images/users/'.$user->login.'/'.$ads->photo1;
+                            }
+                            else {
+                                $ads_photo1 = Yii::$app->homeUrl.'images/ads_default.png';
+                            }
+                        if (!empty($ads->price))
+                            {
+                                $ads_price = $ads->price;
+                            }
+                            else {
+                                $ads_price = '0,00';
+                            }
+                        $created = new DateTime($ads->created);
+                        $current_date =  date('Y.m.d H:i:s');
+                        $date_end = new DateTime($ads->date_end);
+                        $category = \app\models\Category::findOne($ads->category_id);
+
+                        echo '<div class="ads-block ads-vip col-xs-12">'
+                        . '<a href="'.Yii::$app->urlManager->createUrl(['view?id='.$ads->id]).'"><img src="'.$ads_photo1.'" alt="" class="img-responsive"></a>'
+                        . '<h3 class="ads-header"><a href="'.Yii::$app->urlManager->createUrl(['view?id='.$ads->id]).'">'.$ads->title.'</a></h3>'
+                        . '<p class="ads-price">Цена: '.$ads_price.' р.</p>'
+                        . '<p class="ads-date">Дата публикации: '.$created->format('d.m.Y').'</p>'
+                        . '<p class="ads-date">Категория: '.'<a href="'.Yii::$app->urlManager->createUrl(['category/'.$category->id]).'">'.$category->name.'</a></p>'
+                        . '<p class="ads-date">Просмотров: '.$ads->visits.'</p>'
+                        . '</div>';
+                    endforeach;
+                ?>
+        </div> 	<!-- end ads-container -->
         <div class="banners">
                 <a href="#"><img src="images/image.png" alt="" class="img-responsive"></a>
                 <a href="#"><img src="images/image.png" style="height: 430px;" alt="" class="img-responsive"></a>

@@ -128,3 +128,29 @@
                 field.value = 1;
             }
         }
+    
+    // hide premium if empty
+    $(document).ready(function(){
+        if ($('.ads-premium').length === 0) {
+            $('#premium-block').addClass('hidden');
+        }
+    });
+    
+    // hide vip if empty
+    $(document).ready(function(){
+        if ($('.ads-vip').length === 0) {
+            $('#vip-block').addClass('hidden');
+        }
+    });
+    
+    // hide common if empty
+    $(document).ready(function(){
+        if ($('.ads-common').length === 0) {
+            $('#common-block').addClass('hidden');
+        }
+    });
+    
+    // change image (#ads-fit-img) in site/view
+    function selectBigImage(src) {
+            document.getElementById('ads-fit-img').src = src;
+        }

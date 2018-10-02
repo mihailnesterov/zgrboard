@@ -535,6 +535,20 @@ a:hover {
 .ads-block .ads-header a:hover {
 	opacity: 0.7;
 }
+.ads-block .ads-text {
+	line-height: 1.6;
+}
+.ads-block .ads-fit-img {
+	object-fit: none;
+	/*width: 100%;*/
+	height: auto;
+        margin-bottom: 1em;
+}
+.ads-block .ads-block-inner-img {
+	margin-bottom: 1em;
+        cursor: pointer;
+}
+
 
 /* Рекламные баннеры ---------------------- */
 .banners {

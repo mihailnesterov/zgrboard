@@ -9,16 +9,7 @@ use yii\widgets\Breadcrumbs;
 
 $category_url = '..'.Yii::$app->homeUrl.'category';
 
-Yii::$app->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $model->keywords
-        ]);
-Yii::$app->view->registerMetaTag([
-    'name' => 'description',
-    'content' => $model->description
-]);
-
-$this->title = $model->title;
+$this->title = 'Объявления пользователя '.$user->login;
 $this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <article id="content" class="col-md-9">
                         <header id="content-header">
-                                <h1><?= Html::encode($model->name) ?></h1>
+                                <h1><?= Html::encode($this->title) ?></h1>
                                 <hr>
                                 <div class="hidden-xs">
                                     <?php
@@ -42,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <ul class="row">
                                         <?php            
                                             // вывод объявлений из БД
-                                            // $models выводит из actionCategory
+                                            // $user_ads выводит из actionAllUserAds
 
-                                            foreach ($models as $ads):
+                                            foreach ($user_ads as $ads):
                                                 if (!empty($ads->photo1))
                                                     {
                                                         $user = \app\models\Users::find()->where(['id' => $ads->user_id])->one();
@@ -88,16 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]);
                             ?>
                         </div>
-                        
-                        <?php
-                            // premium category/id  where category_id = $model->id
-                            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'premium', 1])->andWhere(['=', 'category_id', $model->id])->orderby(['date_begin'=>SORT_DESC]);
-                            $countQuery = clone $query;
-                            $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
-                            $pages->pageSizeParam = false;
-                            $model_premium = $query->offset($pages->offset)->limit($pages->limit)->all();
-                            echo $this->render('_premium', ['model_premium' => $model_premium]); 
-                        ?>
 
                 </article>
             
