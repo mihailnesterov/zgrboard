@@ -11,6 +11,13 @@ $this->title = 'Изменить пароль';
 ?>
 
 <main role="main">
+    
+    <div class="row visible-xs">
+            <div id="go-back-pannel" class="col-xs-12">
+                <?= Html::a('<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>', Yii::$app->homeUrl.'cabinet/profile', ['class' => 'btn btn-link']) ?>
+            </div>
+    </div> <!-- end row -->
+    
     <article id="content" class="row">
         <div class="col-xs-12" style="margin-top: 1.5em;">
             <h1><?= Html::encode($this->title) ?></h1>

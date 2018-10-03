@@ -210,12 +210,17 @@ a:hover {
 	border:2px #265900 solid;
 	border-left: none;
 }
-#searchTop .input-group-addon button,
-#searchTopMobile .input-group-addon button {
+#searchTop .input-group-addon button {
 	padding: 0.2em;
 	background-color: transparent;
 	border: 0;
 	font-size: 1.2em;
+}
+#searchTopMobile .input-group-addon button {
+	padding: 0.2em;
+	background-color: transparent;
+	border: 0;
+	font-size: 0.9em;
 }
 #searchTop .input-group-addon button:hover,
 #searchTopMobile .input-group-addon button:hover {
@@ -514,8 +519,8 @@ a:hover {
 	line-height: 1.1;
 	height: auto;
 	white-space: nowrap; /* Запрещаем перенос строк */
-    overflow: hidden; /* Обрезаем все, что не помещается в область */
-    text-overflow: ellipsis; /* Добавляем многоточие */
+        overflow: hidden; /* Обрезаем все, что не помещается в область */
+        text-overflow: ellipsis; /* Добавляем многоточие */
 }
 
 .ads-block .ads-header a {
@@ -539,7 +544,7 @@ a:hover {
 	line-height: 1.6;
 }
 .ads-block .ads-fit-img {
-	object-fit: none;
+	object-fit: fill;
 	/*width: 100%;*/
 	height: auto;
         margin-bottom: 1em;
@@ -637,6 +642,20 @@ footer
    background-color:#fff;
 }
 
+#go-back-pannel {
+    /*background-color: rgba(78,163,0,0.8);*/
+}
+#go-back-pannel a {
+    color:#4EA300;
+    font-size: 2.2em;
+    text-align: left;
+    padding: 0 0.1em;
+    text-decoration: none;
+}
+#btn-cabinet-go-back a:hover {
+    opacity: 0.8;
+}
+
 #btn-cabinet-login {
     /**/
 }
@@ -726,6 +745,15 @@ footer
     object-fit: cover; 
     max-height: 60px; 
     display: inline-block;
+}
+.cabinet-btn-block {
+    margin: 0.5em 0 1.5em 0;
+}
+.cabinet-btn-block a,
+.cabinet-btn-block button {
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+    margin-right: 0.5em;
 }
 
 /* media */

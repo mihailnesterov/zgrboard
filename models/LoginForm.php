@@ -11,11 +11,11 @@ use app\models\Users;
  */
 class LoginForm extends Users
 {
-    public $login;
-    public $password;
-    public $rememberMe = true;
+    //public $login;
+    //public $password;
+    //public $rememberMe = true;
 
-    private $_user;
+    //private $_user;
 
     /**
      * {@inheritdoc}
@@ -26,7 +26,7 @@ class LoginForm extends Users
             // login and password are both required
             ['login', 'required', 'message' => 'Логин не может быть пустым'],
             ['password', 'required', 'message' => 'Пароль не может быть пустым'],
-            ['rememberMe', 'boolean'],
+            //['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];

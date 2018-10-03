@@ -13,6 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <main role="main">
+    
+        <div class="row visible-xs">
+            <div id="go-back-pannel" class="col-xs-12">
+                <?= Html::a('<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>', Yii::$app->homeUrl.'cabinet', ['class' => 'btn btn-link']) ?>
+            </div>
+        </div> <!-- end row -->
+    
         <article id="content" class="row">
 
             <header class="col-xs-12" style="margin-top: 1.5em;">
@@ -33,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tr>
                         <td width='5%'>1</td>
                         <td width='35%'>Категория</td>
-                        <td><?php   // выводим категорию по id
+                        <td><?php   // выводим название категории по id
                             $category = \app\models\Category::findOne($model->category_id);
                             echo $category->name;
                         ?></td>
@@ -68,21 +75,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             <img src="<?= Yii::$app->homeUrl ?>images/users/<?= Yii::$app->user->identity->login ?>/<?= $model->photo4 ?>" alt='' class="img-responsive">
                         </td>
                     </tr>
-                    <!--<tr>
-                        <td>7</td>
-                        <td><?= $model->getAttributeLabel('photo2') ?></td>
-                        <td><img src="<?= Yii::$app->homeUrl ?>images/users/<?= Yii::$app->user->identity->login ?>/<?= $model->photo2 ?>" alt='нет' class="img-responsive"></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td><?= $model->getAttributeLabel('photo3') ?></td>
-                        <td><img src="<?= Yii::$app->homeUrl ?>images/users/<?= Yii::$app->user->identity->login ?>/<?= $model->photo3 ?>" alt='нет' class="img-responsive"></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td><?= $model->getAttributeLabel('photo4') ?></td>
-                        <td><img src="<?= Yii::$app->homeUrl ?>images/users/<?= Yii::$app->user->identity->login ?>/<?= $model->photo4 ?>" alt='нет' class="img-responsive"></td>
-                    </tr>-->
                     <tr>
                         <td>9</td>
                         <td><?= $model->getAttributeLabel('created') ?></td>
@@ -97,8 +89,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td>10</td>
                         <td><?= $model->getAttributeLabel('date_end') ?></td>
                         <td><?php 
-                                $date = new DateTime($model->date_end);
-                                echo $date->format('d.m.Y');
+                                $date_end = new DateTime($model->date_end);                               
+                                if (date('Y.m.d H:i:s') < $date_end->format('Y.m.d H:i:s'))
+                                {
+                                    echo $date_end->format('d.m.Y').'<span style="color: green;"> (опубликовано)</span>';
+                                }
+                                else {
+                                    echo $date_end->format('d.m.Y').'<span style="color: red;"> (неопубликовано)</span>';
+                                }
                             ?>
                         </td>
                     </tr>
@@ -132,7 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </table>
             </div>
             
-            <div class="col-xs-12" style="margin: 0.5em 0 1.5em 0;">
+            <div class="cabinet-btn-block form-group col-xs-12">
                 <?= Html::a('Редактировать', ['update-ads', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
                 <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
@@ -141,6 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'method' => 'post',
                     ],
                 ]) ?>
+                <?= Html::a('Смотреть объявление на сайте', [ '/view', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             </div>
             </article>
 </main>

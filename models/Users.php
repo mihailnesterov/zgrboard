@@ -50,6 +50,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             ['avatar', 'string', 'max' => 255],
             ['phone', 'string', 'max' => 20],
             ['status', 'boolean'],
+            ['rememberMe', 'boolean'],
             
             ['login', 'required', 'message' => 'Логин не может быть пустым'],
             ['password', 'required', 'message' => 'Пароль не может быть пустым'],

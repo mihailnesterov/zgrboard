@@ -64,7 +64,7 @@
                                                     <li class="visible-xs"><hr></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (<?= \app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->count() ?>)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
-                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account">189,00</span> руб.)</a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account">0,00</span> руб.)</a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/profile']) ?>">Мой профиль</a></li>
                                                     <li><hr></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['/']) ?>">Перейти на сайт</a></li>

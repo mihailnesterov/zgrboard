@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <header id="content-header">
                                 <h1><?= Html::encode($this->title) ?></h1>
                                 <hr>
-                                <div class="hidden-xs">
+                                <div>
                                     <?php
                                     echo Breadcrumbs::widget([
                                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

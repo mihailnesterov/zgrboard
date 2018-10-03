@@ -132,7 +132,7 @@
                                             <form id="searchForm" novalidate>
                                                     <div class="form-group">
                                                             <div class="input-group">
-                                                                    <input type="text" class="form-control input-lg" placeholder="Поиск по объявлениям..." id="searchField" />
+                                                                    <input type="text" class="form-control" placeholder="Поиск по объявлениям..." id="searchField" />
                                                                     <div class="input-group-addon">
                                                                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                                                     </div>

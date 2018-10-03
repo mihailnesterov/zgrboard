@@ -41,16 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
             <header id="content-header" class="col-xs-12">
                     <h1><?= Html::encode($this->title) ?></h1>
                     <hr>
-                    <div class="hidden-xs">
-                    <?php
-                        echo Breadcrumbs::widget([
-                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    <div>
+                        <?php
+                            echo Breadcrumbs::widget([
+                                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 
-                        ]);
-                    ?>
-                </div>
+                            ]);
+                        ?>
+                    </div>
             </header>
-            
+            <div class="ads-container row">
+                <div class="ads-block col-xs-12">
+                    <p class="ads-text"><?= $model->text?></p>
+                </div>
+            </div>      <!-- end ads-container -->
             <div class="ads-container row">
                         <div class="ads-block col-sm-8">
                             
@@ -138,12 +142,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     
             </div>	<!-- end ads-container -->
-            
-            <div class="ads-container row">
-                <div class="ads-block col-xs-12">
-                    <p class="ads-text"><?= $model->text?></p>
-                </div>
-            </div>      <!-- end ads-container -->
             
             <?php
                 // common ads (похожие объявления)

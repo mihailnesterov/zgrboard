@@ -14,13 +14,20 @@ $premium = 'Premium';
 ?>
 
 <main role="main">
+        
+        <div class="row visible-xs">
+            <div id="go-back-pannel" class="col-xs-12">
+                <?= Html::a('<i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>', 'javascript:history.go(-1)', ['class' => 'btn btn-link']) ?>
+            </div>
+        </div> <!-- end row -->
+    
         <article id="content" class="row">
             <div class="col-xs-12" style="margin-top: 1.5em;">
                 <h1><?= Html::encode($this->title) ?></h1>
                 <hr>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
-                <p class="bg-warning text-info">На вашем счету: 189,00 руб.</p>
+                <p class="bg-warning text-info">На вашем счету: 0,00 руб.</p>
                 <!--
                 <iframe src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=<?= $vip.'+'.$premium ?>&targets-hint=123&default-sum=300&button-text=12&payment-type-choice=on&mobile-payment-type-choice=on&mail=on&hint=&successURL=&quickpay=shop&account=410011442764960" width="100%" height="222" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
                 -->

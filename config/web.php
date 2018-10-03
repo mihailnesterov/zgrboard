@@ -28,8 +28,8 @@ return [
                     'password-restore' => 'users/restore',                    
                     'cabinet/<action>' => 'cabinet/default/<action>',
                     'logout' => 'users/logout',
-                    /*'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                    '<action>' => 'site/<action>',*/
+                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    /*'<action>' => 'site/<action>',*/
                 
                     /*'<module:cabinet>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
                     '<module:cabinet>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
@@ -42,7 +42,8 @@ return [
         ],
         'db' => require(__DIR__.'/db.php'),
         'user' => [ // подключаем текущую логику аутентификации
-                'identityClass' => 'app\models\SignupForm',
+                //'identityClass' => 'app\models\SignupForm',
+                'identityClass' => 'app\models\Users',
                 'enableAutoLogin' => true,
             ],
     ],
