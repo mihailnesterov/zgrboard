@@ -3,6 +3,7 @@
 namespace app\modules\cabinet\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "zb_ads".
@@ -37,6 +38,17 @@ class CabinetAds extends \yii\db\ActiveRecord
     {
         return 'zb_ads';
     }
+    
+    /**
+     * @var UploadedPhoto1
+     * @var UploadedPhoto2
+     * @var UploadedPhoto3
+     * @var UploadedPhoto4
+     */
+    public $photoFile1;
+    public $photoFile2;
+    public $photoFile3;
+    public $photoFile4;
 
     /**
      * {@inheritdoc}
@@ -49,6 +61,7 @@ class CabinetAds extends \yii\db\ActiveRecord
             [['text'], 'string'],
             [['date_begin', 'date_end', 'created'], 'safe'],
             [['title', 'price', 'photo1', 'photo2', 'photo3', 'photo4', 'type'], 'string', 'max' => 255],
+            [['photoFile1', 'photoFile2', 'photoFile3', 'photoFile4'], 'file', 'extensions' => 'png, jpg', 'skipOnEmpty' => true, 'maxSize' => 2048 * 1024, 'tooBig' => 'Максимальный размер файла 2 MB'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Users::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -95,4 +108,28 @@ class CabinetAds extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Users::className(), ['id' => 'user_id']);
     }
+    
+    /**
+     * @return uploaded image file
+     */
+    public function upload($file){
+        if($this->validate()){
+            date_default_timezone_set('Asia/Krasnoyarsk');
+            $date = date('YmdHis');
+            $length = 8;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $filename = $date.$randomString;
+            //$file->saveAs('images/users/'.Yii::$app->user->identity->login.'/'.$file->baseName.'.'.$file->extension);
+            $file->saveAs('images/users/'.Yii::$app->user->identity->login.'/'.$filename.'.'.$file->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }

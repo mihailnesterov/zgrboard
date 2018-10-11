@@ -139,9 +139,9 @@ $this->params['breadcrumbs'][] = 'Update';
                         
                         <img src="<?= $photo1 ?>" alt="Файл не выбран" id="img_ads_preview_1" class="img-responsive" onclick="imgAdsLoad('ads_img_field_1')">
                         
-                        <?= $form->field($model, 'photo1')->fileInput([
+                        <?= $form->field($model, 'photoFile1')->fileInput([
                                 'id' => 'ads_img_field_1', 
-                                'class' => 'hidden', 
+                                'class' => 'hidden1', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_1", "ads_img_field_1", "form-field-1")'
                             ])->label(false); ?>
                         
@@ -155,7 +155,7 @@ $this->params['breadcrumbs'][] = 'Update';
                         </div>
 
                         <?= $form->field($model, 'photo1')
-                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
+                            ->textInput(['type' => 'hidden1', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
                             ->label(false) ?>
                     </div>
                     
@@ -163,7 +163,7 @@ $this->params['breadcrumbs'][] = 'Update';
                         
                         <img src="<?= $photo2 ?>" alt="Файл не выбран" id="img_ads_preview_2" class="img-responsive" onclick="imgAdsLoad('ads_img_field_2')">
                         
-                        <?= $form->field($model, 'photo2')->fileInput([
+                        <?= $form->field($model, 'photoFile2')->fileInput([
                                 'id' => 'ads_img_field_2', 
                                 'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_2", "ads_img_field_2", "form-field-2")'
@@ -187,7 +187,7 @@ $this->params['breadcrumbs'][] = 'Update';
                         
                         <img src="<?= $photo3 ?>" alt="Файл не выбран" id="img_ads_preview_3" class="img-responsive" onclick="imgAdsLoad('ads_img_field_3')">
                         
-                        <?= $form->field($model, 'photo3')->fileInput([
+                        <?= $form->field($model, 'photoFile3')->fileInput([
                                 'id' => 'ads_img_field_3', 
                                 'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_3", "ads_img_field_3", "form-field-3")'
@@ -211,7 +211,7 @@ $this->params['breadcrumbs'][] = 'Update';
                         
                         <img src="<?= $photo4 ?>" alt="Файл не выбран" id="img_ads_preview_4" class="img-responsive" onclick="imgAdsLoad('ads_img_field_4')">
                         
-                        <?= $form->field($model, 'photo4')->fileInput([
+                        <?= $form->field($model, 'photoFile4')->fileInput([
                                 'id' => 'ads_img_field_4', 
                                 'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_4", "ads_img_field_4", "form-field-4")'

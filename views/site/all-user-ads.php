@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 . '</li>';
                                             endforeach;
                                         ?>
-
+                                    </ul>
                         </div>	<!-- end ads-container -->
                         
                         <div class="col-xs-12">

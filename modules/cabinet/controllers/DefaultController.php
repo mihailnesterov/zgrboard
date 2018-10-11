@@ -12,6 +12,7 @@ use app\modules\cabinet\models\CabinetAdsSearchModel;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
+use yii\web\UploadedFile;
 
 
 /**
@@ -85,6 +86,8 @@ class DefaultController extends Controller
         $model = new CabinetAds();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->photo1 = UploadedFile::getInstance($model, 'photo1');
+            $model->upload();
             return $this->redirect(['view-ads', 'id' => $model->id]);
         }
         
@@ -253,6 +256,23 @@ class DefaultController extends Controller
         $model = $this->findAdsModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->photoFile1 = UploadedFile::getInstance($model, 'photoFile1');
+            $model->photoFile2 = UploadedFile::getInstance($model, 'photoFile2');
+            $model->photoFile3 = UploadedFile::getInstance($model, 'photoFile3');
+            $model->photoFile4 = UploadedFile::getInstance($model, 'photoFile4');
+            if ($model->photoFile1 != null) {
+                //$model->photo1 = $model->photoFile1;
+                $model->upload($model->photoFile1);               
+            }
+            if ($model->photoFile2 != null) {
+                $model->upload($model->photoFile2);
+            }
+            if ($model->photoFile3 != null) {
+                $model->upload($model->photoFile3);
+            }
+            if ($model->photoFile4 != null) {
+                $model->upload($model->photoFile4);
+            }
             return $this->redirect(['view-ads', 'id' => $model->id]);
         }
         

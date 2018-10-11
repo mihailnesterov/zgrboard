@@ -41,9 +41,12 @@ class CabinetAdsSearchModel extends CabinetAds
      */
     public function search($params)
     {
-        $query = CabinetAds::find();
-
         // add conditions that should always apply here
+        
+        $query = CabinetAds::find()
+            ->andFilterWhere(['like', 'title',  $this->title])
+            ->andFilterWhere(['like', 'text',  $this->text])
+            ->andFilterWhere(['like', 'type',  $this->type]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,7 +61,7 @@ class CabinetAdsSearchModel extends CabinetAds
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+        /*$query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
             'category_id' => $this->category_id,
@@ -68,7 +71,7 @@ class CabinetAdsSearchModel extends CabinetAds
             'premium' => $this->premium,
             'created' => $this->created,
             'visits' => $this->visits,
-        ]);
+        ]);*/
         
         /*$query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text])
@@ -79,10 +82,10 @@ class CabinetAdsSearchModel extends CabinetAds
             ->andFilterWhere(['like', 'photo4', $this->photo4])
             ->andFilterWhere(['like', 'type', $this->type]);*/
 
-        $query->andFilterWhere(['like', 'title', $this->title])
+        /*$query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text])
             ->andFilterWhere(['like', 'price', $this->price])
-            ->andFilterWhere(['like', 'type', $this->type]);
+            ->andFilterWhere(['like', 'type', $this->type]);*/
 
         return $dataProvider;
     }

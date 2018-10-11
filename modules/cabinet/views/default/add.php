@@ -102,7 +102,7 @@ $this->title = 'Новое объявление...';
                         
                         <?= $form->field($model, 'photo1')->fileInput([
                                 'id' => 'ads_img_field_1', 
-                                'class' => 'hidden', 
+                                'class' => 'hidden1', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_1", "ads_img_field_1", "form-field-1")'
                             ])->label(false); ?>
                         
@@ -116,7 +116,7 @@ $this->title = 'Новое объявление...';
                         </div>
 
                         <?= $form->field($model, 'photo1')
-                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
+                            ->textInput(['type' => 'hidden1', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
                             ->label(false) ?>
                     </div>
                     

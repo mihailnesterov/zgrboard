@@ -21,6 +21,7 @@ return [
                     'view/<id:\d+>' => 'site/view',
                     'all-user-ads' => 'site/all-user-ads',
                     'all-user-ads/<id:\d+>' => 'site/all-user-ads',
+                    'search' => 'site/search',
                     'users' => 'users/index',
                     'users/<id:\d+>' => 'users/view',
                     'login' => 'users/login',

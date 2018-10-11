@@ -33,6 +33,50 @@ class SiteController extends Controller
         ]);
     }
     
+    public function actionSearch()
+    {
+        
+        $search = \Yii::$app->request->get('search');
+        $search1 = str_replace(' ', '', $search);
+        /*$query = \app\modules\cabinet\models\CabinetAds::find()
+                ->where(['like', 'replace(title, " ", "")', $search1])
+                ->AndWhere(['like', 'replace(text, " ", "")', $search1]);*/
+        $query = CabinetAds::find()
+            ->andFilterWhere(['like', 'title',  $search1])
+            ->andFilterWhere(['like', 'text',  $search1])
+            ->andFilterWhere(['like', 'type',  $search1]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 9]);
+        $pages->pageSizeParam = false;
+        $search_ads = $query->offset($pages->offset)->limit($pages->limit)->all();
+        
+        //$this->view->title = 'Результаты поиска';
+        
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => $query,
+        ]);
+        
+        return $this->render('search', [
+            'dataProvider' => $dataProvider,
+            'search_ads' => $search_ads,
+            'pages' => $pages,
+        ]);
+        
+        /*$this->view->title = 'Результаты поиска';
+        
+        $searchModel = new \app\modules\cabinet\models\CabinetAdsSearchModel();
+        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+
+        $pages = new Pagination(['totalCount' => $searchModel->, 'pageSize' => 9]);
+        $pages->pageSizeParam = false;
+        $user_ads = $query->offset($pages->offset)->limit($pages->limit)->all();
+
+        return $this->render('search', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);*/
+    }
+    
     /**
      * Displays a single Category model.
      * @param integer $id

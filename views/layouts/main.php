@@ -100,10 +100,10 @@
 		<div id="right-container" class="col-sm-9 col-lg-10"> <!-- begin right-container -->
                     <header id="header" class="row">
                                     <div id="searchTop" class="hidden-xs col-sm-4 col-md-5 col-lg-6">
-                                            <form id="searchForm" novalidate>
+                                        <form id="searchForm" method="GET" action="<?= Yii::$app->urlManager->createUrl(['search']) ?>" novalidate>
                                                     <div class="form-group">
                                                             <div class="input-group">
-                                                                    <input type="text" class="form-control input-lg" placeholder="Поиск по объявлениям..." id="searchField" />
+                                                                    <input type="text" class="form-control input-lg" placeholder="Поиск по объявлениям..." id="searchField" name="searchField" />
                                                                     <div class="input-group-addon">
                                                                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                                                     </div>
@@ -129,10 +129,10 @@
                                     </div>
 
                                     <div id="searchTopMobile" class="visible-xs col-xs-12">
-                                            <form id="searchForm" novalidate>
+                                            <form id="searchForm" method="GET" action="<?= Yii::$app->urlManager->createUrl(['search']) ?>" novalidate>
                                                     <div class="form-group">
                                                             <div class="input-group">
-                                                                    <input type="text" class="form-control" placeholder="Поиск по объявлениям..." id="searchField" />
+                                                                    <input type="text" class="form-control" placeholder="Поиск по объявлениям..." id="searchField" name="searchField" />
                                                                     <div class="input-group-addon">
                                                                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                                                     </div>
