@@ -19,11 +19,11 @@ $visits->visits = $visits_count+1;
 $visits->save();
 
 
-Yii::$app->view->registerMetaTag([
+$this->registerMetaTag([
             'name' => 'keywords',
             'content' => $category->name.', '.$ads->type.', '.$ads->title
         ]);
-Yii::$app->view->registerMetaTag([
+$this->registerMetaTag([
     'name' => 'description',
     'content' => $model->title.', объявление от '.$created->format('d.m.Y')
 ]);

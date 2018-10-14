@@ -141,7 +141,7 @@ $this->params['breadcrumbs'][] = 'Update';
                         
                         <?= $form->field($model, 'photoFile1')->fileInput([
                                 'id' => 'ads_img_field_1', 
-                                'class' => 'hidden1', 
+                                'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_1", "ads_img_field_1", "form-field-1")'
                             ])->label(false); ?>
                         
@@ -155,7 +155,7 @@ $this->params['breadcrumbs'][] = 'Update';
                         </div>
 
                         <?= $form->field($model, 'photo1')
-                            ->textInput(['type' => 'hidden1', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
+                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
                             ->label(false) ?>
                     </div>
                     
@@ -267,7 +267,7 @@ $this->params['breadcrumbs'][] = 'Update';
                             'onchange' => 'ifChecked("ads-vip-field")'
                         ]);?>
                 
-                <p class="bg-success text-info">Стоимость: 10 руб/сутки</p>
+                <p class="bg-success text-info">Стоимость: 30 руб/сутки</p>
                 
                 <hr>
                 
@@ -282,7 +282,7 @@ $this->params['breadcrumbs'][] = 'Update';
                             'disabled' => false,
                             'onchange' => 'ifChecked("ads-premium-field")'
                         ]);?>
-                <p class="bg-success text-info">Стоимость: 7 руб/сутки</p>
+                <p class="bg-success text-info">Стоимость: 20 руб/сутки</p>
                 <hr>
                 <!--<p class="bg-warning text-info">Оплата будет ежедневно списываться с вашего личного счета</p>-->
                 <p class="bg-info text-info">На вашем счету: 0 руб.</p>

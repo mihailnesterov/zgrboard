@@ -112,9 +112,9 @@ class CabinetAds extends \yii\db\ActiveRecord
     /**
      * @return uploaded image file
      */
-    public function upload($file){
+    public function upload($file, $photo){
         if($this->validate()){
-            date_default_timezone_set('Asia/Krasnoyarsk');
+            /*date_default_timezone_set('Asia/Krasnoyarsk');
             $date = date('YmdHis');
             $length = 8;
             $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
@@ -122,11 +122,16 @@ class CabinetAds extends \yii\db\ActiveRecord
             $randomString = '';
             for ($i = 0; $i < $length; $i++) {
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
-            }
-            $filename = $date.$randomString;
+            }*/
+            //$filename = 'images/users/'.Yii::$app->user->identity->login.'/'.$date.$randomString.'.'.$file->extension;
+            
             //$file->saveAs('images/users/'.Yii::$app->user->identity->login.'/'.$file->baseName.'.'.$file->extension);
-            $file->saveAs('images/users/'.Yii::$app->user->identity->login.'/'.$filename.'.'.$file->extension);
-            return true;
+            //$file->saveAs($filename);
+            
+            $filename = 'images/users/'.Yii::$app->user->identity->login.'/'.$photo;
+            $file->saveAs($filename);
+
+            return false;
         } else {
             return false;
         }

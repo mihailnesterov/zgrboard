@@ -125,7 +125,18 @@
                reader.onloadend = function () {
                  preview.src = reader.result;
                  //document.getElementById(form_field_id).value = "<?= Yii::$app->homeUrl ?>web/images/users/<?= Yii::$app->user->identity->login?>/" + document.getElementById(file_id).files[0].name;
-                 document.getElementById(form_field_id).value = document.getElementById(file_id).files[0].name;
+                 //document.getElementById(form_field_id).value = document.getElementById(file_id).files[0].name;
+                    
+                 function RandomString(length) {    // randomize file name
+                        var str = '';
+                        for ( ; str.length < length; str += Math.random().toString(36).substr(2) );
+                        return str.substr(0, length);
+                    }(20);
+                    
+                    var ext = file.name.substring(file.name.lastIndexOf('.'));  // get file extention
+                    document.getElementById(form_field_id).value = RandomString(20) + ext;
+                    
+                    
                }
 
                if (file) {

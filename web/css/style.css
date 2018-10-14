@@ -194,8 +194,9 @@ a:hover {
 }
 #searchTop input,
 #searchTopMobile input {
-	background-color:#267F00;
-	border:2px #265900 solid;
+	/*background-color:#267F00;*/
+        background-color: #4EA300;
+	border:1px #265900 solid;
 	color: #FCFEFF;
 }
 #searchTop input::placeholder,
@@ -205,9 +206,10 @@ a:hover {
 }
 #searchTop .input-group-addon,
 #searchTopMobile .input-group-addon {
-	background-color:#267F00;
+	/*background-color:#267F00;*/
+        background-color: #4EA300;
 	color: #FCFEFF;
-	border:2px #265900 solid;
+	border:1px #265900 solid;
 	border-left: none;
 }
 #searchTop .input-group-addon button {
