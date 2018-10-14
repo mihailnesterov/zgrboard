@@ -18,6 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
                         <header id="content-header">
                                 <h1><?= Html::encode($this->title) ?></h1>
                                 <hr>
+                                
+                                <!-- Swiper slider main container -->
+                                <div class="swiper-container">
+                                        <!-- Swiper slider wrapper -->
+                                        <div class="swiper-wrapper">
+                                                <!-- Slides -->
+                                                <div class="swiper-slide" data-swiper-autoplay="5000">
+                                                    <img src="images/banners/slide1.jpg" alt="" class="img-responsive">
+                                                </div>
+                                                <div class="swiper-slide" data-swiper-autoplay="5000">
+                                                    <img src="images/banners/slide2.jpg" alt="" class="img-responsive">
+                                                </div>
+                                                <div class="swiper-slide" data-swiper-autoplay="5000">
+                                                    <img src="images/banners/slide3.jpg" alt="" class="img-responsive">
+                                                </div>
+                                        </div>
+                                        <!-- Swiper slider pagination -->
+                                        <div class="swiper-pagination"></div>
+                                </div> <!-- end Swiper slider -->
+                                
                                 <div>
                                     <?php
                                     echo Breadcrumbs::widget([
@@ -77,6 +97,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'registerLinkTags' => true
                                 ]);
                             ?>
+                        </div>
+                        
+                        <div class="banners">
+                            <a href="#"><img src="images/banners/slide3.jpg" alt="" class="img-responsive"></a>
                         </div>
                         
                         <?php

@@ -65,8 +65,8 @@
 	
 	/* swiper slider */
 	$(document).ready(function () {
-    //initialize swiper when document ready
-    var mySwiper = new Swiper ('.swiper-container', {
+            //initialize swiper when document ready
+            var mySwiper = new Swiper ('.swiper-container', {
 		// Optional parameters
 		autoplay: {
 			delay: 5000,
@@ -93,31 +93,6 @@
 		loop: true
 		})
 	});
-	
-	/*$('#btn-open-pannel').on('click', function(){
-                        var chk = document.getElementById('header').style.display;
-                        if( chk != 'none') {			
-                                $('#header').hide();
-                                //document.getElementById('header').style.display = 'none';
-                        }
-                        else if( chk == 'none') {
-                                $('#header').show();
-                                //document.getElementById('header').style.display = 'block';
-                        }
-                });*/
-                /*function openPannel(){
-                        var chk = document.getElementById('header').style.display;
-
-                        if( chk != 'none') {
-
-                                $('#header').hide();
-                                //document.getElementById('header').style.display = 'none';
-                        }
-                        else {
-                                $('#header').show();
-                                //document.getElementById('header').style.display = 'block';
-                        }
-                };*/
 
     // vip / premium checkbox change
         function ifChecked (id) {

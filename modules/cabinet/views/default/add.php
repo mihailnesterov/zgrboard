@@ -100,9 +100,9 @@ $this->title = 'Новое объявление...';
                         
                         <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_1" class="img-responsive" onclick="imgAdsLoad('ads_img_field_1')">
                         
-                        <?= $form->field($model, 'photo1')->fileInput([
+                        <?= $form->field($model, 'photoFile1')->fileInput([
                                 'id' => 'ads_img_field_1', 
-                                'class' => 'hidden1', 
+                                'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_1", "ads_img_field_1", "form-field-1")'
                             ])->label(false); ?>
                         
@@ -116,7 +116,7 @@ $this->title = 'Новое объявление...';
                         </div>
 
                         <?= $form->field($model, 'photo1')
-                            ->textInput(['type' => 'hidden1', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
+                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'id' => 'form-field-1', 'class' => 'form-control', 'placeholder' => 'Фото 1'])
                             ->label(false) ?>
                     </div>
                     
@@ -124,7 +124,7 @@ $this->title = 'Новое объявление...';
                         
                         <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_2" class="img-responsive" onclick="imgAdsLoad('ads_img_field_2')">
                         
-                        <?= $form->field($model, 'photo2')->fileInput([
+                        <?= $form->field($model, 'photoFile2')->fileInput([
                                 'id' => 'ads_img_field_2', 
                                 'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_2", "ads_img_field_2", "form-field-2")'
@@ -148,7 +148,7 @@ $this->title = 'Новое объявление...';
                         
                         <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_3" class="img-responsive" onclick="imgAdsLoad('ads_img_field_3')">
                         
-                        <?= $form->field($model, 'photo3')->fileInput([
+                        <?= $form->field($model, 'photoFile3')->fileInput([
                                 'id' => 'ads_img_field_3', 
                                 'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_3", "ads_img_field_3", "form-field-3")'
@@ -172,7 +172,7 @@ $this->title = 'Новое объявление...';
                         
                         <img src="<?= Yii::$app->homeUrl ?>images/ads_default.png" alt="Файл не выбран" id="img_ads_preview_4" class="img-responsive" onclick="imgAdsLoad('ads_img_field_4')">
                         
-                        <?= $form->field($model, 'photo4')->fileInput([
+                        <?= $form->field($model, 'photoFile4')->fileInput([
                                 'id' => 'ads_img_field_4', 
                                 'class' => 'hidden', 
                                 'onchange' => 'previewAdsFile("img_ads_preview_4", "ads_img_field_4", "form-field-4")'
@@ -228,7 +228,7 @@ $this->title = 'Новое объявление...';
                             'onchange' => 'ifChecked("ads-vip-field")'
                         ]);?>
                 
-                <p class="bg-success text-info">Стоимость: 10 руб/сутки</p>
+                <p class="bg-success text-info">Стоимость: 30 руб/сутки</p>
                 
                 <hr>
                 
@@ -243,7 +243,7 @@ $this->title = 'Новое объявление...';
                             'disabled' => false,
                             'onchange' => 'ifChecked("ads-premium-field")'
                         ]);?>
-                <p class="bg-success text-info">Стоимость: 7 руб/сутки</p>
+                <p class="bg-success text-info">Стоимость: 20 руб/сутки</p>
                 <hr>
                 <!--<p class="bg-warning text-info">Оплата будет ежедневно списываться с вашего личного счета</p>-->
                 <p class="bg-info text-info">На вашем счету: 0 руб.</p>

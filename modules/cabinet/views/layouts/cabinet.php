@@ -59,6 +59,10 @@
 					</div>
                                    
 					<div id="navbar" class="navbar-collapse collapse">
+                                                <div class="banners visible-xs row">
+                                                    <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive col-xs-6"></a>
+                                                    <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive col-xs-6"></a>
+                                                </div>
 						<ul class="nav navbar-nav dropdown">  
                                                     <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
                                                     <li class="visible-xs"><hr></li>
@@ -73,8 +77,16 @@
 					</div>
                                     
 				</nav>
+                            
+                            <div class="banners hidden-xs">
+                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive"></a>
+                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive"></a>
+                            </div>
 
 			</div> <!-- end catalog-menu-container -->
+                        
+                        
+                        
 		</aside> <!-- end aside-left -->
                 <div id="right-container" class="col-sm-9 col-lg-9"> <!-- begin right-container -->
                     <header id="header" class="row hidden-xs">

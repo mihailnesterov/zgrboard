@@ -137,7 +137,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="ads-block">
                                 <p class="text-center ads-text"><a href="<?=Yii::$app->urlManager->createUrl(['all-user-ads?id='.$model->user_id]) ?>">Все объявления пользователя (<?= \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'user_id', $model->user_id])->count() ?>)</a></p>
                                 <hr>
-                                <p><a href="#" class="btn-orange">Оставить сообщение</a></p>
+                                <p>
+                                    <?php if (Yii::$app->user->isGuest): ?>
+                                        <?= Html::a('Оставить сообщение', Yii::$app->homeUrl.'login', ['class' => 'btn-orange']) ?>
+                                    <?php else: ?>
+                                        <?= Html::a('Оставить сообщение', Yii::$app->homeUrl.'cabinet/messages', ['class' => 'btn-orange']) ?>
+                                    <?php endif; ?>
+                                </p>
                             </div>
                         </div>
                     

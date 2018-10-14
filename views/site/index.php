@@ -6,7 +6,26 @@
                         <header id="content-header">
                                 <h1>Доска объявлений Зеленогорска</h1>
                                 <hr>
+                                <!-- Swiper slider main container -->
+                                <div class="swiper-container">
+                                        <!-- Swiper slider wrapper -->
+                                        <div class="swiper-wrapper ">
+                                                <!-- Slides -->
+                                                <div class="swiper-slide" data-swiper-autoplay="5000">
+                                                    <a href="#"><img src="images/banners/slide1.jpg" alt="" class="img-responsive"></a>
+                                                </div>
+                                                <div class="swiper-slide" data-swiper-autoplay="5000">
+                                                    <a href="#"><img src="images/banners/slide2.jpg" alt="" class="img-responsive"></a>
+                                                </div>
+                                                <div class="swiper-slide" data-swiper-autoplay="5000">
+                                                    <a href="#"><img src="images/banners/slide3.jpg" alt="" class="img-responsive"></a>
+                                                </div>
+                                        </div>
+                                        <!-- Swiper slider pagination -->
+                                        <div class="swiper-pagination"></div>
+                                </div> <!-- end Swiper slider -->
                         </header>
+
                         <div class="ads-container">
                                 <div class="row visible-xs">
                                         <div class="col-sm-7 col-lg-5">
@@ -63,6 +82,10 @@
                                         <div class="col-sm-7 col-lg-5">
                                                 <a href="<?= Yii::$app->urlManager->createUrl(['category'])?>" class="btn-green">Все объявления (<?= \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->count() ?>)</a>
                                         </div>
+                                </div>
+                                
+                                <div class="banners">
+                                    <a href="#"><img src="images/banners/slide3.jpg" alt="" class="img-responsive"></a>
                                 </div>
 
                         </div>	<!-- end ads-container -->

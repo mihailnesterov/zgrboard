@@ -485,6 +485,73 @@ a:hover {
         margin: 0;
 }
 
+/* Swiper-cлайдер --------------------------*/
+
+.swiper-container 	/* контейнер для swiper-слайдера */
+{
+    /*width: auto;
+    height: auto;*/
+    padding: 0;
+    margin-bottom: 1.5em;
+}
+.swiper-wrapper
+{
+    /*border: 0px green solid;*/
+}
+.swiper-slide 
+{
+	/*text-align: center;
+	font-size: 1em;
+	background: #fff;*/
+}
+.swiper-slide img
+{
+    width: 100%;
+}
+.swiper-pagination
+{
+	margin-bottom: 1em;
+}
+.swiper-pagination-bullets span
+{
+    border: 2px #fff solid;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    padding: 0 0.6em;
+    margin: 0 0.5em;
+    font-size: 0.5em;
+    transitiom: 0.3s;
+}
+.swiper-pagination-bullet-active
+{
+	background-color: #fff;
+}
+/*.swiper-slide  .bg
+{
+	position:absolute;
+	top:15%;
+	left:0;
+	padding:0 10%;
+	text-align:center;
+	width: 100%;
+	color:#fff;
+	border: 0px #112B46 solid;
+	padding:3em 1em;
+	background-color: rgba(17, 43, 70, 0.3);
+}
+.swiper-slide  .bg h2
+{
+	font-size: 3em;
+	margin-bottom: 0.8em;
+}
+.swiper-slide  .bg p
+{
+	font-size: 1.8em;
+	line-height:1.4;
+	margin: 1em 2em;
+}*/
+
 /* Блок объявлений ----------------------*/
 
 .ads-container {
@@ -846,6 +913,9 @@ footer
         #aside-right {
             padding: 1em;
         }
+        .swiper-pagination {
+            margin-bottom: 0.3em;
+        }
 }
 
 /* телефоны, менее 544px */
@@ -853,6 +923,9 @@ footer
 	body	
 	{
 	   font-size: small;
+	}
+        #navbar	{
+            font-size: medium;
 	}
 }
 

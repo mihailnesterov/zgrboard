@@ -89,6 +89,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             ?>
                         </div>
                         
+                        <div class="banners">
+                            <a href="#"><img src="images/banners/slide3.jpg" alt="" class="img-responsive"></a>
+                        </div>
+                        
                         <?php
                             // premium category/id  where category_id = $model->id
                             $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'premium', 1])->andWhere(['=', 'category_id', $model->id])->orderby(['date_begin'=>SORT_DESC]);

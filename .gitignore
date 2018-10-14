@@ -3,4 +3,5 @@ nbproject
 runtime
 web/assets
 web/images/users
+web/images/banners
 migrations
