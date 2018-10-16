@@ -3,12 +3,15 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\widgets\Breadcrumbs;
+use app\modules\cabinet\models\CabinetAds;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CategorySearchModel */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->params['breadcrumbs'][] = $this->title;
+// получить типы (type) объявлений
+$types_list = CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->select('type')->groupBy('type')->orderby(['type'=>SORT_ASC])->all();
+$ads_all_count = CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->count();
 ?>
 	
 <main role="main">
@@ -37,13 +40,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <!-- Swiper slider pagination -->
                                         <div class="swiper-pagination"></div>
                                 </div> <!-- end Swiper slider -->
-                                
-                                <div>
-                                    <?php
-                                    echo Breadcrumbs::widget([
-                                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                    ]);
-                                    ?>
+
+                                <?php
+                                echo Breadcrumbs::widget([
+                                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                ]);
+                                ?>
+
+                                <div style="margin: 1em 0;">
+                                    <div class="btn-group pull-left" role="toolbar" aria-label="">
+                                        <?= Html::a('Все ('.$ads_all_count.')', Yii::$app->homeUrl.'category', ['class' => 'btn btn-default']) ?>
+                                        <?php
+                                            foreach ($types_list as $type):
+                                                $ads_count = CabinetAds::find()->where(['type' => $type->type])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->count();
+                                                echo Html::a($type->type.' ('.$ads_count.')', Yii::$app->homeUrl.'category/index?filter='.$type->type, ['class' => 'btn btn-default']);
+                                            endforeach;
+                                        ?>
+                                    </div>
                                 </div>
                         </header>
                         <div class="ads-container">

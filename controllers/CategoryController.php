@@ -40,6 +40,7 @@ class CategoryController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
         $this->view->title = 'Все объявления';
+        $this->view->params['breadcrumbs'][] = $this->view->title;
         
         \Yii::$app->view->registerMetaTag([
             'name' => 'keywords',
@@ -72,6 +73,20 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $category_url = '..'.Yii::$app->homeUrl.'category';
+        $this->view->title = $model->title;
+        $this->view->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
+        $this->view->params['breadcrumbs'][] = $model->title;
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $model->keywords
+        ]);
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => $model->description
+        ]);
+        
         $query = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
@@ -79,7 +94,7 @@ class CategoryController extends Controller
         $models = $query->offset($pages->offset)->limit($pages->limit)->all();
         
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'models' => $models,
             'pages' => $pages,
         ]);

@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Breadcrumbs;
 
-$category_url = '..'.Yii::$app->homeUrl.'category';
 $category = \app\models\Category::findOne($model->category_id);
 $ads = \app\modules\cabinet\models\CabinetAds::findOne($model->id);
 $user = \app\models\Users::findOne($model->user_id);
@@ -18,7 +17,6 @@ $visits_count = $visits->visits;
 $visits->visits = $visits_count+1;
 $visits->save();
 
-
 $this->registerMetaTag([
             'name' => 'keywords',
             'content' => $category->name.', '.$ads->type.', '.$ads->title
@@ -27,11 +25,6 @@ $this->registerMetaTag([
     'name' => 'description',
     'content' => $model->title.', объявление от '.$created->format('d.m.Y')
 ]);
-
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
-$this->params['breadcrumbs'][] = ['label' => $category->name, 'url' => ['category/'.$model->category_id]];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <main role="main">

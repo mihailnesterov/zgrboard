@@ -78,16 +78,24 @@ class SiteController extends Controller
     }
     
     /**
-     * Displays a single Category model.
+     * Displays a single ads model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $category_url = '..'.\Yii::$app->homeUrl.'category';
+        $category = \app\models\Category::findOne($model->category_id);
+
+        $this->view->title = $model->title;
+        $this->view->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
+        $this->view->params['breadcrumbs'][] = ['label' => $category->name, 'url' => ['category/'.$model->category_id]];
+        $this->view->params['breadcrumbs'][] = $this->view->title;
         
         return $this->render('view', [
-            'model' => $this->findModel($id)
+            'model' => $model
         ]);
     }
     

@@ -56,8 +56,19 @@ class DefaultController extends Controller
         $model = new CabinetUsers();
 
         $this->layout = 'cabinet';
+
+        $route = explode('=', $_SERVER['REQUEST_URI']);
         
         $query = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->orderby(['created'=>SORT_DESC]);
+        
+        if( !empty($route[1]) ) {
+            if( substr($route[1], 0, 6) === 'active' ) {
+                $query = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['created'=>SORT_DESC]);
+            } elseif ( substr($route[1], 0, 7) === 'expired' ) {
+                $query = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['<', 'date_end', date('Y.m.d H:i:s')])->orderby(['created'=>SORT_DESC]);
+            }
+        }
+        
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
         $pages->pageSizeParam = false;

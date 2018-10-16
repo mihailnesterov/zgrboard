@@ -2,8 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use app\modules\cabinet\models\CabinetAds;
 
 date_default_timezone_set('Asia/Krasnoyarsk');
+// получить типы (type) объявлений данного пользователя
+$types_list = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->select('type')->groupBy('type')->orderby(['type'=>SORT_ASC])->all();
+// счетчики для кнопок - все/опубликованные/неопубликванные
+$ads_all_count = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->count();
+$ads_active_count = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->count();
+$ads_not_active_count = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['<', 'date_end', date('Y.m.d H:i:s')])->count();
 $this->title = 'Мои объявления'; //.Yii::$app->user->id
 ?>
 
@@ -17,12 +24,20 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
                 <?= Html::a('Подать объявление', Yii::$app->homeUrl.'cabinet/add', ['class' => 'btn-orange']) ?>
             </div>
             
+           
+            <div class="col-xs-12">
+                <div class="btn-group pull-left" role="toolbar" aria-label="">
+                    <?= Html::a('Все ('.$ads_all_count.')', Yii::$app->homeUrl.'cabinet', ['class' => 'btn btn-default']) ?>
+                    <?= Html::a('Опубликованные ('.$ads_active_count.')', Yii::$app->homeUrl.'cabinet/index?filter=active', ['class' => 'btn btn-default']) ?>
+                    <?= Html::a('Неопубликованные ('.$ads_not_active_count.')', Yii::$app->homeUrl.'cabinet/index?filter=expired', ['class' => 'btn btn-default']) ?>
+                </div>
+            </div>
+            
             <div class="ads-container">
                 <ul>
                     
                     <?php
                         // вывод объявлений пользователя из БД
-                        //$ads_list = app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->orderby(['created'=>SORT_DESC])->all();
                         // $models выводит из actionIndex
                         
                         foreach ($models as $ads):

@@ -129,3 +129,24 @@
     function selectBigImage(src) {
             document.getElementById('ads-fit-img').src = src;
         }
+    
+    // ads filter: show active
+    /*$('#btn-show-active').click(function() {
+        $('#btn-show-all').removeClass('active');
+        $('#btn-show-not-active').removeClass('active');
+        $(this).addClass('active');
+            $('.ads-block').each(function(){
+                if($(this).find('span').html() === 'Неопубликовано') {
+                    $(this).addClass('hidden');
+                    alert($(this).find('span').html());
+                }
+            });
+        });*/
+    
+    // ads filter: show active
+    /*$('#btn-show-not-active').click(function() {
+        $('#btn-show-all').removeClass('active');
+        $('#btn-show-active').removeClass('active');
+        $(this).addClass('active');
+            
+        });*/

@@ -25,7 +25,7 @@
                                         <div class="swiper-pagination"></div>
                                 </div> <!-- end Swiper slider -->
                         </header>
-
+                        
                         <div class="ads-container">
                                 <div class="row visible-xs">
                                         <div class="col-sm-7 col-lg-5">

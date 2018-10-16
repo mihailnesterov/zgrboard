@@ -3,24 +3,14 @@
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\widgets\Breadcrumbs;
+use app\modules\cabinet\models\CabinetAds;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Category */
 
-$category_url = '..'.Yii::$app->homeUrl.'category';
-
-Yii::$app->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $model->keywords
-        ]);
-Yii::$app->view->registerMetaTag([
-    'name' => 'description',
-    'content' => $model->description
-]);
-
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
-$this->params['breadcrumbs'][] = $this->title;
+// получить типы (type) объявлений данной категории
+$types_list = CabinetAds::find()->where(['category_id' => $model->id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->select('type')->groupBy('type')->orderby(['type'=>SORT_ASC])->all();
+$ads_all_count = CabinetAds::find()->where(['category_id' => $model->id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->count();
 ?>
 
 <main role="main">
@@ -28,15 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <article id="content" class="col-md-9">
                         <header id="content-header">
-                                <h1><?= Html::encode($model->name) ?></h1>
-                                <hr>
-                                <div>
+                            <h1><?= Html::encode($model->name) ?></h1>
+                            <hr>
+                            
+                            <?php
+                            echo Breadcrumbs::widget([
+                                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            ]);
+                            ?>
+
+                            <div style="margin: 1em 0;">
+                                <div class="btn-group pull-left" role="toolbar" aria-label="">
+                                    <?= Html::a('Все ('.$ads_all_count.')', Yii::$app->homeUrl.'category/'.$model->id, ['class' => 'btn btn-default']) ?>
                                     <?php
-                                    echo Breadcrumbs::widget([
-                                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                    ]);
+                                        foreach ($types_list as $type):
+                                            $ads_count = CabinetAds::find()->where(['category_id' => $model->id])->andWhere(['type' => $type->type])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->count();
+                                            echo Html::a($type->type.' ('.$ads_count.')', Yii::$app->homeUrl.'category/'.$model->id.'?filter='.$type->type, ['class' => 'btn btn-default']);
+                                        endforeach;
                                     ?>
                                 </div>
+                            </div>
                         </header>                    
                         <div class="ads-container">
                                 <ul class="row">
