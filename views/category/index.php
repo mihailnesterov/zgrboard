@@ -9,7 +9,7 @@ use app\modules\cabinet\models\CabinetAds;
 /* @var $searchModel app\models\CategorySearchModel */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-// получить типы (type) объявлений
+// получить типы (type) из объявлений и создать их счетчик
 $types_list = CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->select('type')->groupBy('type')->orderby(['type'=>SORT_ASC])->all();
 $ads_all_count = CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->count();
 ?>

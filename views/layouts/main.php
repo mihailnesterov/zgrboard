@@ -78,7 +78,7 @@
                                                         <?php
                                                             // вывод меню из БД
                                                             $category = \app\models\Category::find()->all();
-                                                            $ads = new app\modules\cabinet\models\CabinetAds();
+                                                            //$ads = new app\modules\cabinet\models\CabinetAds();
                                                             
                                                             foreach ($category as $cat):
                                                                 $cat_count = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $cat->id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->count();
@@ -123,8 +123,15 @@
                                             <?php if (Yii::$app->user->isGuest): ?>
                                                 <?= Html::a('<i class="fa fa-sign-in" aria-hidden="true"></i>', Yii::$app->homeUrl.'login', ['title' => 'Войти в личный кабинет']) ?>
                                             <?php else: ?>
-                                                <!--<?= Html::a('<i class="fa fa-user" aria-hidden="true"></i>', Yii::$app->homeUrl.'cabinet', ['title' => 'Вы авторизованы как '.Yii::$app->user->identity->login]) ?>-->
-                                                <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>', Yii::$app->homeUrl.'cabinet', ['id' => 'btn-cabinet-login', 'title' => 'Войти в личный кабинет']) ?>
+                                                <?php
+                                                    $new_msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->andWhere(['is_read' => '0'])->count();
+                                                    if( $new_msg_count != 0 ) {
+                                                        $msg_count_block = '<span class="flash animated not-read"> '.$new_msg_count.' </span>';
+                                                    } else {
+                                                        $msg_count_block = '';
+                                                    }
+                                                ?>
+                                                <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>'.$msg_count_block, Yii::$app->homeUrl.'cabinet', ['id' => 'btn-cabinet-login', 'title' => 'Войти в личный кабинет']) ?>
                                             <?php endif; ?>
                                     </div>
 

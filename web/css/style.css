@@ -248,6 +248,15 @@ a:hover {
 	text-decoration: none;
 	background-color:#2E8600;
 }
+
+#authTop .not-read {
+	background-color: orange; 
+        border-radius: 100px; 
+        color: #fff; 
+        padding: 0.4em 0.7em;
+        margin-top: 0.15em;
+}
+
 #addTop a {
 	text-align: center;
 	display: block;
@@ -344,7 +353,6 @@ a:hover {
 .navbar-default {
 	border-width: 0 0 0px  !important;
 	border-radius: 0 !important;
-	/*margin: -0.5em !important;*/
 	padding: 0 !important;
 	
 	border: 0 !important;
@@ -402,6 +410,12 @@ a:hover {
 	margin: 0;
 	border: 0;
 }
+#navbar .dropdown li a .not-read {
+	background-color: orange; 
+        border-radius: 100px; 
+        color: #fff; 
+        padding: 0.2em 0.55em;
+}
 #navbar .dropdown-menu li a:hover,
 #navbar .dropdown-menu li a:focus
 {
@@ -416,12 +430,12 @@ a:hover {
 }
 #main-menu
 {	
-    
+    /**/
 }
 
 #main-menu ul
 {
-    
+    /**/
 }
 #main-menu ul li
 {
@@ -823,6 +837,36 @@ footer
     margin-bottom: 0.5em;
     line-height: 1.2;
     margin-right: 0.5em;
+}
+
+.cabinet-message-list ul {
+    margin-bottom: 2em;
+}
+
+.cabinet-message-list ul li {
+    line-height: 1.2;
+    padding: 0.5em 0.2em;
+    margin-bottom: 0.3em;
+    border: 1px #eee solid;
+    transition: 0.2s;
+}
+.cabinet-message-list ul li:hover {
+    background-color: #f9f9f9;
+}
+.cabinet-message-list ul li a {
+    font-size: 1.1em;
+}
+.cabinet-message-list ul li a:hover {
+    text-decoration: none;
+}
+.cabinet-message-list ul li a i {
+    padding: 0.2em;
+    margin-right: 0.5em;
+    color: #b2dba1;
+    font-size: 1.5em;
+}
+.cabinet-message-list ul li a .not-read {
+    color: #EC971E;
 }
 
 /* media */

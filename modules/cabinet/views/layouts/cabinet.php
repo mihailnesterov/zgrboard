@@ -67,8 +67,20 @@
                                                     <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
                                                     <li class="visible-xs"><hr></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (<?= \app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->count() ?>)</span></a></li>
-                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения<span> (0)</span></a></li>
+                                                    <?php
+                                                        $msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->count();
+                                                        $new_msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->andWhere(['is_read' => '0'])->count();
+                                                        if( $new_msg_count == 0 ) {
+                                                            $msg_count_block = ' ('.$msg_count.')';
+                                                            $msg_count_top_block = '';
+                                                        } else {
+                                                            $msg_count_block = '<span class="flash animated not-read"> '.$new_msg_count.' </span>';
+                                                            $msg_count_top_block = $msg_count_block;
+                                                        }
+                                                    ?>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения <?= $msg_count_block ?></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account">0,00</span> руб.)</a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/advert']) ?>">Моя реклама<span> (<?= \app\modules\cabinet\models\CabinetBanners::find()->where(['user_id' => \Yii::$app->user->identity->id])->count() ?>)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/profile']) ?>">Мой профиль</a></li>
                                                     <li><hr></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['/']) ?>">Перейти на сайт</a></li>
@@ -96,7 +108,7 @@
                         </div>
                         <div id="authTop" class="col-sm-7 col-md-8 col-lg-9">                                            
                             <?= Html::a('<i class="fa fa-sign-out" aria-hidden="true"></i>', Yii::$app->homeUrl.'logout', ['id' => 'btn-cabinet-logout', 'title' => 'Выйти']) ?>
-                            <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>', Yii::$app->homeUrl.'cabinet/profile', ['id' => 'btn-cabinet-login', 'title' => 'Вы авторизованы как "'.Yii::$app->user->identity->login.'"']) ?>                                     
+                            <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>'.$msg_count_top_block, Yii::$app->homeUrl.'cabinet/profile', ['id' => 'btn-cabinet-login', 'title' => 'Вы авторизованы как "'.Yii::$app->user->identity->login.'"']) ?>                                     
                             
                         </div>			
                     </header>

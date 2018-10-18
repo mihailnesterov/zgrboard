@@ -9,6 +9,8 @@ use app\models\SignupForm;
 use app\modules\cabinet\models\CabinetUsers;
 use app\modules\cabinet\models\CabinetAds;
 use app\modules\cabinet\models\CabinetAdsSearchModel;
+use app\modules\cabinet\models\CabinetBanners;
+use app\modules\cabinet\models\CabinetMessages;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
@@ -53,7 +55,7 @@ class DefaultController extends Controller
         $searchModel = new CabinetAdsSearchModel();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
-        $model = new CabinetUsers();
+        //$model = new CabinetUsers();
 
         $this->layout = 'cabinet';
 
@@ -137,12 +139,44 @@ class DefaultController extends Controller
             return $this->goHome();
         }
         
-        $model = new CabinetUsers();
+        $this->layout = 'cabinet';
+        
+        /*$model = CabinetMessages::find()
+                ->where(['sender_id' => \Yii::$app->user->identity->id])
+                ->orWhere(['receiver_id' => \Yii::$app->user->identity->id])
+                ->orderby(['created'=>SORT_ASC])
+                ->all();*/
+        $sender = Users::findOne(\Yii::$app->user->identity->id);
+        
+        $query = CabinetMessages::find()
+                ->where(['sender_id' => \Yii::$app->user->identity->id])
+                ->orWhere(['receiver_id' => \Yii::$app->user->identity->id])
+                ->orderby(['created'=>SORT_DESC]);      
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10]);
+        $pages->pageSizeParam = false;
+        $model = $query->offset($pages->offset)->limit($pages->limit)->all();
+
+        return $this->render('messages', [
+            'model' => $model,
+            'pages' => $pages,
+            'sender' => $sender
+        ]);
+    }
+    
+    /**
+     * Displays a single CabinetAds model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionViewMessage($id)
+    {
         
         $this->layout = 'cabinet';
         
-        return $this->render('messages', [
-            'model' => $model,
+        return $this->render('view-message', [
+            'model' => $this->findMessagesModel($id),
         ]);
     }
     
@@ -255,6 +289,66 @@ class DefaultController extends Controller
         return $this->render('pay');
     }
     
+    /**
+     * Renders the advert page
+     * @return string
+     */
+    public function actionAdvert()
+    {
+        if (Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
+
+        $banners = CabinetBanners::find()->where(['user_id' => \Yii::$app->user->identity->id])->orderby(['created'=>SORT_DESC])->all();       
+        $orders = CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->andWhere(['type' => 'advert'])->orderby(['created'=>SORT_DESC])->all();
+
+        $this->layout = 'cabinet';
+        return $this->render('advert', [
+            'banners' => $banners,
+            'orders' => $orders
+        ]);
+    }
+    
+    /**
+     * Renders the advert page
+     * @return string
+     */
+    public function actionAddAdvert()
+    {
+        if (Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
+        
+        $model = new CabinetMessages();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            
+            if ($model->save()) {
+                //header("Refresh: 0");
+                Yii::$app->view->registerJs(
+                "
+                    $.gritter.add({
+                        title: 'Сообщения.',
+                        text: 'Заявка отправлена',
+                        image: '".Yii::$app->homeUrl."images/logo.png',
+                        sticky: 'false',
+                        time: '50000'
+                    });
+                "
+                );
+            }
+            
+            return $this->redirect(['advert']);
+        }
+
+        $this->layout = 'cabinet';
+        return $this->render('add-advert', [
+            'model' => $model
+        ]);
+    }
+    
     
     /**
      * Displays a single CabinetAds model.
@@ -352,6 +446,38 @@ class DefaultController extends Controller
     protected function findAdsModel($id)
     {
         if (($model = CabinetAds::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    /**
+     * Finds the CabinetBanners model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return CabinetBanners the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findBannersModel($id)
+    {
+        if (($model = CabinetBanners::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    /**
+     * Finds the CabinetMessages model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return CabinetMessages the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findMessagesModel($id)
+    {
+        if (($model = CabinetMessages::findOne($id)) !== null) {
             return $model;
         }
 

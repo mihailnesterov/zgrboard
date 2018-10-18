@@ -98,7 +98,7 @@ class CabinetAds extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+        return $this->hasOne(\app\models\Category::className(), ['id' => 'category_id']);
     }
 
     /**
@@ -106,7 +106,7 @@ class CabinetAds extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+        return $this->hasOne(\app\models\Users::className(), ['id' => 'user_id']);
     }
     
     /**
