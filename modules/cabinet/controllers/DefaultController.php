@@ -146,21 +146,20 @@ class DefaultController extends Controller
                 ->orWhere(['receiver_id' => \Yii::$app->user->identity->id])
                 ->orderby(['created'=>SORT_ASC])
                 ->all();*/
-        $sender = Users::findOne(\Yii::$app->user->identity->id);
+        //$sender = Users::findOne(\Yii::$app->user->identity->id);
         
         $query = CabinetMessages::find()
                 ->where(['sender_id' => \Yii::$app->user->identity->id])
                 ->orWhere(['receiver_id' => \Yii::$app->user->identity->id])
                 ->orderby(['created'=>SORT_DESC]);      
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 15]);
         $pages->pageSizeParam = false;
         $model = $query->offset($pages->offset)->limit($pages->limit)->all();
 
         return $this->render('messages', [
             'model' => $model,
-            'pages' => $pages,
-            'sender' => $sender
+            'pages' => $pages
         ]);
     }
     
@@ -174,9 +173,68 @@ class DefaultController extends Controller
     {
         
         $this->layout = 'cabinet';
+        $new_model = new CabinetMessages();
+        $model = $this->findMessagesModel($id);
+        $sender = Users::findOne($model->sender_id);
+        $receiver = Users::findOne($model->receiver_id);
+        $message_list = CabinetMessages::find()
+                ->where(['sender_id' => Yii::$app->user->identity->id])
+                ->orWhere(['receiver_id' => Yii::$app->user->identity->id])
+                ->orderby(['created'=>SORT_DESC])->all();
+        
+        if ($new_model->load(Yii::$app->request->post()) && $new_model->save()) { 
+            return $this->redirect(['messages']);
+        }
         
         return $this->render('view-message', [
-            'model' => $this->findMessagesModel($id),
+            'model' => $model,
+            'new_model' => $new_model,
+            'sender' => $sender,
+            'receiver' => $receiver,
+            'message_list' => $message_list
+        ]);
+    }
+    
+    /**
+     * Renders the add message page for the module
+     * @return string
+     */
+    public function actionAddMessage()
+    {
+        if (Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
+        
+        $this->layout = 'cabinet';
+        
+        $model = new CabinetMessages();
+        
+        $route = explode('=', $_SERVER['REQUEST_URI']);
+        
+        
+        if( !empty($route[1]) ) {
+            $receiver_id = explode('&', $route[1]);
+            $receiver_id = $receiver_id[0];
+            $receiver = Users::find()->where(['id' => $receiver_id])->one();
+            $sender = Users::find()->where(['id' => Yii::$app->user->identity->id])->one();
+        }
+        
+        if( !empty($route[2]) ) {
+            $ads_id = $route[2];
+            $ads = CabinetAds::findOne($ads_id);
+        }    
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) { 
+            return $this->redirect(['/view?id='.$ads_id]);
+        }
+
+        return $this->render('add-message', [
+            'model' => $model,
+            'sender' => $sender,
+            'receiver' => $receiver,
+            'ads_id' => $ads_id,
+            'ads' => $ads
         ]);
     }
     

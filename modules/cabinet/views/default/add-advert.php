@@ -21,7 +21,7 @@ $this->title = 'Заявка на размещение баннера';
     
     <article id="content">
         <div class="row">
-            <header class="col-xs-12" style="margin-top: 1.5em;">
+            <header class="col-xs-12">
                 <h1><?= Html::encode($this->title) ?></h1>
                 <hr>               
             </header>

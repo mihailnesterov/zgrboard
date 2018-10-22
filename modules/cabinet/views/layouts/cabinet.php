@@ -69,7 +69,7 @@
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet']) ?>">Мои объявления<span> (<?= \app\modules\cabinet\models\CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->count() ?>)</span></a></li>
                                                     <?php
                                                         $msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->count();
-                                                        $new_msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->andWhere(['is_read' => '0'])->count();
+                                                        $new_msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->andWhere(['is_read' => '0'])->andWhere(['!=','sender_id', \Yii::$app->user->identity->id])->count();
                                                         if( $new_msg_count == 0 ) {
                                                             $msg_count_block = ' ('.$msg_count.')';
                                                             $msg_count_top_block = '';
@@ -108,7 +108,7 @@
                         </div>
                         <div id="authTop" class="col-sm-7 col-md-8 col-lg-9">                                            
                             <?= Html::a('<i class="fa fa-sign-out" aria-hidden="true"></i>', Yii::$app->homeUrl.'logout', ['id' => 'btn-cabinet-logout', 'title' => 'Выйти']) ?>
-                            <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>'.$msg_count_top_block, Yii::$app->homeUrl.'cabinet/profile', ['id' => 'btn-cabinet-login', 'title' => 'Вы авторизованы как "'.Yii::$app->user->identity->login.'"']) ?>                                     
+                            <?= Html::a('<i class="fa fa-user" aria-hidden="true"></i> '.'<span>'.Yii::$app->user->identity->login.'</span>'.$msg_count_top_block, Yii::$app->homeUrl.'cabinet/messages', ['id' => 'btn-cabinet-login', 'title' => 'Вы авторизованы как "'.Yii::$app->user->identity->login.'"']) ?>                                     
                             
                         </div>			
                     </header>

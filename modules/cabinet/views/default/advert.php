@@ -19,7 +19,7 @@ $this->title = 'Моя реклама';
     
     <article id="content">
         <div class="row">
-            <header class="col-xs-12" style="margin-top: 1.5em;">
+            <header class="col-xs-12">
                 <h1><?= Html::encode($this->title) ?></h1>
                 <hr>               
             </header>
@@ -60,7 +60,7 @@ $this->title = 'Моя реклама';
                                 <?php
                                     // вывод списка баннеров из БД
                                     foreach ($banners as $banner):
-                                       echo '<li><a href="'.Yii::$app->urlManager->createUrl(['advert/'.$banner->id]).'">'.$banner->name.'</a></li>';
+                                       echo '<li><a href="'.Yii::$app->urlManager->createUrl(['cabinet/view-avert?id='.$banner->id]).'">'.$banner->name.'</a></li>';
                                     endforeach;
                                 ?>
                             </ol>
@@ -76,7 +76,7 @@ $this->title = 'Моя реклама';
                                     // вывод списка заявок из БД
                                     foreach ($orders as $order):
                                         $created = new DateTime($order->created);
-                                        echo '<li><a href="'.Yii::$app->urlManager->createUrl(['messages/'.$order->id]).'">'.$order->theme.' от '.$created->format('d.m.Y').'</a></li>';
+                                        echo '<li><a href="'.Yii::$app->urlManager->createUrl(['cabinet/view-message?id='.$order->id]).'">'.$order->theme.' от '.$created->format('d.m.Y').'</a></li>';
                                     endforeach;
                                 ?>
                             </ol>

@@ -7,17 +7,10 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\modules\cabinet\models\CabinetMessages */
 
-/*
- * is_read = 1
- */
-if($model->is_read == 0 && $sender->id != Yii::$app->user->identity->id) {
-    $model->is_read = 1;
-    $model->save();
-}
 
-$this->title = 'Сообщение: '.$model->theme;
+$this->title = 'Новое сообщение...';
 $this->params['breadcrumbs'][] = ['label' => 'Мои сообщения', 'url' => ['/cabinet/messages']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = 'RE: '.$ads->title;
 ?>
 
 <main role="main">
@@ -36,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </header>
             
             <div class="col-sm-12 col-md-10 col-lg-9">
-                <div class="hidden-xs">
+                <div class="">
                     <?php
                     echo Breadcrumbs::widget([
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -46,29 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>  <!-- end Breadcrumbs -->
                 
                 <div class="row1" style="margin-top: 1em;">
-                    <div class="col-sm-3" style="border: 0px #eee solid; padding: 1em; margin: 0.5em 0;">
-   
-                        
-                        <p><?= $sender->login ?> &rArr; <?= $receiver->login ?></p>
-                        <hr>
+
+                    <div class="col-sm-12" style="border: 1px #eee solid; padding: 1em; margin: 0.5em 0; line-height: 1.5; background-color: #f8f8f8;">
                         <p>
                             <?php
-                                $created = new DateTime($sender->created);
-                                echo $created->format('d.m.Y (H:i)');
+                                //$receiver = \app\models\Users::find()->where(['id' => $receiver_id])->one();
+                                echo $sender->login.' &rArr; '.$receiver->login;
                             ?>
                         </p>
-                    </div>  <!-- end col -->
-                    <div class="col-sm-9" style="border: 1px #eee solid; padding: 1em; margin: 0.5em 0; line-height: 1.5; background-color: #f8f8f8;">
-                        <p><?= $model->text ?></p>
                         <hr>
-                        <?php
-                            if ($model->receiver_id != Yii::$app->user->identity->id) {
-                                echo '<div class="hidden">';
-                            } else {
-                                echo '<div>';
-                            }
-                        ?>
-                        
                         <?php $form = ActiveForm::begin([
                             //'id' => 'userUpdateForm',
                             'options' => ['class' => 'form-horizontal'],
@@ -78,33 +57,33 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]); ?>
                         
                         <div class="hidden">
-                        <?= $form->field($new_model, 'sender_id')
+                        <?= $form->field($model, 'sender_id')
                                 ->textInput(['type' => 'hidden', 'maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Отправитель', 'value' => Yii::$app->user->identity->id])
                                 ->label(false)?>
                         
-                        <?= $form->field($new_model, 'receiver_id')
-                                ->textInput(['type' => 'hidden', 'maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Получатель', 'value' => $sender->id])
+                        <?= $form->field($model, 'receiver_id')
+                                ->textInput(['type' => 'hidden', 'maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Получатель', 'value' => $receiver->id])
                                 ->label(false)?>
                         
-                        <?= $form->field($new_model, 'theme')
-                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Тема сообщения', 'value' => 'RE: '.$model->theme])
+                        <?= $form->field($model, 'theme')
+                            ->textInput(['type' => 'hidden', 'maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Тема сообщения', 'value' => 'RE: '.$ads->title])
                             ->label(false)?>
                             
-                        <?= $form->field($new_model, 'type')
+                        <?= $form->field($model, 'type')
                             ->textInput(['type' => 'hidden', 'maxlength' => true, 'class' => 'form-control input-lg', 'required' => 'required', 'placeholder' => 'Тип сообщения', 'value' => 'message'])
                             ->label(false)?>
                             
                         </div>
                         
-                        <?= $form->field($new_model, 'text')
+                        <?= $form->field($model, 'text')
                                 ->textArea(['maxlength' => true, 'class' => 'form-control', 'rows' => '3', 'placeholder' => 'Ответ...', 'value' => ''])
                                 ->label(false)?>
                         
-                            <?= Html::submitButton('Ответить', ['class' => 'btn btn-success']) ?>
+                            <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
                         
                         <?php ActiveForm::end(); ?>
-                        </div>
-                    </div>  <!-- end col -->
+                        
+                    </div>
                     
                 </div>
                 

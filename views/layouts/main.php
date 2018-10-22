@@ -124,7 +124,8 @@
                                                 <?= Html::a('<i class="fa fa-sign-in" aria-hidden="true"></i>', Yii::$app->homeUrl.'login', ['title' => 'Войти в личный кабинет']) ?>
                                             <?php else: ?>
                                                 <?php
-                                                    $new_msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->andWhere(['is_read' => '0'])->count();
+                                                    //$new_msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->andWhere(['is_read' => '0'])->count();
+                                                    $new_msg_count = \app\modules\cabinet\models\CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->orWhere(['receiver_id' => \Yii::$app->user->identity->id])->andWhere(['is_read' => '0'])->andWhere(['!=','sender_id', \Yii::$app->user->identity->id])->count();
                                                     if( $new_msg_count != 0 ) {
                                                         $msg_count_block = '<span class="flash animated not-read"> '.$new_msg_count.' </span>';
                                                     } else {

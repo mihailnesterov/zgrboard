@@ -319,6 +319,10 @@ a:hover {
         margin-top: 1em;
 }
 
+#content header {
+	margin-top: 1.5em;
+}
+
 /* Главное меню --------------------------*/
 /*#main-menu-container
 {	

@@ -134,7 +134,7 @@ $this->registerMetaTag([
                                     <?php if (Yii::$app->user->isGuest): ?>
                                         <?= Html::a('Оставить сообщение', Yii::$app->homeUrl.'login', ['class' => 'btn-orange']) ?>
                                     <?php else: ?>
-                                        <?= Html::a('Оставить сообщение', Yii::$app->homeUrl.'cabinet/messages', ['class' => 'btn-orange']) ?>
+                                        <?= Html::a('Оставить сообщение', Yii::$app->homeUrl.'cabinet/add-message?sender='.$model->user_id.'&ads='.$model->id, ['class' => 'btn-orange']) ?>
                                     <?php endif; ?>
                                 </p>
                             </div>

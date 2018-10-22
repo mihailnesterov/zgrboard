@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use app\models\Users;
 use app\modules\cabinet\models\CabinetMessages;
 
 date_default_timezone_set('Asia/Krasnoyarsk');
@@ -15,44 +16,10 @@ $this->title = 'Мои сообщения';
 
 <main role="main">    
         <article id="content" class="row">
-            <div class="col-xs-12" style="margin-top: 1.5em;">
+            <header class="col-xs-12">
                 <h1><?= Html::encode($this->title) ?></h1>
                 <hr>
-            </div>
-            <div class="col-xs-12">
-
-                <!--<table class='table table-bordered1 table-responsive table-striped text-center'>
-                    <thead>
-                        <tr>
-                            <th>Дата</th>
-                            <th>Отправитель</th>
-                            <th>Получатель</th>
-                            <th>Тема</th>
-                            <th>Текст</th>
-                            <th>Ответить</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            // вывод списка баннеров из БД
-                            foreach ($model as $msg):
-                                $created = new DateTime($msg->created);
-                                $receiver = \app\models\Users::find($msg->receiver_id)->one();  // получатель сообщения
-                                echo 
-                                '<tr>'
-                                .'<td>'.$created->format('d.m.Y').'</td>'
-                                .'<td>'.$sender->login.'</td>'
-                                .'<td>'.$receiver->login.'</td>'
-                                .'<td><a href="'.Yii::$app->urlManager->createUrl(['messages/'.$msg->id]).'">'.$msg->theme.'</a></td>'
-                                .'<td>'.$msg->text.'</td>'
-                                .'<td>'.Html::button('Ответить', ['class' => 'btn btn-default']).'</td>'
-                                .'</tr>';
-                            endforeach;
-                        ?>
-                    </tbody>
-                </table>-->
-                
-            </div> <!-- end-col -->
+            </header>
             
             <div class="col-xs-12">
                 <div class="cabinet-message-list">
@@ -61,8 +28,9 @@ $this->title = 'Мои сообщения';
                             // вывод списка баннеров из БД
                             foreach ($model as $msg):
                                 $created = new DateTime($msg->created);
-                                $receiver = \app\models\Users::find($msg->receiver_id)->one();  // получатель сообщения
-                                if( $msg->is_read == 0 ) {
+                                $sender = Users::find()->where(['id' => $msg->sender_id])->one();  // получатель сообщения
+                                $receiver = Users::find()->where(['id' => $msg->receiver_id])->one();  // получатель сообщения
+                                if( $msg->is_read == 0 && $msg->sender_id != Yii::$app->user->identity->id ) {
                                     $fa_comment = '<i class="fa fa-comment not-read flash animated" aria-hidden="true"></i>';
                                 } else {
                                     $fa_comment = '<i class="fa fa-comment" aria-hidden="true"></i>';
