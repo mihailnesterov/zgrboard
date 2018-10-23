@@ -7,12 +7,6 @@ use yii\widgets\Breadcrumbs;
 /* @var $this yii\web\View */
 /* @var $model app\models\AdsSearchModel */
 
-$category_url = '..'.Yii::$app->homeUrl.'category';
-
-$this->title = 'Результаты поиска';
-$this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
-$this->params['breadcrumbs'][] = $this->title;
-
 ?>
 
 <main role="main">
@@ -31,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                         </header>                    
                         <div class="ads-container">
-                                <!--<ul class="row">
+                                <ul class="row">
                                         <?php            
                                             // вывод объявлений из БД
                                             // $search_ads выводит из actionAllUserAds
@@ -69,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 . '</li>';
                                             endforeach;
                                         ?>
-                                </ul>-->
+                                </ul>
                         </div>	<!-- end ads-container -->
                         
                         <div class="col-xs-12">

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\helpers\Html;
 use app\models\Category;
 use app\models\CategorySearchModel;
 use yii\web\Controller;
@@ -36,8 +37,8 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearchModel();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        /*$searchModel = new CategorySearchModel();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);*/
         
         $this->view->title = 'Все объявления';
         $this->view->params['breadcrumbs'][] = $this->view->title;
@@ -51,15 +52,27 @@ class CategoryController extends Controller
             'content' => 'Все объявления в Зеленогорске Краснояркого края'
         ]);
         
-        $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
+        $route = explode('filter=', $_SERVER['REQUEST_URI']);
+        
+        if ( !empty($route[2]) ) {
+            $filter = urldecode($route[2]);
+            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['type' => $filter])->orderby(['date_begin'=>SORT_DESC]);
+        } elseif ( !empty($route[1]) ) {
+            $explode = explode('&page', $route[1]);
+            $filter = urldecode($explode[0]);
+            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['type' => $filter])->orderby(['date_begin'=>SORT_DESC]);
+        } else {
+            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
+        }
+        
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
         $pages->pageSizeParam = false;
         $models = $query->offset($pages->offset)->limit($pages->limit)->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            /*'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,*/
             'models' => $models,
             'pages' => $pages,
         ]);
@@ -87,7 +100,19 @@ class CategoryController extends Controller
             'content' => $model->description
         ]);
         
-        $query = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
+        $route = explode('filter=', $_SERVER['REQUEST_URI']);
+        
+        if ( !empty($route[2]) ) {
+            $filter = urldecode($route[2]);
+            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['type' => $filter])->orderby(['date_begin'=>SORT_DESC]);
+        } elseif ( !empty($route[1]) ) {
+            $explode = explode('&page', $route[1]);
+            $filter = urldecode($explode[0]);
+            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['type' => $filter])->orderby(['date_begin'=>SORT_DESC]);
+        } else {
+            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->orderby(['date_begin'=>SORT_DESC]);
+        }
+        
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
         $pages->pageSizeParam = false;

@@ -43,10 +43,7 @@ class CabinetAdsSearchModel extends CabinetAds
     {
         // add conditions that should always apply here
         
-        $query = CabinetAds::find()
-            ->andFilterWhere(['like', 'title',  $this->title])
-            ->andFilterWhere(['like', 'text',  $this->text])
-            ->andFilterWhere(['like', 'type',  $this->type]);
+        $query = CabinetAds::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,7 +58,7 @@ class CabinetAdsSearchModel extends CabinetAds
         }
 
         // grid filtering conditions
-        /*$query->andFilterWhere([
+        $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
             'category_id' => $this->category_id,
@@ -71,21 +68,21 @@ class CabinetAdsSearchModel extends CabinetAds
             'premium' => $this->premium,
             'created' => $this->created,
             'visits' => $this->visits,
-        ]);*/
+        ]);
         
-        /*$query->andFilterWhere(['like', 'title', $this->title])
+        $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text])
-            ->andFilterWhere(['like', 'price', $this->price])
+            /*->andFilterWhere(['like', 'price', $this->price])
             ->andFilterWhere(['like', 'photo1', $this->photo1])
             ->andFilterWhere(['like', 'photo2', $this->photo2])
             ->andFilterWhere(['like', 'photo3', $this->photo3])
-            ->andFilterWhere(['like', 'photo4', $this->photo4])
-            ->andFilterWhere(['like', 'type', $this->type]);*/
+            ->andFilterWhere(['like', 'photo4', $this->photo4])*/
+            ->andFilterWhere(['like', 'type', $this->type]);
 
-        /*$query->andFilterWhere(['like', 'title', $this->title])
+        $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'text', $this->text])
-            ->andFilterWhere(['like', 'price', $this->price])
-            ->andFilterWhere(['like', 'type', $this->type]);*/
+            //->andFilterWhere(['like', 'price', $this->price])
+            ->andFilterWhere(['like', 'type', $this->type]);
 
         return $dataProvider;
     }

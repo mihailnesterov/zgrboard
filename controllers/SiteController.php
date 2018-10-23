@@ -36,21 +36,44 @@ class SiteController extends Controller
     public function actionSearch()
     {
         
-        $search = \Yii::$app->request->get('search');
+        $search = \Yii::$app->request->get('searchField');
+        
+        /*$explode = explode(' ', $search);
+        $search2 = '';
+        for ($i = 0; $i < count($explode); $i++) {
+            $search2 = substr($explode[$i], 0, strlen($explode[$i])-1);
+            $search2 = $search2.$explode[$i];
+            
+        }
+        echo $search2.'<br>';*/
+        
         $search1 = str_replace(' ', '', $search);
-        /*$query = \app\modules\cabinet\models\CabinetAds::find()
+        $query = \app\modules\cabinet\models\CabinetAds::find()
                 ->where(['like', 'replace(title, " ", "")', $search1])
-                ->AndWhere(['like', 'replace(text, " ", "")', $search1]);*/
-        $query = CabinetAds::find()
-            ->andFilterWhere(['like', 'title',  $search1])
-            ->andFilterWhere(['like', 'text',  $search1])
-            ->andFilterWhere(['like', 'type',  $search1]);
+                ->orWhere(['like', 'replace(text, " ", "")', $search1]);
+        $query_count = $query->count();
+        /*$query = CabinetAds::find()
+            ->FilterWhere(['like', 'replace(title, " ", "")',  $search1])
+            ->andFilterWhere(['like', 'replace(text, " ", "")',  $search1]);*/
+        /*$query = CabinetAds::find()
+            ->where(['like', 'title',  $search]);*/
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 9]);
         $pages->pageSizeParam = false;
         $search_ads = $query->offset($pages->offset)->limit($pages->limit)->all();
         
-        //$this->view->title = 'Результаты поиска';
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => 'поиск объявлений зеленогорск'
+        ]);
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => 'Найденные объявления Зеленогорск Краснояркий край'
+        ]);
+        $category_url = '..'.\Yii::$app->homeUrl.'category';
+        $this->view->title = 'Результаты поиска';
+        $this->view->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
+        $this->view->params['breadcrumbs'][] = 'Результаты поиска: "'.$search.'" (найдено: '.$query_count.')' ;
         
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $query,
@@ -61,20 +84,6 @@ class SiteController extends Controller
             'search_ads' => $search_ads,
             'pages' => $pages,
         ]);
-        
-        /*$this->view->title = 'Результаты поиска';
-        
-        $searchModel = new \app\modules\cabinet\models\CabinetAdsSearchModel();
-        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
-
-        $pages = new Pagination(['totalCount' => $searchModel->, 'pageSize' => 9]);
-        $pages->pageSizeParam = false;
-        $user_ads = $query->offset($pages->offset)->limit($pages->limit)->all();
-
-        return $this->render('search', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
     }
     
     /**
