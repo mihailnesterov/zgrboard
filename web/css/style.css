@@ -155,7 +155,8 @@ a:hover {
 /* шапка --------------------------*/
 
 #header {
-	background-color: #4EA300;
+	/*background-color: #4EA300;*/
+        background-color: #84B849;
 	padding-top: 1em;
 	margin-left: -15px;
 	margin-right: -15px;
@@ -195,7 +196,8 @@ a:hover {
 #searchTop input,
 #searchTopMobile input {
 	/*background-color:#267F00;*/
-        background-color: #4EA300;
+        /*background-color: #4EA300;*/
+        background-color: #84B849;
 	/*border:1px #265900 solid;*/
         border:1px #FCFEFF solid;
 	color: #FCFEFF;
@@ -208,7 +210,8 @@ a:hover {
 #searchTop .input-group-addon,
 #searchTopMobile .input-group-addon {
 	/*background-color:#267F00;*/
-        background-color: #4EA300;
+        /*background-color: #4EA300;*/
+        background-color: #84B849;
 	color: #FCFEFF;
 	border:1px #FCFEFF solid;
 	border-left: none;
@@ -322,6 +325,20 @@ a:hover {
 
 #content header {
 	margin-top: 1.5em;
+}
+#content .content-block {
+	border: 0px #eee solid;
+        padding: 0.5em;
+        margin-bottom: 1em;
+}
+#content .content-block h2,
+#content .content-block h3 {
+	margin-bottom: 1em;
+}
+#content .content-block p {
+	line-height: 1.8; 
+        margin-bottom: 1em;
+        text-align: justify;
 }
 
 /* Главное меню --------------------------*/
@@ -574,14 +591,12 @@ a:hover {
 /* Блок объявлений ----------------------*/
 
 .ads-container {
-	margin: 0.5em;
-        /*border: 1px green solid;  */     
+	margin: 0.5em;    
         display: inline-block;
         width: 100%;
 }
 .ads-container h2 {
-	padding: 0.25em;
-	/*margin-left: 0.3em;*/
+	padding: 0.25em 0;
 }
 .ads-block  {
 	border: 1px #DCEDCC solid;

@@ -49,6 +49,6 @@ use yii\helpers\Html;
         <div class="banners">
                 <a href="#"><img src="images/image.png" alt="" class="img-responsive"></a>
                 <a href="#"><img src="images/image.png" style="height: 430px;" alt="" class="img-responsive"></a>
-                <a href="#">Разместить рекламу</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['/place-ads']) ?>">Разместить рекламу</a>
         </div>
 </aside> <!-- end aside-right -->

@@ -11,8 +11,9 @@ use Yii;
  * @property string $name Название позиции
  * @property string $text Описание позиции
  * @property string $image Картинка позиции
+ * @property int $price цена за сутки
  *
- * @property ZbBanners[] $zbBanners
+ * @property Banners[] $Banners
  */
 class CabinetBannerPositions extends \yii\db\ActiveRecord
 {
@@ -30,8 +31,9 @@ class CabinetBannerPositions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'image'], 'required'],
+            [['name', 'price'], 'required'],
             [['text'], 'string'],
+            [['price'], 'integer'], 
             [['name', 'image'], 'string', 'max' => 255],
         ];
     }
@@ -46,6 +48,7 @@ class CabinetBannerPositions extends \yii\db\ActiveRecord
             'name' => 'Название',
             'text' => 'Текст',
             'image' => 'Картинка',
+            'price' => 'Цена',
         ];
     }
 
@@ -54,6 +57,6 @@ class CabinetBannerPositions extends \yii\db\ActiveRecord
      */
     public function getBanners()
     {
-        return $this->hasMany(ZbBanners::className(), ['position_id' => 'id']);
+        return $this->hasMany(Banners::className(), ['position_id' => 'id']);
     }
 }

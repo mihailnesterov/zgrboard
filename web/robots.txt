@@ -1,0 +1,3 @@
+User-agent: *
+Host: http://myzgr.ru
+Sitemap: http://myzgr.ru/sitemap.xml

@@ -22,6 +22,7 @@ return [
                     'all-user-ads' => 'site/all-user-ads',
                     'all-user-ads/<id:\d+>' => 'site/all-user-ads',
                     'search' => 'site/search',
+                    'place-ads' => 'site/place-ads',
                     'users' => 'users/index',
                     'users/<id:\d+>' => 'users/view',
                     'login' => 'users/login',
@@ -30,6 +31,7 @@ return [
                     'cabinet/<action>' => 'cabinet/default/<action>',
                     'logout' => 'users/logout',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    'sitemap.xml' => 'site/sitemap'
                     /*'<action>' => 'site/<action>',*/
                 
                     /*'<module:cabinet>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',

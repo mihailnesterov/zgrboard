@@ -131,6 +131,34 @@ class SiteController extends Controller
     }
     
     /**
+     * Displays a place ads page
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionPlaceAds()
+    {
+        $this->view->title = 'Разместить рекламу на сайте';
+        $this->view->params['breadcrumbs'][] = $this->view->title;
+        
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => 'реклама зеленогорск красноярский край'
+        ]);
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => 'Разместить рекламу на сайте объявлений Мой Зеленогорск, условия размещения, заказать рекламный баннер'
+        ]);
+        
+        $banner_price = \app\modules\cabinet\models\CabinetBannerPositions::find()->all();
+        $ads_price = \app\modules\cabinet\models\CabinetAdsPrice::find()->all();
+        
+        return $this->render('place-ads', [
+            'banner_price' => $banner_price,
+            'ads_price' => $ads_price
+        ]);
+    }
+    
+    /**
      * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
@@ -144,5 +172,33 @@ class SiteController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    /**
+     * Build sitemap.xml page
+     * http://itelect.ru/post/4/sitemap-dlya-proekta-na-yii2
+     */
+    public function actionSitemap() {
+        $urls = array();
+        array_push($urls, [ \Yii::$app->urlManager->createUrl(['/']), 'weekly' ]);
+        array_push($urls, [ \Yii::$app->urlManager->createUrl(['/place-ads']), 'weekly' ]);
+        array_push($urls, [ \Yii::$app->urlManager->createUrl(['/category']), 'weekly' ]);
+
+        $categories = \app\models\Category::find()->all();
+        foreach ($categories as $category) {
+            array_push($urls, [ \Yii::$app->urlManager->createUrl(['/category/' . $category->id]), 'weekly' ]);
+        }
+
+        $ads_list = \app\modules\cabinet\models\CabinetAds::find()->all();
+        foreach ($ads_list as $ads) {
+            array_push($urls, [ \Yii::$app->urlManager->createUrl(['/view?id=' . $ads->id]), 'daily' ]);
+        }
+        
+        $xml_sitemap = $this->renderPartial('sitemap', [
+            'host' => \Yii::$app->request->hostInfo,
+            'urls' => $urls
+        ]);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+        echo $xml_sitemap;
     }
 }
