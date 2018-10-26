@@ -76,6 +76,17 @@ class DefaultController extends Controller
         $pages->pageSizeParam = false;
         $models = $query->offset($pages->offset)->limit($pages->limit)->all();
         
+        Yii::$app->mailer->compose([
+            'html' => 'test',
+            'text' => 'test',
+        ])
+        ->setFrom(['mhause@mail.ru' => 'Письмо с сайта "Мой Зеленогорск | Доска объявлений"'])
+        ->setTo('zgrmarket@mail.ru')
+        ->setSubject('Тема сообщения')
+        ->setTextBody('Текст сообщения в текстовом формате')
+        ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
+        ->send();
+        
         
         return $this->render('index', [
             'searchModel' => $searchModel,

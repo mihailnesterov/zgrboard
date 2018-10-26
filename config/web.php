@@ -49,6 +49,18 @@ return [
                 'identityClass' => 'app\models\Users',
                 'enableAutoLogin' => true,
             ],
+        'mailer' => [ // подключаем swiftmailer
+                'class' => 'yii\swiftmailer\Mailer',
+                'useFileTransport' => true, // send to file in runtime\mail
+                'transport' => [
+                    'class' => 'Swift_SmtpTransport',
+                    'host' => 'smtp.mail.ru',
+                    'username' => 'mhause@mail.ru',
+                    'password' => 'rexerov',
+                    'port' => '465', // Port 25 is a very common port too
+                    'encryption' => 'ssl', // It is often used, check your provider or mail server specs
+                ],
+            ],
     ],
     'modules' => [
         'debug' => 'yii\debug\Module',
