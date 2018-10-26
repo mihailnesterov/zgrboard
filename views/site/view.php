@@ -152,7 +152,7 @@ $this->registerMetaTag([
                         ->where(['>', 'date_end', date('Y.m.d H:i:s')])
                         ->andWhere(['=', 'category_id', $model->category_id])
                         ->andWhere(['!=', 'id', $model->id])
-                        ->orderby(['date_begin'=>SORT_DESC]);
+                        ->orderby(['rand()'=>SORT_DESC]);
                 }  
                 else {   // для обычных объявлений выводим похожие, из той-же категории и того-же типа
                 $query = \app\modules\cabinet\models\CabinetAds::find()
@@ -160,7 +160,7 @@ $this->registerMetaTag([
                         ->andWhere(['=', 'type', $model->type])
                         ->andWhere(['=', 'category_id', $model->category_id])
                         ->andWhere(['!=', 'id', $model->id])
-                        ->orderby(['date_begin'=>SORT_DESC]);
+                        ->orderby(['rand()'=>SORT_DESC]);
                 }
                 
                 $countQuery = clone $query;
@@ -174,7 +174,7 @@ $this->registerMetaTag([
         
         <?php
             // vip в category/id (категория) 
-            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'vip', 1])->orderby(['date_begin'=>SORT_DESC]);
+            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'vip', 1])->orderby(['rand()'=>SORT_DESC]);
             $countQuery = clone $query;
             $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
             $pages->pageSizeParam = false;

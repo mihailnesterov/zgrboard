@@ -13,7 +13,6 @@ use yii\helpers\Html;
             <?php
                 // вывод объявлений из БД
                 // $model_premium выводит из category/index.php
-
                 foreach ($model_premium as $ads):
                     if (!empty($ads->photo1))
                         {

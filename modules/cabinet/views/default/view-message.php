@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <hr>
                         <p>
                             <?php
-                                $created = new DateTime($sender->created);
+                                $created = new DateTime($model->created);
                                 echo $created->format('d.m.Y (H:i)');
                             ?>
                         </p>

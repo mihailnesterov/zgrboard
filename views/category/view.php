@@ -96,7 +96,7 @@ $ads_all_count = CabinetAds::find()->where(['category_id' => $model->id])->andWh
                         
                         <?php
                             // premium category/id  where category_id = $model->id
-                            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'premium', 1])->andWhere(['=', 'category_id', $model->id])->orderby(['date_begin'=>SORT_DESC]);
+                            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'premium', 1])->andWhere(['=', 'category_id', $model->id])->orderby(['rand()'=>SORT_DESC]);
                             $countQuery = clone $query;
                             $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
                             $pages->pageSizeParam = false;
@@ -108,7 +108,7 @@ $ads_all_count = CabinetAds::find()->where(['category_id' => $model->id])->andWh
             
                 <?php
                     // vip в category/id (категория) 
-                    $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'vip', 1])->orderby(['date_begin'=>SORT_DESC]);
+                    $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'vip', 1])->orderby(['rand()'=>SORT_DESC]);
                     $countQuery = clone $query;
                     $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
                     $pages->pageSizeParam = false;

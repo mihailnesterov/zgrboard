@@ -62,7 +62,7 @@ use yii\widgets\Breadcrumbs;
                         
                         <div class="content-block">
                             <h2>Платные объявления</h2>
-                            <p>Платные объявления размещаются в специальных блоках (VIP, Premium) и дают возможность увеличить количество просмотров в несколько раз. VIP-объявление будет показано в специальном блоке на всех страницах сайта. Premium - объявление будет показано в специальном блоке на главной странице, а также в той категории, в которой оно размещено.</p>
+                            <p>Платные объявления размещаются в специальных блоках (VIP, Премиум) и дают возможность увеличить количество просмотров в несколько раз. VIP-объявление будет показано в специальном блоке на всех страницах сайта. Премиум - объявление будет показано в специальном блоке на главной странице, а также в той категории, в которой оно размещено. Стоимость размещения платных объявлений указана в таблице ниже. Минимальный срок размещения - одни сутки. Оплата списывается ежедневно с вашего личного счета. Чтобы подключить платный тариф, войдите в личный кабинет, в разделе "Мои объявления" выберите нужное объявление (или создайте новое), перейдите в редактирование объявления и подключите платный тариф.</p>
                         </div>	<!-- end content-block -->
                         
                         <div class="content-block">
@@ -98,18 +98,18 @@ use yii\widgets\Breadcrumbs;
                         
                         <?php
                             // premium site/index  
-                            /*$query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'premium', 1])->orderby(['date_begin'=>SORT_DESC]);
+                            $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'premium', 1])->orderby(['rand()'=>SORT_DESC]);
                             $countQuery = clone $query;
                             $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 6]);
                             $pages->pageSizeParam = false;
                             $model_premium = $query->offset($pages->offset)->limit($pages->limit)->all();
-                            echo $this->render('_premium', ['model_premium' => $model_premium]); */
+                            echo $this->render('_premium', ['model_premium' => $model_premium]); 
                         ?>
                 </article>
                 
                 <?php
                     // vip site/index 
-                    $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'vip', 1])->orderby(['date_begin'=>SORT_DESC]);
+                    $query = \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'vip', 1])->orderby(['rand()'=>SORT_DESC]);
                     $countQuery = clone $query;
                     $pages = new yii\data\Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
                     $pages->pageSizeParam = false;
