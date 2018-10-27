@@ -248,7 +248,7 @@ $this->title = 'Новое объявление...';
                 <!--<p class="bg-warning text-info">Оплата будет ежедневно списываться с вашего личного счета</p>-->
                 <p class="bg-info text-info">На вашем счету: 0 руб.</p>
                 
-                <?= Html::a('Пополнить счет', Yii::$app->homeUrl.'cabinet/pay', ['id' => 'link-ads-pay', 'class' => 'btn-orange']) ?>
+                <!--<?= Html::a('Пополнить счет', Yii::$app->homeUrl.'cabinet/pay', ['id' => 'link-ads-pay', 'class' => 'btn-orange']) ?>-->
 
                 
             </div>

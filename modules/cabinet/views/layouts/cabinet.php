@@ -43,7 +43,6 @@
 			<div id="logoTop">
 				<a href="<?= Yii::$app->homeUrl ?>"><img src="<?= Yii::$app->homeUrl ?>images/logo.png" alt="logo" class="img-responsive">
 					<span id="slogan"><?= Yii::$app->name ?><br> Доска объявлений</span>
-                                        <!--<span id="slogan" class="visible-xs">Личный кабинет<br>пользователя</span>-->
 				</a>
 			</div>
 		
@@ -60,8 +59,12 @@
                                    
 					<div id="navbar" class="navbar-collapse collapse">
                                                 <div class="banners visible-xs row">
-                                                    <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive col-xs-6"></a>
-                                                    <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive col-xs-6"></a>
+                                                    <div class="col-xs-6">
+                                                        <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/banner2-1.jpg" alt="Баннер в мобильном меню кабинета 1" width="100%" class="img-responsive"></a>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/banner2-2.jpg" alt="Баннер в мобильном меню кабинета 2" width="100%" class="img-responsive"></a>
+                                                    </div>
                                                 </div>
 						<ul class="nav navbar-nav dropdown">  
                                                     <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
@@ -91,8 +94,7 @@
 				</nav>
                             
                             <div class="banners hidden-xs">
-                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive"></a>
-                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/image.png" alt="" class="img-responsive"></a>
+                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/banner3-2.jpg" alt="Баннер в кабинете 1" width="100%" class="img-responsive"></a>
                             </div>
 
 			</div> <!-- end catalog-menu-container -->
@@ -103,7 +105,6 @@
                 <div id="right-container" class="col-sm-9 col-lg-9"> <!-- begin right-container -->
                     <header id="header" class="row hidden-xs">
                         <div class="col-sm-5 col-md-4 col-lg-3">
-                            <!--<h2 style="color: #fff; margin-top: 0.5em;"><?= Html::encode($this->title) ?></h2>-->
                             <?= Html::a('<span>Подать объявление</span>', Yii::$app->homeUrl.'cabinet/add', ['class' => 'btn-orange', 'style' => 'margin-top: 0.24em;']) ?>
                         </div>
                         <div id="authTop" class="col-sm-7 col-md-8 col-lg-9">                                            
@@ -158,9 +159,7 @@
                     }(20);
                     
                     var ext = file.name.substring(file.name.lastIndexOf('.'));  // get file extention
-                    document.getElementById(form_field_id).value = RandomString(20) + ext;
-                    
-                    
+                    document.getElementById(form_field_id).value = RandomString(20) + ext;                  
                }
 
                if (file) {

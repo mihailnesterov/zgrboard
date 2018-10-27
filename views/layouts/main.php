@@ -72,8 +72,12 @@
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav dropdown">
 							<div class="banners visible-xs row">
-								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
-								<a href="#"><img src="images/image.png" alt="" class="img-responsive col-xs-6"></a>
+                                                            <div class="col-xs-6">
+                                                                <a href="#"><img src="images/banners/banner2-1.jpg" alt="Баннер в мобильном меню 1" width="100%" class="img-responsive"></a>
+                                                            </div>
+                                                            <div class="col-xs-6">
+                                                                <a href="#"><img src="images/banners/banner2-2.jpg" alt="Баннер в мобильном меню 2" width="100%" class="img-responsive"></a>
+                                                            </div>
 							</div>
                                                         <?php
                                                             // вывод меню из БД
@@ -90,9 +94,10 @@
 					</div>
 				</nav>
 				<div class="banners hidden-xs">
-					<a href="#"><img src="images/image.png" alt="" class="img-responsive"></a>
-					<a href="#"><img src="images/image.png" alt="" class="img-responsive"></a>
-					<a href="#"><img src="images/image.png" alt="" class="img-responsive"></a>
+                                    <a href="#"><img src="images/banners/banner2-1.jpg" alt="Баннер в меню каталога 1" class="img-responsive"></a>
+                                    <a href="https://beget.com/?id=207670" target="_blank"><img src="https://cp.beget.com/promo_data/static/static200x200_1.png" alt="Beget" border="0" class="img-responsive"></a>
+                                    <a href="#"><img src="images/banners/banner2-2.jpg" alt="Баннер в меню каталога 2" class="img-responsive"></a>
+                                    <a href="#"><img src="images/banners/banner2-3.jpg" alt="Баннер в меню каталога 3" class="img-responsive"></a>
 				</div>
 			</div> <!-- end catalog-menu-container -->
 		</aside> <!-- end aside-left -->

@@ -85,7 +85,7 @@
                                 </div>
                                 
                                 <div class="banners">
-                                    <a href="#"><img src="images/banners/slide3.jpg" alt="" class="img-responsive"></a>
+                                    <a href="#"><img src="images/banners/banner4-1.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive"></a>
                                 </div>
 
                         </div>	<!-- end ads-container -->

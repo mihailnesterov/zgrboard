@@ -21,7 +21,7 @@ $this->title = 'Мой счет';
                 <h5 class="bg-warning text-info">На вашем счету: 0,00 руб.</h5>
             </div>    
             <div class="col-xs-7 col-sm-5 col-md-4 col-lg-3">
-                <?= Html::a('Пополнить счет', Yii::$app->homeUrl.'cabinet/pay', ['id' => 'link-ads-pay', 'class' => 'btn-orange']) ?>
+                <!--<?= Html::a('Пополнить счет', Yii::$app->homeUrl.'cabinet/pay', ['id' => 'link-ads-pay', 'class' => 'btn-orange']) ?>-->
                 <br>
             </div>
             

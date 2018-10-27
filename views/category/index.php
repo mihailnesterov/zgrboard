@@ -113,7 +113,7 @@ $ads_all_count = CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')
                         </div>
                         
                         <div class="banners">
-                            <a href="#"><img src="images/banners/slide3.jpg" alt="" class="img-responsive"></a>
+                            <a href="#"><img src="images/banners/banner4-2.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive"></a>
                         </div>
                         
                         <?php

@@ -10,6 +10,8 @@ use app\modules\cabinet\models\CabinetUsers;
 use app\modules\cabinet\models\CabinetAds;
 use app\modules\cabinet\models\CabinetAdsSearchModel;
 use app\modules\cabinet\models\CabinetBanners;
+use app\modules\cabinet\models\CabinetBannerPositions;
+use app\modules\cabinet\models\CabinetAdsPrice;
 use app\modules\cabinet\models\CabinetMessages;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -76,7 +78,7 @@ class DefaultController extends Controller
         $pages->pageSizeParam = false;
         $models = $query->offset($pages->offset)->limit($pages->limit)->all();
         
-        Yii::$app->mailer->compose([
+        /*Yii::$app->mailer->compose([
             'html' => 'test',
             'text' => 'test',
         ])
@@ -85,7 +87,7 @@ class DefaultController extends Controller
         ->setSubject('Тема сообщения')
         ->setTextBody('Текст сообщения в текстовом формате')
         ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
-        ->send();
+        ->send();*/
         
         
         return $this->render('index', [
@@ -371,10 +373,15 @@ class DefaultController extends Controller
 
         $banners = CabinetBanners::find()->where(['user_id' => \Yii::$app->user->identity->id])->orderby(['created'=>SORT_DESC])->all();       
         $orders = CabinetMessages::find()->where(['sender_id' => \Yii::$app->user->identity->id])->andWhere(['type' => 'advert'])->orderby(['created'=>SORT_DESC])->all();
-
+        
+        $banner_price = CabinetBannerPositions::find()->all();
+        $ads_price = CabinetAdsPrice::find()->all();       
+        
         $this->layout = 'cabinet';
         return $this->render('advert', [
             'banners' => $banners,
+            'banner_price' => $banner_price,
+            'ads_price' => $ads_price,
             'orders' => $orders
         ]);
     }
@@ -416,6 +423,21 @@ class DefaultController extends Controller
         return $this->render('add-advert', [
             'model' => $model
         ]);
+    }
+    
+    /**
+     * Renders the advert view page
+     * @return string
+     */
+    public function actionViewAdvert()
+    {
+        if (Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
+
+        $this->layout = 'cabinet';
+        return $this->render('view-advert');
     }
     
     
