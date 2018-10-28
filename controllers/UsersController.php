@@ -156,6 +156,7 @@ class UsersController extends Controller
                 });
             "
             );
+            
             return $this->redirect('cabinet');
         }
         
@@ -196,7 +197,19 @@ class UsersController extends Controller
                 $user_img_dir_path = \Yii::$app->basePath.'/web/images/users/'.$user->login;
                 FileHelper::createDirectory($user_img_dir_path, $mode = 0775, $recursive = false);
                 
+                Yii::$app->mailer->compose([
+                'html' => 'test',
+                'text' => 'test',
+                ])
+                ->setFrom(['mhause@mail.ru' => 'Письмо с сайта "Мой Зеленогорск | Доска объявлений"'])
+                ->setTo('zgrmarket@mail.ru')
+                ->setSubject('Вы успешно зарегистрировались на сайте Мой Зеленогорск')
+                ->setTextBody('Ваш логин: '.$model->login.', ваш пароль: '.$model->password)
+                ->setHtmlBody('<b>Ваш логин: '.$model->login.', ваш пароль: '.$model->password.'</b>')
+                ->send();
+                
                 return $this->redirect('login');
+               
             } 
         }
         

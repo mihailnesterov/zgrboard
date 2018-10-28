@@ -78,18 +78,6 @@ class DefaultController extends Controller
         $pages->pageSizeParam = false;
         $models = $query->offset($pages->offset)->limit($pages->limit)->all();
         
-        /*Yii::$app->mailer->compose([
-            'html' => 'test',
-            'text' => 'test',
-        ])
-        ->setFrom(['mhause@mail.ru' => 'Письмо с сайта "Мой Зеленогорск | Доска объявлений"'])
-        ->setTo('zgrmarket@mail.ru')
-        ->setSubject('Тема сообщения')
-        ->setTextBody('Текст сообщения в текстовом формате')
-        ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
-        ->send();*/
-        
-        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -185,9 +173,23 @@ class DefaultController extends Controller
     public function actionViewMessage($id)
     {
         
+        if (Yii::$app->user->isGuest)
+        {
+            return $this->GoHome();
+        }        
+        
         $this->layout = 'cabinet';
         $new_model = new CabinetMessages();
         $model = $this->findMessagesModel($id);
+        
+        /*if ($model->sender_id <> Yii::$app->user->identity->id || $model->receiver_id <> Yii::$app->user->identity->id )
+        {
+            echo $model->id.'<br>';
+            echo $model->sender_id.'<br>';
+            echo Yii::$app->user->identity->id.'<br>';
+            return $this->goBack();
+        }*/
+        
         $sender = Users::findOne($model->sender_id);
         $receiver = Users::findOne($model->receiver_id);
         $message_list = CabinetMessages::find()
@@ -239,6 +241,18 @@ class DefaultController extends Controller
         }    
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) { 
+            
+            Yii::$app->mailer->compose([
+                'html' => 'test',
+                'text' => 'test',
+                ])
+                ->setFrom(['mhause@mail.ru' => 'Сообщение с сайта "Мой Зеленогорск | Доска объявлений"'])
+                ->setTo('zgrmarket@mail.ru')
+                ->setSubject('Сообщение от пользователя')
+                ->setTextBody('Сообщение от пользователя: <b>'.$sender->login.'</b>, по объявлению: <b>'.$ads->title.'</b>')
+                ->setHtmlBody('<p>Сообщение от пользователя: '.$sender->login.', по объявлению: '.$ads->title.'</p><p><a href="http://myzgr.ru/cabinet/view-message?id='.$model->id.'">Ответить</a></p>')
+                ->send();
+            
             return $this->redirect(['/view?id='.$ads_id]);
         }
 
