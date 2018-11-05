@@ -91,7 +91,7 @@ $ads_all_count = CabinetAds::find()->where(['category_id' => $model->id])->andWh
                         </div>
                         
                         <div class="banners">
-                            <a href="#"><img src="images/banners/banner4-3.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive"></a>
+                            <a href="#"><img src="images/banners/uspeh.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive"></a>
                         </div>
                         
                         <?php

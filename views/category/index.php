@@ -28,13 +28,13 @@ $ads_all_count = CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')
                                         <div class="swiper-wrapper">
                                                 <!-- Slides -->
                                                 <div class="swiper-slide" data-swiper-autoplay="5000">
-                                                    <img src="images/banners/slide1.jpg" alt="" class="img-responsive">
+                                                    <a href="http://elfido.ru/" target="_blank"><img src="images/banners/elfido.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="swiper-slide" data-swiper-autoplay="5000">
-                                                    <img src="images/banners/slide2.jpg" alt="" class="img-responsive">
+                                                    <a href="https://vk.com/hogwartszgr" target="_blank"><img src="images/banners/hogvarts.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="swiper-slide" data-swiper-autoplay="5000">
-                                                    <img src="images/banners/slide3.jpg" alt="" class="img-responsive">
+                                                    <a href="https://www.invitro.ru/" target="_blank"><img src="images/banners/invitro.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                         </div>
                                         <!-- Swiper slider pagination -->
@@ -113,7 +113,7 @@ $ads_all_count = CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')
                         </div>
                         
                         <div class="banners">
-                            <a href="#"><img src="images/banners/banner4-2.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive"></a>
+                            <img src="images/banners/taxi-corona.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive">
                         </div>
                         
                         <?php

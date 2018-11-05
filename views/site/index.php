@@ -12,13 +12,13 @@
                                         <div class="swiper-wrapper ">
                                                 <!-- Slides -->
                                                 <div class="swiper-slide" data-swiper-autoplay="5000">
-                                                    <a href="#"><img src="images/banners/slide1.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="http://elfido.ru/" target="_blank"><img src="images/banners/elfido.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="swiper-slide" data-swiper-autoplay="5000">
-                                                    <a href="#"><img src="images/banners/slide2.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="https://vk.com/hogwartszgr" target="_blank"><img src="images/banners/hogvarts.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                                 <div class="swiper-slide" data-swiper-autoplay="5000">
-                                                    <a href="#"><img src="images/banners/slide3.jpg" alt="" class="img-responsive"></a>
+                                                    <a href="https://www.invitro.ru/" target="_blank"><img src="images/banners/invitro.jpg" alt="" class="img-responsive"></a>
                                                 </div>
                                         </div>
                                         <!-- Swiper slider pagination -->
@@ -85,7 +85,7 @@
                                 </div>
                                 
                                 <div class="banners">
-                                    <a href="#"><img src="images/banners/banner4-1.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive"></a>
+                                    <img src="images/banners/shinniy-dvor.jpg" alt="Баннер в ленте объявлений" width="100%" class="img-responsive">
                                 </div>
 
                         </div>	<!-- end ads-container -->

@@ -72,12 +72,12 @@
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav dropdown">
 							<div class="banners visible-xs row">
-                                                            <div class="col-xs-6">
-                                                                <a href="#"><img src="images/banners/banner2-1.jpg" alt="Баннер в мобильном меню 1" width="100%" class="img-responsive"></a>
+                                                            <div class="col-xs-12">
+                                                                <img src="images/banners/shinniy-dvor.jpg" alt="Баннер в мобильном меню 1" width="100%" class="img-responsive">
                                                             </div>
-                                                            <div class="col-xs-6">
+                                                            <!--<div class="col-xs-6">
                                                                 <a href="#"><img src="images/banners/banner2-2.jpg" alt="Баннер в мобильном меню 2" width="100%" class="img-responsive"></a>
-                                                            </div>
+                                                            </div>-->
 							</div>
                                                         <?php
                                                             // вывод меню из БД
@@ -94,10 +94,10 @@
 					</div>
 				</nav>
 				<div class="banners hidden-xs">
-                                    <a href="#"><img src="images/banners/banner2-1.jpg" alt="Баннер в меню каталога 1" class="img-responsive"></a>
+                                    <a href="http://суши-бусидо.рф/" target="_blank"><img src="images/banners/busido.jpg" alt="Баннер в меню каталога 1" class="img-responsive"></a>
+                                    <img src="images/banners/emex.jpg" alt="Баннер в меню каталога 2" class="img-responsive">
+                                    <a href="http://vk.com/piterpenzel" target="_blank"><img src="images/banners/piter-pen.jpg" alt="Баннер в меню каталога 3" class="img-responsive"></a>
                                     <a href="https://beget.com/?id=207670" target="_blank"><img src="https://cp.beget.com/promo_data/static/static200x200_1.png" alt="Beget" border="0" class="img-responsive"></a>
-                                    <a href="#"><img src="images/banners/banner2-2.jpg" alt="Баннер в меню каталога 2" class="img-responsive"></a>
-                                    <a href="#"><img src="images/banners/banner2-3.jpg" alt="Баннер в меню каталога 3" class="img-responsive"></a>
 				</div>
 			</div> <!-- end catalog-menu-container -->
 		</aside> <!-- end aside-left -->

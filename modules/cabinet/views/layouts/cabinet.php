@@ -59,12 +59,12 @@
                                    
 					<div id="navbar" class="navbar-collapse collapse">
                                                 <div class="banners visible-xs row">
-                                                    <div class="col-xs-6">
-                                                        <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/banner2-1.jpg" alt="Баннер в мобильном меню кабинета 1" width="100%" class="img-responsive"></a>
+                                                    <div class="col-xs-12">
+                                                        <a href="http://суши-бусидо.рф/" target="_blank"><img src="<?= Yii::$app->homeUrl ?>images/banners/busido.jpg" alt="Баннер в мобильном меню кабинета 1" width="100%" class="img-responsive"></a>
                                                     </div>
-                                                    <div class="col-xs-6">
+                                                    <!--<div class="col-xs-6">
                                                         <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/banner2-2.jpg" alt="Баннер в мобильном меню кабинета 2" width="100%" class="img-responsive"></a>
-                                                    </div>
+                                                    </div>-->
                                                 </div>
 						<ul class="nav navbar-nav dropdown">  
                                                     <li class="visible-xs"><?= Html::a('<i class="fa fa-user-o" aria-hidden="true"></i> '.Yii::$app->user->identity->login, Yii::$app->homeUrl.'cabinet/profile') ?></li>
@@ -94,7 +94,7 @@
 				</nav>
                             
                             <div class="banners hidden-xs">
-                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/banner3-2.jpg" alt="Баннер в кабинете 1" width="100%" class="img-responsive"></a>
+                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/kansk-trikitaj.jpg" alt="Баннер в кабинете 1" width="100%" class="img-responsive"></a>
                             </div>
 
 			</div> <!-- end catalog-menu-container -->
