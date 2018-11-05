@@ -58,6 +58,9 @@ return [
             'cookieValidationKey' => 'h6E95Dlc9Lqs78Dmxs6',
             'baseUrl' => '/zgrboard'    // убрать web из url, на хостинге - ''
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'db' => require(__DIR__.'/db.php'),
         'user' => [ // подключаем текущую логику аутентификации
                 //'identityClass' => 'app\models\SignupForm',
