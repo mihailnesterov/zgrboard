@@ -95,7 +95,9 @@
 				</nav>
 				<div class="banners hidden-xs">
                                     <a href="http://суши-бусидо.рф/" target="_blank"><img src="images/banners/busido.jpg" alt="Баннер в меню каталога 1" class="img-responsive"></a>
+                                    <a href="http://vk.com/club88924488" target="_blank"><img src="images/banners/brauni.png" alt="Баннер в меню каталога 1" class="img-responsive"></a>
                                     <img src="images/banners/emex.jpg" alt="Баннер в меню каталога 2" class="img-responsive">
+                                    <img src="images/banners/bm.jpg" alt="Баннер в меню каталога 2" class="img-responsive">
                                     <a href="http://vk.com/piterpenzel" target="_blank"><img src="images/banners/piter-pen.jpg" alt="Баннер в меню каталога 3" class="img-responsive"></a>
                                     <a href="https://beget.com/?id=207670" target="_blank"><img src="https://cp.beget.com/promo_data/static/static200x200_1.png" alt="Beget" border="0" class="img-responsive"></a>
 				</div>

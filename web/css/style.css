@@ -986,7 +986,7 @@ footer
 @media (max-width: 543px) { 
 	body	
 	{
-	   font-size: small;
+	   font-size: medium;
 	}
         #navbar	{
             font-size: medium;

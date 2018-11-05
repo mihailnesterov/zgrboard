@@ -94,7 +94,7 @@
 				</nav>
                             
                             <div class="banners hidden-xs">
-                                <a href="#"><img src="<?= Yii::$app->homeUrl ?>images/banners/kansk-trikitaj.jpg" alt="Баннер в кабинете 1" width="100%" class="img-responsive"></a>
+                                <img src="<?= Yii::$app->homeUrl ?>images/banners/kansk-trikitaj.jpg" alt="Баннер в кабинете 1" width="100%" class="img-responsive">
                             </div>
 
 			</div> <!-- end catalog-menu-container -->
