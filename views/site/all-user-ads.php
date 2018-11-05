@@ -9,7 +9,13 @@ use yii\widgets\Breadcrumbs;
 
 $category_url = '..'.Yii::$app->homeUrl.'category';
 
-$this->title = 'Объявления пользователя '.$user->login;
+if($user) {
+    $this->title = 'Объявления пользователя '.$user->login;
+}
+else {
+    $this->title = 'У данного пользователя нет опубликованных объявлений... ';
+}
+
 $this->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

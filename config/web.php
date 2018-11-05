@@ -14,7 +14,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [ // правила формирования ссылок
-                    '' => 'site/index',
+                    /*'' => 'site/index',
                     'category' => 'category/index',
                     'category/<id:\d+>' => 'category/view',
                     'view' => 'site/view',
@@ -31,8 +31,23 @@ return [
                     'cabinet/<action>' => 'cabinet/default/<action>',
                     'logout' => 'users/logout',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                    'sitemap.xml' => 'site/sitemap'
-                    /*'<action>' => 'site/<action>',*/
+                    'sitemap.xml' => 'site/sitemap',
+                    'error' => 'site/error',
+                    '<action>' => 'site/<action>',*/
+                
+                    '' => 'site/index',
+                    'category' => 'category/index',
+                    'category/<id:\d+>' => 'category/view',
+                    'view?id=<id:\d+>' => 'site/view',
+                    'sitemap.xml' => 'site/sitemap',
+                    'login' => 'users/login',
+                    'signup' => 'users/signup',
+                    'password-restore' => 'users/restore',
+                    'logout' => 'users/logout',
+                    'cabinet' => 'cabinet/default/index',
+                    'cabinet/<action>' => 'cabinet/default/<action>',
+                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    '<action>' => 'site/<action>',
                 
                     /*'<module:cabinet>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
                     '<module:cabinet>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
@@ -48,6 +63,9 @@ return [
                 //'identityClass' => 'app\models\SignupForm',
                 'identityClass' => 'app\models\Users',
                 'enableAutoLogin' => true,
+            ],
+        'errorHandler' => [
+            'errorAction' => 'site/error'
             ],
         'mailer' => [ // подключаем swiftmailer
                 'class' => 'yii\swiftmailer\Mailer',

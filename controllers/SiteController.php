@@ -2,13 +2,60 @@
 
 namespace app\controllers;
 
+use Yii;
+use yii\helpers\Html;
+use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use app\modules\cabinet\models\CabinetAds;
 use yii\data\Pagination;
 
 class SiteController extends Controller
 {
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+    
     public function actionIndex()
     {
         $this->view->title = 'Доска объявлений';
@@ -50,7 +97,8 @@ class SiteController extends Controller
         $search1 = str_replace(' ', '', $search);
         $query = \app\modules\cabinet\models\CabinetAds::find()
                 ->where(['like', 'replace(title, " ", "")', $search1])
-                ->orWhere(['like', 'replace(text, " ", "")', $search1]);
+                ->orWhere(['like', 'replace(text, " ", "")', $search1])
+                ->andWhere(['>', 'date_end', date('Y.m.d H:i:s')]);
         $query_count = $query->count();
         /*$query = CabinetAds::find()
             ->FilterWhere(['like', 'replace(title, " ", "")',  $search1])
@@ -200,5 +248,28 @@ class SiteController extends Controller
         ]);
         \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
         echo $xml_sitemap;
+    }
+    
+    /*
+     * Error page (404...)
+     */
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception != null) {
+            if ($exception instanceof HttpException) {
+                return $this->redirect(['404/'])->send();
+            }
+        }
+        return $this->render('error',['exception' => $exception]);
+    }
+    
+    /*
+     * get Yandex.Metrika
+     */
+    public function getYandexMetrika()
+    {
+        $metrika = '<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter51001274 = new Ya.Metrika2({ id:51001274, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/51001274" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->';
+        return $this->view->params['metrika'] = $metrika;
     }
 }
