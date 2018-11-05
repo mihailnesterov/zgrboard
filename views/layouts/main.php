@@ -3,6 +3,9 @@
     use app\assets\AppAsset;
     
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl(Yii::$app->homeUrl.'web');
+    list($controller) = Yii::$app->createController('site');
+    $metrika = $controller->getYandexMetrika('metrika');
+    
     $this->beginPage();
 ?>
 <!DOCTYPE html>
@@ -171,8 +174,9 @@
         		
 
     <!-- JS scripts -->	
-        <div id="toTop"><span class="glyphicon glyphicon-chevron-up"></span></div>
-        <script type="text/javascript">ActiveLinks('catalog-menu');</script>
+        <div id="toTop"><span class="fa fa-chevron-up"></span></div>
+        <script>ActiveLinks('catalog-menu');</script>
+        <?= $metrika ?>
         
         <?php $this->endBody(); ?>
         
