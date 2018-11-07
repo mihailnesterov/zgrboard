@@ -28,7 +28,7 @@ $this->title = 'Заявка на размещение баннера';
 
             <div id="form-banner-order" class="col-sm-8 col-md-8">
 
-                        <p class="bg-warning text-info col-xs-12">Заполните форму, загрузите макет рекламного баннера (jpg, png, gif):</p>
+                        <!--<p class="bg-warning text-info col-xs-12">Заполните форму, загрузите макет рекламного баннера (jpg, png, gif):</p>-->
                         <?php $form = ActiveForm::begin([
                             //'id' => 'userUpdateForm',
                             'options' => ['class' => 'form-horizontal'],
@@ -59,7 +59,7 @@ $this->title = 'Заявка на размещение баннера';
 
             </div>
 
-            <div id="avatar-block" class="col-sm-3 col-md-3">
+            <div id="avatar-block" class="col-sm-3 col-md-3 hidden">
                 <div >
                 <p>Загрузите баннер:</p>
                 <hr>

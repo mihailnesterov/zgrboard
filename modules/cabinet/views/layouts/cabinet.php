@@ -3,6 +3,7 @@
     use app\assets\AppAsset;
      
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl(Yii::$app->homeUrl.'web');   
+    $sum = round(Yii::$app->controller->getPaymentSum('sum'), 2);
     
     $this->beginPage();
 ?>
@@ -82,7 +83,7 @@
                                                         }
                                                     ?>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/messages']) ?>">Мои сообщения <?= $msg_count_block ?></a></li>
-                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account">0,00</span> руб.)</a></li>
+                                                    <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/account']) ?>">Мой счет (<span id="my-account"><?= $sum ?></span> руб.)</a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/advert']) ?>">Моя реклама<span> (<?= \app\modules\cabinet\models\CabinetBanners::find()->where(['user_id' => \Yii::$app->user->identity->id])->count() ?>)</span></a></li>
                                                     <li><a href="<?= Yii::$app->urlManager->createUrl(['cabinet/profile']) ?>">Мой профиль</a></li>
                                                     <li><hr></li>

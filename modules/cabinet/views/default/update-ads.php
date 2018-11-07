@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\modules\cabinet\models\CabinetAds */
 
 date_default_timezone_set('Asia/Krasnoyarsk');
+$sum = round(Yii::$app->controller->getPaymentSum('sum'), 2);
 
 $this->title = 'Редактировать объявление: ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Мои объявления', 'url' => ['index']];
@@ -285,7 +286,7 @@ $this->params['breadcrumbs'][] = 'Update';
                 <p class="bg-success text-info">Стоимость: 20 руб/сутки</p>
                 <hr>
                 <!--<p class="bg-warning text-info">Оплата будет ежедневно списываться с вашего личного счета</p>-->
-                <p class="bg-info text-info">На вашем счету: 0 руб.</p>
+                <p class="bg-info text-info">На вашем счету: <?= $sum ?> руб.</p>
                 
                 <!--<?= Html::a('Пополнить счет', Yii::$app->homeUrl.'cabinet/pay', ['id' => 'link-ads-pay', 'class' => 'btn-orange']) ?>-->
 

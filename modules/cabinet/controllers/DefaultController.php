@@ -13,6 +13,7 @@ use app\modules\cabinet\models\CabinetBanners;
 use app\modules\cabinet\models\CabinetBannerPositions;
 use app\modules\cabinet\models\CabinetAdsPrice;
 use app\modules\cabinet\models\CabinetMessages;
+use app\modules\cabinet\models\CabinetPayments;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
@@ -604,6 +605,15 @@ class DefaultController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    /*
+     * send payment's data to layout
+     */
+    public function getPaymentSum()
+    {
+        $sum = CabinetPayments::find()->where(['user_id' => Yii::$app->user->identity->id])->sum('sum');;
+        return $this->view->params['sum'] = $sum;
     }
 
 }

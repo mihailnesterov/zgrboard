@@ -63,7 +63,7 @@
 		
 			<div id="catalog-menu-container">
 				<nav id="catalog-menu" class="navbar navbar-default">
-					<!--<a href="#" id="btn-open-pannel" class="visible-xs" style="display: inline-block; vertica-align: top; float: left; padding: 0.5em 1em; border: 1px #fff solid; margin: 0.5em 1em 0 0; color: #fff; font-size: 1.3em;">^</a>-->
+					
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 							<span class="sr-only">Toggle navigation</span>
@@ -85,7 +85,6 @@
                                                         <?php
                                                             // вывод меню из БД
                                                             $category = \app\models\Category::find()->all();
-                                                            //$ads = new app\modules\cabinet\models\CabinetAds();
                                                             
                                                             foreach ($category as $cat):
                                                                 $cat_count = \app\modules\cabinet\models\CabinetAds::find()->where(['category_id' => $cat->id])->andWhere(['>', 'date_end', date('Y.m.d H:i:s')])->count();
@@ -150,7 +149,7 @@
                                             <form id="searchFormMobile" method="GET" action="<?= Yii::$app->urlManager->createUrl(['search']) ?>" novalidate>
                                                     <div class="form-group">
                                                             <div class="input-group">
-                                                                    <input type="text" class="form-control" placeholder="Поиск по объявлениям..." id="searchFieldMobile" name="searchFieldMobile" />
+                                                                    <input type="text" class="form-control" placeholder="Поиск по объявлениям..." id="searchFieldMobile" name="searchField" />
                                                                     <div class="input-group-addon">
                                                                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                                                     </div>

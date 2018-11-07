@@ -87,26 +87,13 @@ class SiteController extends Controller
         
         $search = \Yii::$app->request->get('searchField');
         
-        /*$explode = explode(' ', $search);
-        $search2 = '';
-        for ($i = 0; $i < count($explode); $i++) {
-            $search2 = substr($explode[$i], 0, strlen($explode[$i])-1);
-            $search2 = $search2.$explode[$i];
-            
-        }
-        echo $search2.'<br>';*/
-        
         $search1 = str_replace(' ', '', $search);
         $query = \app\modules\cabinet\models\CabinetAds::find()
                 ->where(['like', 'replace(title, " ", "")', $search1])
                 ->orWhere(['like', 'replace(text, " ", "")', $search1])
                 ->andWhere(['>', 'date_end', date('Y.m.d H:i:s')]);
         $query_count = $query->count();
-        /*$query = CabinetAds::find()
-            ->FilterWhere(['like', 'replace(title, " ", "")',  $search1])
-            ->andFilterWhere(['like', 'replace(text, " ", "")',  $search1]);*/
-        /*$query = CabinetAds::find()
-            ->where(['like', 'title',  $search]);*/
+
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 9]);
         $pages->pageSizeParam = false;

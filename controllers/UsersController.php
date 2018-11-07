@@ -191,24 +191,44 @@ class UsersController extends Controller
 
             //echo '<pre>'; print_r($user); die;
             if ($user->save()) {
-                //return $this->redirect(['cabinet', 'id' => $model->id]);
+                
+                // Акция для новых пользователей - положить 500 р. на счет
+                $payment = new \app\modules\cabinet\models\CabinetPayments();
+                $payment->user_id = $user->id;
+                $payment->sum = '500';
+                $payment->source = 'акция для новых пользователей';
+                $payment->comment = 'действует: 10.11.18-10.12.18';
+                $payment->save();
                 
                 // create user images directory in web/images/users/
                 $user_img_dir_path = \Yii::$app->basePath.'/web/images/users/'.$user->login;
                 FileHelper::createDirectory($user_img_dir_path, $mode = 0775, $recursive = false);
                 
+                // send registration info on user email
                 Yii::$app->mailer->compose([
                 'html' => 'test',
                 'text' => 'test',
                 ])
-                ->setFrom(['mhause@mail.ru' => 'Письмо с сайта "Мой Зеленогорск | Доска объявлений"'])
-                ->setTo('zgrmarket@mail.ru')
-                ->setSubject('Вы успешно зарегистрировались на сайте Мой Зеленогорск')
+                ->setFrom(['myzgr@mail.ru' => 'Письмо с сайта "Мой Зеленогорск | Доска объявлений"'])
+                ->setTo($user->email)
+                ->setSubject('Вы успешно зарегистрировались на сайте "Мой Зеленогорск | Доска объявлений"')
                 ->setTextBody('Ваш логин: '.$model->login.', ваш пароль: '.$model->password)
-                ->setHtmlBody('<b>Ваш логин: '.$model->login.', ваш пароль: '.$model->password.'</b>')
+                ->setHtmlBody('<p>Ваш логин: <b>'.$model->login.'</b>,<br> ваш пароль: <b>'.$model->password.'</b></p><p>Войти в личный кабинет: <a href="http://myzgr.ru/cabinet" target="_blank">myzgr.ru/cabinet</a></p>')
                 ->send();
                 
-                return $this->redirect('login');
+                $message = new \app\modules\cabinet\models\CabinetMessages();
+                $message->sender_id = 1;
+                $message->receiver_id = $user->id;
+                $message->type = 'registration';
+                $message->theme = 'Добро пожаловать на сайт!';
+                $message->text = 'Вы успешно зарегистрировались на сайте "Мой Зеленогорск | Доска объявлений". '
+                        . '<br>Ваш логин: '.$model->login.'<br> Ваш пароль: '.$model->password
+                        . '<br>Письмо с логином и паролем отправлено на адрес: '.$user->email;
+                $message->save();
+                
+                $user->login();
+                
+                return $this->redirect(['/cabinet', 'id' => $user->id]);
                
             } 
         }
