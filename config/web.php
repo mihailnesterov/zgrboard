@@ -76,8 +76,8 @@ return [
                 'transport' => [
                     'class' => 'Swift_SmtpTransport',
                     'host' => 'smtp.mail.ru',
-                    'username' => 'mhause@mail.ru',
-                    'password' => 'rexerov',
+                    'username' => 'zgrmarket@mail.ru',
+                    'password' => 'zgrmarket',
                     'port' => '465', // Port 25 is a very common port too
                     'encryption' => 'ssl', // It is often used, check your provider or mail server specs
                 ],
