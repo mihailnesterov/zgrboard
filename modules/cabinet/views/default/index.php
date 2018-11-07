@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use app\modules\cabinet\models\CabinetAds;
 
-date_default_timezone_set('Asia/Krasnoyarsk');
 // получить типы (type) объявлений данного пользователя
 $types_list = CabinetAds::find()->where(['user_id' => \Yii::$app->user->identity->id])->select('type')->groupBy('type')->orderby(['type'=>SORT_ASC])->all();
 // счетчики для кнопок - все/опубликованные/неопубликванные
@@ -79,12 +78,21 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
                             . '<p class="ads-date">Просмотров: '.$ads->visits.'</p>'
                             . '<p class="ads-date">Статус: '.$ads_active.'</p>'
                             . '<hr>'
-                            . Html::a('<i class="fa fa-eye" aria-hidden="true"></i>', ['view-ads', 'id' => $ads->id], ['class' => 'btn btn-primary', 'title' => 'Просмотр'])
+                            . Html::a('<i class="fa fa-eye" aria-hidden="true"></i>', ['view-ads', 'id' => $ads->id], ['class' => 'btn btn-primary ads-block-btn', 'title' => 'Просмотр'])
                             . ' '
-                            . Html::a('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>', ['update-ads', 'id' => $ads->id], ['class' => 'btn btn-success', 'title' => 'Редактировать'])
+                            . Html::a('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>', ['update-ads', 'id' => $ads->id], ['class' => 'btn btn-success ads-block-btn', 'title' => 'Редактировать'])
+                            . ' '
+                            . Html::a('<i class="fa fa-close" aria-hidden="true"></i>', ['stop-ads', 'id' => $ads->id], [
+                                    'class' => 'btn btn-warning ads-block-btn', 
+                                    'title' => 'Снять с публикации',
+                                    'data' => [
+                                        'confirm' => 'Вы действительно хотите снять объявление с публикации?',
+                                        'method' => 'post',
+                                    ],
+                                ])
                             . ' '
                             . Html::a('<i class="fa fa-trash" aria-hidden="true"></i>', ['delete', 'id' => $ads->id], [
-                                    'class' => 'btn btn-danger',
+                                    'class' => 'btn btn-danger ads-block-btn',
                                     'title' => 'Удалить',
                                     'data' => [
                                         'confirm' => 'Вы действительно хотите удалить объявление?',

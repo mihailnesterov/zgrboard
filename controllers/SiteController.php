@@ -58,6 +58,7 @@ class SiteController extends Controller
     
     public function actionIndex()
     {
+        date_default_timezone_set('Asia/Krasnoyarsk');
         $this->view->title = 'Доска объявлений';
         \Yii::$app->view->registerMetaTag([
             'name' => 'keywords',
@@ -82,6 +83,7 @@ class SiteController extends Controller
     
     public function actionSearch()
     {
+        date_default_timezone_set('Asia/Krasnoyarsk');
         
         $search = \Yii::$app->request->get('searchField');
         

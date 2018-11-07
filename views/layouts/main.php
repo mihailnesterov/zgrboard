@@ -147,10 +147,10 @@
                                     </div>
 
                                     <div id="searchTopMobile" class="visible-xs col-xs-12">
-                                            <form id="searchForm" method="GET" action="<?= Yii::$app->urlManager->createUrl(['search']) ?>" novalidate>
+                                            <form id="searchFormMobile" method="GET" action="<?= Yii::$app->urlManager->createUrl(['search']) ?>" novalidate>
                                                     <div class="form-group">
                                                             <div class="input-group">
-                                                                    <input type="text" class="form-control" placeholder="Поиск по объявлениям..." id="searchField" name="searchField" />
+                                                                    <input type="text" class="form-control" placeholder="Поиск по объявлениям..." id="searchFieldMobile" name="searchFieldMobile" />
                                                                     <div class="input-group-addon">
                                                                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                                                     </div>

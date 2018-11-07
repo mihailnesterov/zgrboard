@@ -232,6 +232,7 @@ a:hover {
 #searchTopMobile .input-group-addon button:hover {
 	opacity: 0.8;
 }
+
 #authTop {
 	text-align: center;
 }
@@ -655,6 +656,9 @@ a:hover {
 .ads-block .ads-block-inner-img {
 	margin-bottom: 1em;
         cursor: pointer;
+}
+.ads-block .ads-block-btn {
+	margin-right: 0.3em;
 }
 
 

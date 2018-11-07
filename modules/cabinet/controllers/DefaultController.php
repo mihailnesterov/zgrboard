@@ -53,7 +53,7 @@ class DefaultController extends Controller
             //return $this->goHome();
             return $this->redirect('login');
         }
-        
+        date_default_timezone_set('Asia/Krasnoyarsk');
         $searchModel = new CabinetAdsSearchModel();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
@@ -465,7 +465,7 @@ class DefaultController extends Controller
     {
         
         $this->layout = 'cabinet';
-        
+        date_default_timezone_set('Asia/Krasnoyarsk');
         return $this->render('view-ads', [
             'model' => $this->findAdsModel($id),
         ]);
@@ -523,6 +523,23 @@ class DefaultController extends Controller
         $this->findAdsModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * Stops an existing CabinetAds model.
+     * If stopping is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionStopAds($id)
+    {
+        $model = $this->findAdsModel($id);
+        date_default_timezone_set('Asia/Krasnoyarsk');
+        $current_date =  date('Y-m-d H:i:s');
+        $model->date_end = $current_date; 
+        $model->save();
+        return $this->redirect(['view-ads', 'id' => $model->id]);
     }
     
     /**

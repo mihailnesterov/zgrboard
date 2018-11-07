@@ -40,6 +40,8 @@ class CategoryController extends Controller
         /*$searchModel = new CategorySearchModel();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);*/
         
+        date_default_timezone_set('Asia/Krasnoyarsk');
+        
         $this->view->title = 'Все объявления';
         $this->view->params['breadcrumbs'][] = $this->view->title;
         
@@ -86,6 +88,8 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        
+        date_default_timezone_set('Asia/Krasnoyarsk');
         $model = $this->findModel($id);
         $category_url = '..'.Yii::$app->homeUrl.'category';
         $this->view->title = $model->title;
