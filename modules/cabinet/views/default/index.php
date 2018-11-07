@@ -91,7 +91,7 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
                                     ],
                                 ])
                             . ' '
-                            . Html::a('<i class="fa fa-trash" aria-hidden="true"></i>', ['delete', 'id' => $ads->id], [
+                            . Html::a('<i class="fa fa-trash" aria-hidden="true"></i>', ['delete-ads', 'id' => $ads->id], [
                                     'class' => 'btn btn-danger ads-block-btn',
                                     'title' => 'Удалить',
                                     'data' => [
