@@ -131,9 +131,28 @@ class SiteController extends Controller
      */
     public function actionView($id)
     {
+        date_default_timezone_set('Asia/Krasnoyarsk');
         $model = $this->findModel($id);
         $category_url = '..'.\Yii::$app->homeUrl.'category';
         $category = \app\models\Category::findOne($model->category_id);
+        $ads = CabinetAds::findOne($model->id);
+        $user = \app\models\Users::findOne($model->user_id);
+        $created = new \DateTime($model->created);
+        
+        // add visits +1
+        $visits = CabinetAds::findOne($model->id);
+        $visits_count = $visits->visits;
+        $visits->visits = $visits_count+1;
+        $visits->save();
+        
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $category->name.', '.$ads->type.', '.$ads->title
+        ]);
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => $model->title.', объявление от '.$created->format('d.m.Y')
+        ]);
 
         $this->view->title = $model->title;
         $this->view->params['breadcrumbs'][] = ['label' => 'Все объявления', 'url' => [$category_url]];
@@ -141,7 +160,12 @@ class SiteController extends Controller
         $this->view->params['breadcrumbs'][] = $this->view->title;
         
         return $this->render('view', [
-            'model' => $model
+            'model' => $model,
+            'category' => $category,
+            'ads' => $ads,
+            'user' => $user,
+            'created' => $created,
+            'visits' => $visits
         ]);
     }
     
@@ -204,7 +228,7 @@ class SiteController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = \app\modules\cabinet\models\CabinetAds::findOne($id)) !== null) {
+        if (($model = CabinetAds::findOne($id)) !== null) {
             return $model;
         }
 

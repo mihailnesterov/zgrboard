@@ -14,15 +14,15 @@
         <meta charset="<?= Yii::$app->charset ?>">
         
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="<?= Yii::$app->basePath ?>" />
+        <meta property="og:url" content="<?= Yii::$app->request->url ?>" />
         <meta property="og:title" content="<?= $this->title ?> | <?= Yii::$app->name ?>" />
-        <meta property="og:description" content="Подать бесплатное объявление, продажа, покупка, обмен, аренда в Зеленогорске Краснояркого края" />
-        <meta property="og:image" content="<?= Yii::$app->homeUrl ?>web/images/logo.png" />
+        <meta property="og:description" content="<?= $this->title ?> | Подать бесплатное объявление | <?= Yii::$app->name ?> | Доска объявлений" />
+        <meta property="og:image" content="/images/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="<?= $this->title ?> | <?= Yii::$app->name ?>" />
-        <meta name="twitter:image:src" content="<?= Yii::$app->homeUrl ?>web/images/logo.png" />
-        <meta name="twitter:description" content="Подать бесплатное объявление, продажа, покупка, обмен, аренда в Зеленогорске Краснояркого края" />
-        <link rel="image_src" href="<?= Yii::$app->homeUrl ?>web/images/logo.png" />
+        <meta name="twitter:image:src" content="/images/logo.png" />
+        <meta name="twitter:description" content="<?= $this->title ?> | Подать бесплатное объявление | <?= Yii::$app->name ?> | Доска объявлений" />
+        <link rel="image_src" href="/images/logo.png" />
 
         <base href="<?= Yii::$app->homeUrl ?>">
 

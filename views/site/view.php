@@ -4,27 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Breadcrumbs;
 
-$category = \app\models\Category::findOne($model->category_id);
-$ads = \app\modules\cabinet\models\CabinetAds::findOne($model->id);
-$user = \app\models\Users::findOne($model->user_id);
-$created = new DateTime($model->created);
-
-/*
- * add visits +1
- */
-$visits = \app\modules\cabinet\models\CabinetAds::findOne($model->id);
-$visits_count = $visits->visits;
-$visits->visits = $visits_count+1;
-$visits->save();
-
-$this->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $category->name.', '.$ads->type.', '.$ads->title
-        ]);
-$this->registerMetaTag([
-    'name' => 'description',
-    'content' => $model->title.', объявление от '.$created->format('d.m.Y')
-]);
 ?>
 
 <main role="main">
@@ -46,7 +25,7 @@ $this->registerMetaTag([
             <div class="ads-container row">
                 <div class="ads-block col-xs-12">
                     <p class="ads-text"><?= $model->text?></p>
-                </div>
+                </div>  <!-- end ads-block -->
             </div>      <!-- end ads-container -->
             <div class="ads-container row">
                         <div class="ads-block col-sm-8">
@@ -100,19 +79,19 @@ $this->registerMetaTag([
                                         <img src="<?= $photo4 ?>" alt="" class="img-responsive" onclick="selectBigImage(this.src)">
                                     </li>
                             </ul>
-                        </div>
+                        </div>  <!-- end ads-block -->
                         <div class="col-sm-4 col-md-4">
                             <div class="ads-block">
                                 <p class="ads-text">Объявление № <?= $model->id?></p>
                                 <p class="ads-text">Опубликовано: <?= $created->format('d.m.Y'); ?> </p>
                                 <p class="ads-text">Просмотров: <?= $visits->visits ?></p>
-                            </div>
+                            </div>  <!-- end ads-block -->
                             <div class="ads-block">
                                 <h3>Контакты:</h3>
                                 <hr>
                                 <p class="ads-price ads-text"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?= $user->login?></p>
                                 <p class="ads-price ads-text"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <?= $user->phone ?> </p>                                    
-                            </div>
+                            </div>  <!-- end ads-block -->
                             <div class="ads-block">
                                 <h3>Цена:</h3>
                                 <hr>
@@ -126,7 +105,7 @@ $this->registerMetaTag([
                                             echo $model_price = '0,00';
                                         }
                                     ?> р.</p>
-                            </div>
+                            </div>  <!-- end ads-block -->
                             <div class="ads-block">
                                 <p class="text-center ads-text"><a href="<?=Yii::$app->urlManager->createUrl(['all-user-ads?id='.$model->user_id]) ?>">Все объявления пользователя (<?= \app\modules\cabinet\models\CabinetAds::find()->where(['>', 'date_end', date('Y.m.d H:i:s')])->andWhere(['=', 'user_id', $model->user_id])->count() ?>)</a></p>
                                 <hr>
@@ -137,7 +116,22 @@ $this->registerMetaTag([
                                         <?= Html::a('Оставить сообщение', Yii::$app->homeUrl.'cabinet/add-message?sender='.$model->user_id.'&ads='.$model->id, ['class' => 'btn-orange']) ?>
                                     <?php endif; ?>
                                 </p>
-                            </div>
+                            </div>  <!-- end ads-block -->
+                            <div class="ads-block">
+                                <div class="social-buttons">
+                                    <script type="text/javascript">(function() {
+                                    if (window.pluso)if (typeof window.pluso.start == "function") return;
+                                    if (window.ifpluso==undefined) { window.ifpluso = 1;
+                                        var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                                        s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+                                        s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+                                        var h=d[g]('body')[0];
+                                        h.appendChild(s);
+                                    }})();</script>
+                                    <div class="pluso" data-background="transparent" data-options="medium,square,line,horizontal,nocounter,theme=04" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir"></div>
+                                </div>
+                            </div>  <!-- end ads-block -->
+                            
                         </div>
                     
             </div>	<!-- end ads-container -->

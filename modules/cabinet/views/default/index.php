@@ -23,6 +23,16 @@ $this->title = 'Мои объявления'; //.Yii::$app->user->id
                 <?= Html::a('Подать объявление', Yii::$app->homeUrl.'cabinet/add', ['class' => 'btn-orange']) ?>
             </div>
             
+            <?php 
+            // показать сообщение пользователю если не указан телефон
+            $user = Yii::$app->controller->getUserData(Yii::$app->user->identity->id);
+            if ( $user->phone == '') {
+                echo '<div class="col-xs-12">'
+                    .'<p style="line-height: 1.5;" class="text-info bg-warning">Вы можете указать контактный телефон, который будет публиковаться во всех ваших объявлениях.<br> Для этого перейдите в раздел <a href="'.Yii::$app->urlManager->createUrl(['cabinet/profile']).'">Мой профиль</a> личного кабинета</p>'
+                    .'</div>';
+            }
+                    
+            ?>
            
             <div class="col-xs-12">
                 <div class="btn-group pull-left" role="toolbar" aria-label="">

@@ -612,8 +612,17 @@ class DefaultController extends Controller
      */
     public function getPaymentSum()
     {
-        $sum = CabinetPayments::find()->where(['user_id' => Yii::$app->user->identity->id])->sum('sum');;
+        $sum = CabinetPayments::find()->where(['user_id' => Yii::$app->user->identity->id])->sum('sum');
         return $this->view->params['sum'] = $sum;
+    }
+    
+     /*
+     * get user data
+     */
+    public function getUserData($id)
+    {
+        $user = CabinetUsers::find()->where(['id' => $id])->one();
+        return $this->view->params['user'] = $user;
     }
 
 }
